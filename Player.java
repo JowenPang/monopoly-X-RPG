@@ -8,31 +8,35 @@ public class Player extends Role {
     int position;
 
     public Player(char name) {
-        this.name=name; firstDiceRoll=0; position=0;
+        this.name=name; firstDiceRoll=0;position=0;
     }
     public int rollDice(){
         Random r=new Random();
         int max=6;
         return r.nextInt(max)+1;
     }
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     public int getPosition(){
-        //we don't have to everytime roll dice , just know player's new position will do
-        Random r=new Random();
-        int max=6;
-        return (position+(r.nextInt(max)+1))%32;
+        return position;
     }
 
     @Override
     public void attack(){
+        System.out.println("fight monster");
+        strength--;
     }
 
     @Override
     public void item(){
+        System.out.println("sword, potion , smoke bomb");
     }
 
     @Override
     public void flee(){
+        System.out.println("your turn is finish");
     }
-
 }
 
