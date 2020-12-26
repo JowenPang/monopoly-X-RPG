@@ -10,6 +10,13 @@ public class Player extends Role {
     public Player(char name) {
         this.name=name; firstDiceRoll=0;position=0;
     }
+    
+    public String toString() {
+        return "level=" + level + ", hp=" + hp + ", strength=" + strength +
+                ", defence=" + defence + ", agility=" + agility + ", exp=" + exp +
+                ", gold=" + gold;
+    }
+
     public int rollDice(){
         Random r=new Random();
         int max=6;
