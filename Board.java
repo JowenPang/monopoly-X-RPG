@@ -16,12 +16,15 @@ public class Board {
             char name=sc.next().charAt(0);
             player[i]=new Player(name);      //create each new player
             player[i].firstDiceRoll=player[i].rollDice();
-            System.out.println( "first dice roll: "+ player[i].firstDiceRoll);
+            System.out.println( "First dice roll: "+ player[i].firstDiceRoll);
         }
         checkSequence(player);
         for (int i = 0; i < player.length; i++) {
-            System.out.print(player[i].name + " ");  //to check the sequence of player
+            System.out.println("Player "+(i+1)+" : "+player[i].name);  //to check the sequence of player
         }
+        System.out.println();
+        System.out.println();
+        System.out.println("***** "+player[0].name +" plays First! Let's begin. "+"*****");
 
         for (int i = 0; i < square.length; i++) {
             if (i == 0)
@@ -39,7 +42,7 @@ public class Board {
             else
                 square[i] = new Sin("Sin-M");
 
-        }
+        } 
     }
 
     public Square play(Player player) {
@@ -54,14 +57,20 @@ public class Board {
     }
 
     public void printBoard(Player player) {
-        System.out.println(" ----------------------------------------------------------------------");
+        
+    // print upper bar 
+        for (int m = 16; m< 25; m++) {
+            System.out.printf("---------");
+        }
+        System.out.println("-");
+        
         for (int m = 16; m < 25; m++) {
-            System.out.print(" | " + square[m].name);
+            System.out.printf("| %-7s",square[m].name);
         }
         System.out.println("|");
         for (int m = 16; m< 25; m++) {
-            System.out.print(" | ");
-            for (int n = 0; n< square[m].name.length(); n++) {
+            System.out.print("| ");
+            for (int n = 0; n < 7; n++) {
                 if(n==0) {
                     if (player.getPosition() == m)
                         System.out.print(player.name);
@@ -71,17 +80,57 @@ public class Board {
                 else
                     System.out.print(" ");
             }
-        }System.out.println("|");
-        System.out.println(" ----------------------------------------------------------------------");
-
-        System.out.println(" ----------------------------------------------------------------------");
+        }
+        System.out.println("|");
+        for (int m = 16; m< 25; m++) {
+            if (m==16){
+                System.out.print("|--------|");
+            } else if (m==23 || m==24){
+                System.out.print("--------|");
+            } else {
+                System.out.print("---------");
+            }
+        }
+        System.out.println();
+        
+    // print middle rows
+    int part1=15, part2=25;
+    while (part1>=9 && part2<=31){
+        System.out.printf("| %-7s|",square[part1].name);
+        System.out.printf("%62s"," ");
+        System.out.printf("| %-7s|",square[part2].name);
+        System.out.println();
+        System.out.printf("| %-7s|"," ");
+        System.out.printf("%62s"," ");
+        System.out.printf("| %-7s|"," ");
+        System.out.println();
+        if (part1!=9 && part2!=31){
+        System.out.printf("|--------|");
+        System.out.printf("%62s"," ");
+        System.out.printf("|--------|");
+            System.out.println();
+        }
+        part1++;
+        part2++;
+    }
+    // print lower bar 
+        for (int m = 16; m< 25; m++) {
+            if (m==16){
+                System.out.print("|--------|");
+            } else if (m==23 || m==24){
+                System.out.print("--------|");
+            } else {
+                System.out.print("---------");
+            }
+        }
+        System.out.println();
         for (int m = 8; m >=0; m--) {
-            System.out.print(" | " + square[m].name);
+            System.out.printf("| %-7s",square[m].name);
         }
         System.out.println("|");
         for (int m = 8; m >=0; m--) {
-            System.out.print(" | ");
-            for (int n = 0; n< square[m].name.length(); n++) {
+            System.out.print("| ");
+            for (int n = 0; n < 7; n++) {
                 if(n==0) {
                     if (player.getPosition() == m)
                         System.out.print(player.name);
@@ -91,9 +140,15 @@ public class Board {
                 else
                     System.out.print(" ");
             }
-        }System.out.println("|");
-        System.out.println(" ----------------------------------------------------------------------");
+        }
+        System.out.println("|");
+        for (int m = 16; m < 25; m++) {
+            System.out.printf("---------");
+        }
+        System.out.println("-");
     }
+    
+    
     private static Player [] checkSequence(Player[] player) {
         //decide sequence
         for (int pass = 0; pass<player.length-1; pass++) {
@@ -120,5 +175,3 @@ public class Board {
         this.currentTurn = currentTurn;
     }
 }
-
-
