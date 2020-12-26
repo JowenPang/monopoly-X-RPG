@@ -51,6 +51,7 @@ public class Board {
         int nextPosition=(player.getPosition()+a)%32;
         player.setPosition(nextPosition);
         System.out.println("Player's next position: "+ nextPosition);
+        printBoard(player);
         square[nextPosition].event(player);
         return square[nextPosition];
 
