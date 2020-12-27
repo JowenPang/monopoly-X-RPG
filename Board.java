@@ -71,16 +71,16 @@ public class Board {
             System.out.printf("| %-7s",square[m].name);
         }
         System.out.println("|");
-        System.out.print("|  ");
+        for (int m = 16; m < 25; m++) {
         space=0;
-        for (int m = 16; m< 25; m++) {
+        System.out.print("| ");
             for (int i = 0; i < player.length ;i++) {
                 if (player[i].getPosition() == m) {
-                    System.out.print(player[i].name+ " ");
-                    space+=1;
+                    System.out.print(player[i].name+" ");
+                    space+=2;
                 }
             }
-            for (int i = space; i <7 ; i++) {
+            for (int i = space; i < 7 ; i++) {
                 System.out.print(" ");
             }
         }
@@ -101,17 +101,16 @@ public class Board {
         while (part1>=9 && part2<=31){
             System.out.printf("| %-7s|",square[part1].name);
             System.out.printf("%62s"," ");
-            System.out.printf("| %-7s|",square[part2].name);
-            System.out.println();
-            System.out.print("|");
+            System.out.printf("| %-7s|\n",square[part2].name);
+            System.out.print("| ");
             space=0;
             for (int i = 0; i < player.length ;i++) {
                 if (player[i].getPosition() == part1) {
-                    System.out.print(player[i].name+ " ");
-                    space+=1;
+                    System.out.print(player[i].name+" ");
+                    space+=2;
                 }
             }
-            for (int i = space; i <7 ; i++) {
+            for (int i = space; i < 7 ; i++) {
                 System.out.print(" ");
             }
             System.out.print("|");
@@ -122,13 +121,13 @@ public class Board {
             for (int i = 0; i < player.length ;i++) {
                 if (player[i].getPosition() == part2) {
                     System.out.print(player[i].name+ " ");
-                    space+=1;
+                    space+=2;
                 }
             }
             for (int i = space; i <7 ; i++) {
                 System.out.print(" ");
             }
-            System.out.println("|");
+            System.out.println(" |");
             if (part1!=9 && part2!=31){
                 System.out.printf("|--------|");
                 System.out.printf("%62s"," ");
@@ -153,13 +152,13 @@ public class Board {
             System.out.printf("| %-7s",square[m].name);
         }
         System.out.println("|");
-        space=0;
         for (int m = 8; m >=0; m--) {
+        space=0;
             System.out.print("| ");
             for (int i = 0; i < player.length ;i++) {
                 if (player[i].getPosition() == m) {
                     System.out.print(player[i].name+ " ");
-                    space+=1;
+                    space+=2;
                 }
             }
             for (int i = space; i <7 ; i++) {
