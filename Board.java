@@ -3,20 +3,22 @@ package monopoly;
 import java.util.Scanner;
 
 public class Board {
-    private int currentTurn=0;
+    private int currentTurn;
     Square[] square = new Square[32];
-    Player [] player;
+    public static Player [] player;
     Scanner sc=new Scanner(System.in);
 
     public Board(int noOfPlayer) {
+        currentTurn=0;
         player =new Player[noOfPlayer];
 
         System.out.println("Enter character to represent each player");
         for (int i = 0; i < player.length; i++) {
-            char name=sc.next().charAt(0);
-            player[i]=new Player(name);      //create each new player
-            player[i].firstDiceRoll=player[i].rollDice();
-            System.out.println( "First dice roll: "+ player[i].firstDiceRoll);
+            char name = sc.next().charAt(0);
+            player[i] = new Player(name);      //create each new player
+            player[i].firstDiceRoll = player[i].rollDice();
+            System.out.println("first dice roll: " + player[i].firstDiceRoll);
+
         }
         checkSequence(player);
         for (int i = 0; i < player.length; i++) {
@@ -42,137 +44,137 @@ public class Board {
             else
                 square[i] = new Sin("Sin-M");
 
-        } 
+        }
+
     }
 
-    public Square play(Player player) {
+    public void  play() {
+        Player player=getCurrentPlayer();
         int a=player.rollDice();
         System.out.println("Player's dice: "+ a);
         int nextPosition=(player.getPosition()+a)%32;
         player.setPosition(nextPosition);
         System.out.println("Player's next position: "+ nextPosition);
-        printBoard(player);
+        printBoard();
         square[nextPosition].event(player);
-        return square[nextPosition];
-
     }
 
-    public void printBoard(Player player) {
-            // print upper bar
-            for (int m = 16; m< 25; m++) {
+    public void printBoard() {
+        int space;
+        // print upper bar
+        for (int m = 16; m< 25; m++) {
+            System.out.print("---------");
+        }
+        System.out.println("-");
+
+        for (int m = 16; m < 25; m++) {
+            System.out.printf("| %-7s",square[m].name);
+        }
+        System.out.println("|");
+        System.out.print("|  ");
+        space=0;
+        for (int m = 16; m< 25; m++) {
+            for (int i = 0; i < player.length ;i++) {
+                if (player[i].getPosition() == m) {
+                    System.out.print(player[i].name+ " ");
+                    space+=1;
+                }
+            }
+            for (int i = space; i <7 ; i++) {
+                System.out.print(" ");
+            }
+        }
+        System.out.println("|");
+        for (int m = 16; m< 25; m++) {
+            if (m==16){
+                System.out.print("|--------|");
+            } else if (m==23 || m==24){
+                System.out.print("--------|");
+            } else {
                 System.out.print("---------");
             }
-            System.out.println("-");
-
-            for (int m = 16; m < 25; m++) {
-                System.out.printf("| %-7s",square[m].name);
-            }
-            System.out.println("|");
-            for (int m = 16; m< 25; m++) {
-                System.out.print("| ");
-                for (int n = 0; n < 7; n++) {
-                    if(n==0) {
-                        if (player.getPosition() == m)
-                            System.out.print(player.name);
-                        else
-                            System.out.print(" ");
-                    }
-                    else
-                        System.out.print(" ");
-                }
-            }
-            System.out.println("|");
-            for (int m = 16; m< 25; m++) {
-                if (m==16){
-                    System.out.print("|--------|");
-                } else if (m==23 || m==24){
-                    System.out.print("--------|");
-                } else {
-                    System.out.print("---------");
-                }
-            }
-            System.out.println();
-
-            // print middle rows
-            int part1=15, part2=25;
-            while (part1>=9 && part2<=31){
-                System.out.printf("| %-7s|",square[part1].name);
-                System.out.printf("%62s"," ");
-                System.out.printf("| %-7s|",square[part2].name);
-                System.out.println();
-                System.out.print("|");
-                for (int n = 0; n <= 7; n++) {
-                    if(n==0) {
-                        if (player.getPosition() == part1)
-                            System.out.print(player.name);
-                        else
-                            System.out.print(" ");
-                    }
-                    else
-                        System.out.print(" ");
-                }
-                System.out.print("|");
-                System.out.printf("%62s"," ");
-
-                System.out.print("|");
-                for (int n = 0; n <=7; n++) {
-                    if(n==0) {
-                        if (player.getPosition() == part2)
-                            System.out.print(player.name);
-                        else
-                            System.out.print(" ");
-                    }
-                    else
-                        System.out.print(" ");
-                }
-
-                System.out.println("|");
-                if (part1!=9 && part2!=31){
-                    System.out.printf("|--------|");
-                    System.out.printf("%62s"," ");
-                    System.out.printf("|--------|");
-                    System.out.println();
-                }
-                part1--;
-                part2++;
-            }
-            // print lower bar
-            for (int m = 16; m< 25; m++) {
-                if (m==16){
-                    System.out.print("|--------|");
-                } else if (m==23 || m==24){
-                    System.out.print("--------|");
-                } else {
-                    System.out.print("---------");
-                }
-            }
-            System.out.println();
-            for (int m = 8; m >=0; m--) {
-                System.out.printf("| %-7s",square[m].name);
-            }
-            System.out.println("|");
-            for (int m = 8; m >=0; m--) {
-                System.out.print("| ");
-                for (int n = 0; n < 7; n++) {
-                    if(n==0) {
-                        if (player.getPosition() == m)
-                            System.out.print(player.name);
-                        else
-                            System.out.print(" ");
-                    }
-                    else
-                        System.out.print(" ");
-                }
-            }
-            System.out.println("|");
-            for (int m = 16; m < 25; m++) {
-                System.out.printf("---------");
-            }
-            System.out.println("-");
         }
-    
+        System.out.println();
+
+        // print middle rows
+        int part1=15, part2=25;
+        while (part1>=9 && part2<=31){
+            System.out.printf("| %-7s|",square[part1].name);
+            System.out.printf("%62s"," ");
+            System.out.printf("| %-7s|",square[part2].name);
+            System.out.println();
+            System.out.print("|");
+            space=0;
+            for (int i = 0; i < player.length ;i++) {
+                if (player[i].getPosition() == part1) {
+                    System.out.print(player[i].name+ " ");
+                    space+=1;
+                }
+            }
+            for (int i = space; i <7 ; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("|");
+            System.out.printf("%62s"," ");
+
+            space=0;
+            System.out.print("|");
+            for (int i = 0; i < player.length ;i++) {
+                if (player[i].getPosition() == part2) {
+                    System.out.print(player[i].name+ " ");
+                    space+=1;
+                }
+            }
+            for (int i = space; i <7 ; i++) {
+                System.out.print(" ");
+            }
+            System.out.println("|");
+            if (part1!=9 && part2!=31){
+                System.out.printf("|--------|");
+                System.out.printf("%62s"," ");
+                System.out.printf("|--------|");
+                System.out.println();
+            }
+            part1--;
+            part2++;
+        }
+        // print lower bar
+        for (int m = 16; m< 25; m++) {
+            if (m==16){
+                System.out.print("|--------|");
+            } else if (m==23 || m==24){
+                System.out.print("--------|");
+            } else {
+                System.out.print("---------");
+            }
+        }
+        System.out.println();
+        for (int m = 8; m >=0; m--) {
+            System.out.printf("| %-7s",square[m].name);
+        }
+        System.out.println("|");
+        space=0;
+        for (int m = 8; m >=0; m--) {
+            System.out.print("| ");
+            for (int i = 0; i < player.length ;i++) {
+                if (player[i].getPosition() == m) {
+                    System.out.print(player[i].name+ " ");
+                    space+=1;
+                }
+            }
+            for (int i = space; i <7 ; i++) {
+                System.out.print(" ");
+            }
+        }
+        System.out.println("|");
+        for (int m = 8; m >=0; m--) {
+            System.out.print("---------");
+        }
+        System.out.println("-");
+    }
+
+    //decide sequence
     private static Player [] checkSequence(Player[] player) {
-        //decide sequence
         for (int pass = 0; pass<player.length-1; pass++) {
             for (int i = 0; i < player.length-1; i++) {
                 Player temp;
@@ -186,14 +188,20 @@ public class Board {
         }return player;
     }
     public Player getCurrentPlayer(){
-        return player[currentTurn];
+        return player[currentTurn-1];
     }
 
     public int getCurrentTurn() {
         return currentTurn;
     }
 
-    public void setCurrentTurn(int currentTurn) {
-        this.currentTurn = currentTurn;
+    public void setCurrentTurn(int num) {
+        this.currentTurn = currentTurn+1;
+        if(this.currentTurn> player.length)
+            this.currentTurn=1;
+    }
+
+    public Player[] getPlayer() {
+        return player;
     }
 }
