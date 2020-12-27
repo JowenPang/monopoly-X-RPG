@@ -7,16 +7,16 @@ public class Player extends Role {
     int firstDiceRoll;
     int position;
 
+
+    public String toString() {
+        return "-----------------------"+ "\nlevel= " + level + "\nhp= " + hp + "\nstrength= " + strength +
+                "\ndefence= " + defence + "\nagility= " + agility + "\nexp= " + exp +
+                "\ngold= " + gold+ "\n-----------------------";
+    }
+
     public Player(char name) {
         this.name=name; firstDiceRoll=0;position=0;
     }
-    
-    public String toString() {
-        return "level=" + level + ", hp=" + hp + ", strength=" + strength +
-                ", defence=" + defence + ", agility=" + agility + ", exp=" + exp +
-                ", gold=" + gold;
-    }
-
     public int rollDice(){
         Random r=new Random();
         int max=6;
@@ -45,5 +45,11 @@ public class Player extends Role {
     public void flee(){
         System.out.println("your turn is finish");
     }
+
+    public char getName() {
+        return name;
+    }
 }
+
+
 
