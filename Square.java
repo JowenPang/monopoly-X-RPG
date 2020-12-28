@@ -9,27 +9,19 @@ public abstract class Square {
 
     public abstract void event(Player player);
 }
+
 class Start extends Square{
 
     public Start(String name) {
         this.name = name;
     }
-    @Override
+   
     public void event(Player player){
-        System.out.println("game Started");
+        System.out.println("Game Started");
     }
-
 }
-class Shop extends Square{
-    public Shop(String name) {
-        this.name = name;
-    }
-    @Override
-    public void event(Player player){
-        System.out.println("welcome to shop");
-    }
 
-}
+        
 class Chest extends Square{
     public Chest(String name) {
         this.name = name;
@@ -40,16 +32,7 @@ class Chest extends Square{
     }
 
 }
-class Empty extends Square{
-    public Empty(String name) {
-        this.name = name;
-    }
-    @Override
-    public void event(Player player){
-        System.out.println("You can rest");
-    }
 
-}
 class Sin extends Square{
     public Sin(String name) {
         this.name = name;
