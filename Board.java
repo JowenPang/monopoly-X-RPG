@@ -49,13 +49,20 @@ public class Board {
     }
 
     public void  play() {
+        int nextPosition=0;
         Player player=getCurrentPlayer();
         int a=player.rollDice();
         System.out.println("Player's dice: "+ a);
-        int nextPosition=(player.getPosition()+a)%32;
+        int nextPositionBfr=player.getPosition()+a;
+        if(nextPositionBfr>=32)
+            nextPosition =nextPositionBfr%32;
+        else
+            nextPosition=nextPositionBfr;
         player.setPosition(nextPosition);
         System.out.println("Player's next position: "+ nextPosition);
         printBoard();
+        if(nextPositionBfr>32)
+            square[0].event(player);
         square[nextPosition].event(player);
     }
 
