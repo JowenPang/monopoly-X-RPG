@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String [] args){
+        Instructions.help();
         Scanner sc=new Scanner(System.in);
         System.out.println("Number of player:");
         int n=sc.nextInt();
