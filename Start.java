@@ -15,7 +15,7 @@ class Start extends Square {
         player.setStrength(25);
         player.setDefence(10);
         player.setAgility(10);
-        System.out.println("Your new statistics: "+ player.toString());
+        System.out.println("Your new statistics:\n "+ player.toString());
         System.out.println("Continue enjoy the game!");
 
     }
