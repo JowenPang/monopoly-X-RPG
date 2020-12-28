@@ -9,18 +9,6 @@ public abstract class Square {
 
     public abstract void event(Player player);
 }
-
-class Start extends Square{
-
-    public Start(String name) {
-        this.name = name;
-    }
-   
-    public void event(Player player){
-        System.out.println("Game Started");
-    }
-}
-
         
 class Chest extends Square{
     public Chest(String name) {
