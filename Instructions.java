@@ -6,7 +6,7 @@ public class Instructions {
         Scanner s = new Scanner (System.in);
         String str = "", ans ="";
         outsideloop:
-        System.out.println("WELCOME TO THE MONOPOLY X RBG");
+        System.out.println("WELCOME TO THE MONOPOLY X RPG");
         while (!str.equalsIgnoreCase("-start")&&!ans.equalsIgnoreCase("yes")){
         System.out.println("Type [-help] for game instructions.");
         System.out.println("Type [-start] to start the game.\n");
