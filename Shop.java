@@ -35,6 +35,7 @@ public class Shop extends Square{
                             player.setHp(10);
                             player.setStrength(15);
                             player.setGold(-40);
+                            player.item.add("Potion");
                             System.out.println("You successfully bought a potion");
                             break;
                         case 2:
@@ -58,7 +59,9 @@ public class Shop extends Square{
                     }
                     break;
                 case 2: //sell item
-                    System.out.printf("%-10s%5s%12s%15s%10s\n","No","Items","HP","Strength","Gold");
+                    System.out.println("The item you have: " +player.getItem());
+                    System.out.println("Which item do you want to sell?");
+                   /* System.out.printf("%-10s%5s%12s%15s%10s\n","No","Items","HP","Strength","Gold");
                     System.out.printf("%-10s%5s%11s%11s%13s\n","1.","Potion","10","15","40");
                     System.out.printf("%-10s%5s%8s%11s%13s\n","2.","Hi-Potion","15","15","60");
                     System.out.printf("%-10s%5s%7s%11s%13s\n","3.","Smoke bomb","20","25","80");
@@ -92,7 +95,7 @@ public class Shop extends Square{
                             player.setGold(100);
                             System.out.println("You had sold a poison");
                             break;
-                    }
+                    }*/
                     break;
                 case 3: //buy weapons
                     System.out.println("Weapons sell as below:");
@@ -300,5 +303,6 @@ public class Shop extends Square{
         System.out.println("Thank you and have a nice day!");
     }
 }
+
 
     
