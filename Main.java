@@ -10,11 +10,6 @@ public class Main {
         int n=sc.nextInt();
         Board board=new Board(n);
 
-        Player [] player=new Player[n];  //Object Array
-        Monsters monster =new Monsters();
-
-        //the game will continue loop in this do while loop
-
         board.printBoard();
         do {
             board.setCurrentTurn(1);
