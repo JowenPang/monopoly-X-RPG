@@ -1,18 +1,18 @@
-import java.util.Scanner;
 
-/**
- *
- * @author User
- */
-public class Shop {
-     Scanner sc= new Scanner (System.in);
-     
-    int hp,strength,gold;
 
-    public void Shop(){
-    int choice=0;
-    System.out.println("Welcome to the shop!");
-    while(choice!=6){
+public class Shop extends Square{
+     public Shop(String name) {
+        this.name = name;
+    }
+   
+    public void event(Player player){
+       int choice=0;
+       System.out.println("Welcome to Mystery shop!");
+       System.out.println("");
+       System.out.println("Your current hp: " + player.getHp());
+       System.out.println("Your current strength: " + player.getStrength());
+       System.out.println("You current gold: " + player.getGold());
+       while(choice!=6){
        System.out.println("");
        System.out.println("Option: 1.Buy items  2.Sell items  3.Buy weapons  4.Sold weapons  5.Upgrade weapons  6.Exit ");
        System.out.print("Your option: ");
@@ -33,45 +33,45 @@ public class Shop {
              
                 switch(itemBuy){
                     case 1:
-                        hp+=10;
-                        strength+=15;
-                        gold-=40;
+                        player.setHp(10);
+                        player.setStrength(15);
+                        player.setGold(-40);
                         System.out.println("You successfully bought a potion");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                     case 2:
-                        hp+=15;
-                        strength+=15;
-                        gold-=60;
+                        player.setHp(15);
+                        player.setStrength(15);
+                        player.setGold(-60);
                         System.out.println("You successfully bought a hi-potion");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                     case 3:
-                        hp+=20;
-                        strength+=25;
-                        gold-=80;
+                        player.setHp(20);
+                        player.setStrength(25);
+                        player.setGold(-80);
                         System.out.println("You successfully bought a smoke bomb");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                     case 4:
-                        hp+=30;
-                        strength+=25;
-                        gold-=100;
+                        player.setHp(30);
+                        player.setStrength(25);
+                        player.setGold(-100);
                         System.out.println("You successfully bought a poison");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                         
                 }
                 break;
-           case 2: //sell item
+                case 2: //sell item
                 System.out.printf("%-10s%5s%12s%15s%10s\n","No","Items","HP","Strength","Gold");
                 System.out.printf("%-10s%5s%11s%11s%13s\n","1.","Potion","10","15","40");
                 System.out.printf("%-10s%5s%8s%11s%13s\n","2.","Hi-Potion","15","15","60");
@@ -83,40 +83,40 @@ public class Shop {
              
                 switch(itemSell){
                     case 1:
-                        hp-=10;
-                        strength-=15;
-                        gold+=40;
+                        player.setHp(-10);
+                        player.setStrength(-15);
+                        player.setGold(40);
                         System.out.println("You successfully sold a potion");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                     case 2:
-                        hp-=15;
-                        strength-=15;
-                        gold+=60;
+                        player.setHp(-15);
+                        player.setStrength(-15);
+                        player.setGold(60);
                         System.out.println("You successfully sold a hi-potion");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                     case 3:
-                        hp-=20;
-                        strength-=25;
-                        gold+=80;
+                        player.setHp(-20);
+                        player.setStrength(-25);
+                        player.setGold(80);
                         System.out.println("You had sold a smoke bomb");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                     case 4:
-                        hp-=30;
-                        strength-=25;
-                        gold+=100;
+                        player.setHp(-30);
+                        player.setStrength(-25);
+                        player.setGold(100);
                         System.out.println("You had sold a poison");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                 }
                break;
@@ -137,76 +137,76 @@ public class Shop {
             
                switch(weaponBuy){
                    case 1:
-                        hp+=10;
-                        strength+=10;
-                        gold-=30;
+                        player.setHp(10);
+                        player.setStrength(10);
+                        player.setGold(-30);
                         System.out.println("You successfully bought a sword");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 2:
-                        hp+=15;
-                        strength+=20;
-                        gold-=40;
+                        player.setHp(15);
+                        player.setStrength(20);
+                        player.setGold(-40);
                         System.out.println("You successfully bought a spear");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                        break;
                    case 3:
-                        hp+=5;
-                        strength+=10;
-                        gold-=25;
+                        player.setHp(5);
+                        player.setStrength(10);
+                        player.setGold(-25);
                         System.out.println("You successfully bought a wooden axe");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 4:
-                        hp+=20;
-                        strength+=25;
-                        gold-=80;
+                        player.setHp(20);
+                        player.setStrength(25);
+                        player.setGold(-80);
                         System.out.println("You successfully bought a shield");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 5:
-                        hp+=30;
-                        strength+=25;
-                        gold-=100;
+                        player.setHp(30);
+                        player.setStrength(25);
+                        player.setGold(-100);
                         System.out.println("You successfully bought a crossbows");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 6:
-                        hp+=15;
-                        strength+=15;
-                        gold-=35;
+                        player.setHp(15);
+                        player.setStrength(15);
+                        player.setGold(-35);
                         System.out.println("You successfully bought bows");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 7:
-                        hp+=25;
-                        strength+=30;
-                        gold-=120;
+                        player.setHp(25);
+                        player.setStrength(30);
+                        player.setGold(-120);
                         System.out.println("You successfully bought a tridents");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 8:
-                        hp+=40;
-                        strength+=30;
-                        gold-=180;
+                        player.setHp(40);
+                        player.setStrength(30);
+                        player.setGold(-180);
                         System.out.println("You successfully bought a armor");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                }
                break;
            case 4: //sell weapon
@@ -225,76 +225,76 @@ public class Shop {
             
                switch(weaponSell){
                    case 1:
-                        hp-=10;
-                        strength-=10;
-                        gold+=30;
+                        player.setHp(-10);
+                        player.setStrength(-10);
+                        player.setGold(30);
                         System.out.println("You successfully sold a sword");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 2:
-                        hp-=15;
-                        strength-=20;
-                        gold+=40;
+                        player.setHp(-15);
+                        player.setStrength(-20);
+                        player.setGold(40);
                         System.out.println("You successfully sold a spear");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 3:
-                        hp-=5;
-                        strength-=10;
-                        gold+=25;
+                        player.setHp(-5);
+                        player.setStrength(-10);
+                        player.setGold(25);
                         System.out.println("You successfully sold a wooden axe");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 4:
-                        hp-=20;
-                        strength-=25;
-                        gold+=80;
+                        player.setHp(-20);
+                        player.setStrength(-25);
+                        player.setGold(80);
                         System.out.println("You successfully sold a shield");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 5:
-                        hp-=30;
-                        strength-=25;
-                        gold+=100;
+                        player.setHp(-30);
+                        player.setStrength(-25);
+                        player.setGold(100);
                         System.out.println("You successfully sold a crossbows");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 6:
-                        hp-=15;
-                        strength-=15;
-                        gold+=35;
+                        player.setHp(-15);
+                        player.setStrength(-15);
+                        player.setGold(35);
                         System.out.println("You successfully sold a bows");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 7:
-                        hp-=25;
-                        strength-=30;
-                        gold+=120;
+                        player.setHp(-25);
+                        player.setStrength(-30);
+                        player.setGold(120);
                         System.out.println("You successfully sold a tridents");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 8:
-                        hp-=40;
-                        strength-=30;
-                        gold+=180;
+                        player.setHp(-40);
+                        player.setStrength(-30);
+                        player.setGold(180);
                         System.out.println("You successfully sold a armor");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                }
                break;
@@ -315,76 +315,76 @@ public class Shop {
             
                switch(weaponUpgrade){
                    case 1:
-                        hp+=20;
-                        strength+=20;
-                        gold-=60;
+                        player.setHp(20);
+                        player.setStrength(20);
+                        player.setGold(-60);
                         System.out.println("You successfully upgrade a sword");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 2:
-                        hp+=30;
-                        strength+=40;
-                        gold-=80;
+                        player.setHp(30);
+                        player.setStrength(40);
+                        player.setGold(-80);
                         System.out.println("You successfully upgrade a spear");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 3:
-                        hp+=10;
-                        strength+=20;
-                        gold-=50;
+                        player.setHp(10);
+                        player.setStrength(20);
+                        player.setGold(-50);
                         System.out.println("You successfully upgrade a wooden axe");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 4:
-                        hp+=40;
-                        strength+=50;
-                        gold-=160;
+                        player.setHp(40);
+                        player.setStrength(50);
+                        player.setGold(-160);
                         System.out.println("You successfully upgrade a shield");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 5:
-                        hp+=60;
-                        strength+=50;
-                        gold-=200;
+                        player.setHp(60);
+                        player.setStrength(50);
+                        player.setGold(-200);
                         System.out.println("You successfully upgrade a crossbows");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 6:
-                        hp+=30;
-                        strength+=30;
-                        gold-=70;
+                        player.setHp(30);
+                        player.setStrength(30);
+                        player.setGold(-70);
                         System.out.println("You successfully upgrade a bows");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 7:
-                        hp+=50;
-                        strength+=60;
-                        gold-=240;
+                        player.setHp(50);
+                        player.setHp(60);
+                        player.setGold(-240);
                         System.out.println("You successfully upgrade a tridents");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                    case 8:
-                        hp+=80;
-                        strength+=60;
-                        gold-=360;
+                        player.setHp(80);
+                        player.setStrength(60);
+                        player.setGold(-360);
                         System.out.println("You successfully upgrade a armor");
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
-                        System.out.println("You current gold: " + gold);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
+                        System.out.println("You current gold: " + player.getGold());
                         break;
                }
                break;     
@@ -392,9 +392,12 @@ public class Shop {
            
        }
     }
-    System.out.println("Your current hp: " + hp);
-    System.out.println("Your current strength: " +strength);
-    System.out.println("You current gold: " + gold);
+    System.out.println("Your current hp: " + player.getHp());
+    System.out.println("Your current strength: " + player.getStrength());
+    System.out.println("You current gold: " + player.getGold());
     System.out.println("Thank you and have a nice day!");
 }
 }
+
+
+    
