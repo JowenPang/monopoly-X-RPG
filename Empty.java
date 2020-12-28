@@ -1,14 +1,11 @@
-import java.util.Scanner;
 
-/**
- *
- * @author User
- */
-public class Empty {
-    Scanner sc= new Scanner (System.in);
-    int hp, strength;
+
+public class Empty extends Square{
+    public Empty(String name) {
+        this.name = name;
+    }
     
-    public void Empty(){
+    public void event(Player player){
         System.out.println("Welcome to the Empty!");
         System.out.println("Option: 1.Heal yourself  2.Do nothing");
         System.out.print("Your option: ");
@@ -24,21 +21,21 @@ public class Empty {
                 
                 switch(weaponUse){
                     case 1:
-                        hp+=15;
-                        strength+=15;
+                        player.setHp(15);
+                        player.setStrength(15);
                         System.out.println("You successfully used Hi-Potion to heal yourself");
                         System.out.println();
-                        System.out.println("Your current hp: " + hp);
-                        System.out.println("Your current strength: " +strength);
+                        System.out.println("Your current hp: " + player.getHp());
+                        System.out.println("Your current strength: " + player.getStrength());
                         break;
                 }
                 break;
             case 2: //do nothing
                 System.out.println("You choose to do nothing");
-                System.out.println("Your current hp: " + hp);
-                System.out.println("Your current strength: " +strength);
+                System.out.println("Your current hp: " + player.getHp());
+                System.out.println("Your current strength: " + player.getStrength());
                 break;
         }
-        System.out.println("Thank you!");
+        System.out.println("Good Day!");
     }
 }
