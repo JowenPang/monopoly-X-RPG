@@ -30,3 +30,6 @@ latest update - jowen (2.12pm 29/12)
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 [4.15 pm 29/12] 
  (NEIL) --> Update Board.java --> (size of the each square enlarged by one to fit 4 players in)
+
+[6.12PM 29/12]
+Ann Joe updated Shop.java (wanted for Jowen to test out something)
