@@ -73,12 +73,12 @@ public class Board {
         int space;
         // print upper bar
         for (int m = 16; m< 25; m++) {
-            System.out.print("---------");
+            System.out.print("----------");
         }
         System.out.println("-");
 
         for (int m = 16; m < 25; m++) {
-            System.out.printf("| %-7s",square[m].name);
+            System.out.printf("| %-8s",square[m].name);
         }
         System.out.println("|");
         for (int m = 16; m < 25; m++) {
@@ -90,18 +90,18 @@ public class Board {
                     space+=2;
                 }
             }
-            for (int i = space; i < 7 ; i++) {
+            for (int i = space; i < 8 ; i++) {
                 System.out.print(" ");
             }
         }
         System.out.println("|");
         for (int m = 16; m< 25; m++) {
             if (m==16){
-                System.out.print("|--------|");
+                System.out.print("|---------|");
             } else if (m==23 || m==24){
-                System.out.print("--------|");
+                System.out.print("---------|");
             } else {
-                System.out.print("---------");
+                System.out.print("----------");
             }
         }
         System.out.println();
@@ -109,9 +109,9 @@ public class Board {
         // print middle rows
         int part1=15, part2=25;
         while (part1>=9 && part2<=31){
-            System.out.printf("| %-7s|",square[part1].name);
-            System.out.printf("%62s"," ");
-            System.out.printf("| %-7s|\n",square[part2].name);
+            System.out.printf("| %-8s|",square[part1].name);
+            System.out.printf("%69s"," ");
+            System.out.printf("| %-8s|\n",square[part2].name);
             System.out.print("| ");
             space=0;
             for (int i = 0; i < player.length ;i++) {
@@ -120,28 +120,28 @@ public class Board {
                     space+=2;
                 }
             }
-            for (int i = space; i < 7 ; i++) {
+            for (int i = space; i < 8 ; i++) {
                 System.out.print(" ");
             }
             System.out.print("|");
-            System.out.printf("%62s"," ");
+            System.out.printf("%69s"," ");
 
             space=0;
-            System.out.print("|");
+            System.out.print("| ");
             for (int i = 0; i < player.length ;i++) {
                 if (player[i].getPosition() == part2) {
                     System.out.print(player[i].getName()+ " ");
                     space+=2;
                 }
             }
-            for (int i = space; i <7 ; i++) {
+            for (int i = space; i < 8 ; i++) {
                 System.out.print(" ");
             }
-            System.out.println(" |");
+            System.out.println("|");
             if (part1!=9 && part2!=31){
-                System.out.printf("|--------|");
-                System.out.printf("%62s"," ");
-                System.out.printf("|--------|");
+                System.out.printf("|---------|");
+                System.out.printf("%69s"," ");
+                System.out.printf("|---------|");
                 System.out.println();
             }
             part1--;
@@ -150,16 +150,16 @@ public class Board {
         // print lower bar
         for (int m = 16; m< 25; m++) {
             if (m==16){
-                System.out.print("|--------|");
+                System.out.print("|---------|");
             } else if (m==23 || m==24){
-                System.out.print("--------|");
+                System.out.print("---------|");
             } else {
-                System.out.print("---------");
+                System.out.print("----------");
             }
         }
         System.out.println();
         for (int m = 8; m >=0; m--) {
-            System.out.printf("| %-7s",square[m].name);
+            System.out.printf("| %-8s",square[m].name);
         }
         System.out.println("|");
         for (int m = 8; m >=0; m--) {
@@ -171,13 +171,13 @@ public class Board {
                     space+=2;
                 }
             }
-            for (int i = space; i <7 ; i++) {
+            for (int i = space; i < 8 ; i++) {
                 System.out.print(" ");
             }
         }
         System.out.println("|");
         for (int m = 8; m >=0; m--) {
-            System.out.print("---------");
+            System.out.print("----------");
         }
         System.out.println("-");
     }
