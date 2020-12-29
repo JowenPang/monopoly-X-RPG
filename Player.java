@@ -7,7 +7,8 @@ public class Player extends Role {
     private char name;
     private int firstDiceRoll;
     private int position;
-    boolean lose=false;
+    private boolean quitGame=false;
+    
     //if isLose is true , then the player is count as removed from the game, the player cannot play game if isLose is true
     ArrayList<String> item = new ArrayList<String>();
     ArrayList<String> weapon = new ArrayList<String>();
@@ -27,7 +28,7 @@ public class Player extends Role {
     public int getPosition(){
         return position;
     }
-    
+
     //when get Item , will show the list of item added by player into his backpack
     public ArrayList<String> getItem() {
         return item;
@@ -73,12 +74,12 @@ public class Player extends Role {
         return firstDiceRoll;
     }
 
-    public boolean isLose() {
-        return lose;
+    public boolean isQuitGame() {
+        return quitGame;
     }
 
-    public void setLose(boolean lose) {
-        this.lose = lose;
+    public void setQuitGame(boolean quitGame) {
+        this.quitGame = quitGame;
     }
 }
 
