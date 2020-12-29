@@ -22,6 +22,7 @@ latest update - jowen (2.12pm 29/12)
 -- Main.java -- 
 
    1. Neil updated with instructions
+   
    (NEIL)-- the instructions will only appear when player types "-help", and the game only starts when they type "-start" OR type "yes" after typing "-help".
    2. setQuitGame to true if user choose to quit game
    
