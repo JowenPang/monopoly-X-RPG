@@ -129,13 +129,14 @@ public class Shop extends Square{
                     }
                     break;
                 case 2: //sell item
+                     String itemSell;
                     System.out.println("The item you have: " +player.getItem());
                     System.out.println("The weapon you have: " + player.getWeapon());
                     System.out.println("Which item / weapon do you want to sell?");
-                    String itemSell=sc.nextLine();
                     sc.nextLine();
-                    
-                    if(itemSell.equals("Potion")){
+                    itemSell=sc.nextLine();
+
+                    if(itemSell.equalsIgnoreCase("Potion")){
                         player.item.remove("Potion");
                         player.setHp(-10);
                         player.setStrength(-15);
