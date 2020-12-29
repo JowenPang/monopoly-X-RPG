@@ -1,6 +1,6 @@
 # fop-assignment
 
-latest update - jowen
+latest update - jowen (2.12pm 29/12)
 --Board.java
 
    1. play() --> created condition even if player does not reach the Start tile but pass through it , will print out level up message also
@@ -21,5 +21,5 @@ latest update - jowen
    1. Neil updated with instructions
    2. setQuitGame to true if user choose to quit game
    
---
+
     
