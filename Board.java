@@ -16,17 +16,17 @@ public class Board {
         for (int i = 0; i < player.length; i++) {
             char name = sc.next().charAt(0);
             player[i] = new Player(name);      //create each new player
-            player[i].firstDiceRoll = player[i].rollDice();
-            System.out.println("first dice roll: " + player[i].firstDiceRoll);
+            player[i].setFirstDiceRoll(player[i].rollDice());
+            System.out.println("first dice roll: " + player[i].getFirstDiceRoll());
 
         }
         checkSequence(player);
         for (int i = 0; i < player.length; i++) {
-            System.out.println("Player "+(i+1)+" : "+player[i].name);  //to check the sequence of player
+            System.out.println("Player "+(i+1)+" : "+player[i].getName());  //to check the sequence of player
         }
         System.out.println();
         System.out.println();
-        System.out.println("***** "+player[0].name +" plays First! Let's begin. "+"*****");
+        System.out.println("***** "+player[0].getName() +" plays First! Let's begin. "+"*****");
 
         for (int i = 0; i < square.length; i++) {
             if (i == 0)
@@ -50,20 +50,23 @@ public class Board {
 
     public void  play() {
         int nextPosition=0;
-        Player player=getCurrentPlayer();
+        Player player=getCurrentPlayer(); //first point to the specific player in this round
         int a=player.rollDice();
         System.out.println("Player's dice: "+ a);
-        int nextPositionBfr=player.getPosition()+a;
+        int nextPositionBfr=player.getPosition()+a;  //nextPOsitionBfr is because i havent mod by 32
         if(nextPositionBfr>=32)
             nextPosition =nextPositionBfr%32;
         else
             nextPosition=nextPositionBfr;
-        player.setPosition(nextPosition);
+        player.setPosition(nextPosition); //update player new position
         System.out.println("Player's next position: "+ nextPosition);
-        printBoard();
+        printBoard();      //show the location of player after toss dice
         if(nextPositionBfr>32)
             square[0].event(player);
+        // after each round , even if player didn't reach the Start tile, the player is still consider to be upgraded
         square[nextPosition].event(player);
+       /* this will pass the player to the event occur in each square , following the number of position,can  refer to
+        square object set in constructor*/
     }
 
     public void printBoard() {
@@ -79,11 +82,11 @@ public class Board {
         }
         System.out.println("|");
         for (int m = 16; m < 25; m++) {
-        space=0;
-        System.out.print("| ");
+            space=0;
+            System.out.print("| ");
             for (int i = 0; i < player.length ;i++) {
                 if (player[i].getPosition() == m) {
-                    System.out.print(player[i].name+" ");
+                    System.out.print(player[i].getName()+" ");
                     space+=2;
                 }
             }
@@ -113,7 +116,7 @@ public class Board {
             space=0;
             for (int i = 0; i < player.length ;i++) {
                 if (player[i].getPosition() == part1) {
-                    System.out.print(player[i].name+" ");
+                    System.out.print(player[i].getName()+" ");
                     space+=2;
                 }
             }
@@ -127,7 +130,7 @@ public class Board {
             System.out.print("|");
             for (int i = 0; i < player.length ;i++) {
                 if (player[i].getPosition() == part2) {
-                    System.out.print(player[i].name+ " ");
+                    System.out.print(player[i].getName()+ " ");
                     space+=2;
                 }
             }
@@ -160,11 +163,11 @@ public class Board {
         }
         System.out.println("|");
         for (int m = 8; m >=0; m--) {
-        space=0;
+            space=0;
             System.out.print("| ");
             for (int i = 0; i < player.length ;i++) {
                 if (player[i].getPosition() == m) {
-                    System.out.print(player[i].name+ " ");
+                    System.out.print(player[i].getName()+ " ");
                     space+=2;
                 }
             }
@@ -184,7 +187,7 @@ public class Board {
         for (int pass = 0; pass<player.length-1; pass++) {
             for (int i = 0; i < player.length-1; i++) {
                 Player temp;
-                if(player[i].firstDiceRoll<player[i+1].firstDiceRoll) {
+                if(player[i].getFirstDiceRoll()<player[i+1].getFirstDiceRoll()) {
                     temp = player[i];            //swap between player , swap whole object
                     player[i] = player[i + 1];
                     player[i + 1] = temp;
@@ -201,12 +204,14 @@ public class Board {
         return currentTurn;
     }
 
+    //every time loop in main, current turn will reset by adding 1, player playing is this turn will be follow [currentTurn-1]
     public void setCurrentTurn(int num) {
         this.currentTurn = currentTurn+1;
         if(this.currentTurn> player.length)
             this.currentTurn=1;
     }
 
+    //return array of player following sequence
     public Player[] getPlayer() {
         return player;
     }
