@@ -27,8 +27,10 @@ public class Main {
                 else
                     System.out.println("your turn is skip");
             }
-            else
-                System.out.println("Player "+ board.getCurrentTurn() + "left the game");
+            else {
+                System.out.println("Player " + board.getCurrentTurn() + "left the game");
+                board.getCurrentPlayer().setQuitGame(true);
+            }
         }while(n!=0);
 
 
