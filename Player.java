@@ -1,11 +1,23 @@
 package monopoly;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Player extends Role {
     char name;
     int firstDiceRoll;
     int position;
+
+    public ArrayList<String> getItem() {
+        return item;
+    }
+
+    public ArrayList<String> getWeapon() {
+        return weapon;
+    }
+
+    ArrayList<String> item = new ArrayList<String>();
+    ArrayList<String> weapon = new ArrayList<String>();
 
 
     public String toString() {
@@ -50,6 +62,4 @@ public class Player extends Role {
         return name;
     }
 }
-
-
 
