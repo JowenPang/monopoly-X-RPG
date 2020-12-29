@@ -16,6 +16,7 @@ latest update - jowen (2.12pm 29/12)
    3. player now have arraylist of weapon and item , will be add and remove in Shop, 
       
       should we initially set some item in the backpack for player?
+      (NEIL)-- i think make it like each player will have a sword, two heal potion then i think is okay if add one more (we set it like default backpack） 
   
 --Main.java
 
