@@ -27,5 +27,6 @@ latest update - jowen (2.12pm 29/12)
    
    2. setQuitGame to true if user choose to quit game
    
-
-    
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[4.15 pm 29/12] 
+ (NEIL) --> Update Board.java --> (size of the each square enlarged by one to fit 4 players in)
