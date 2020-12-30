@@ -22,32 +22,59 @@ class Chest extends Square{
 class Sin extends Square{
     Monsters monster=new Monsters();
     Board board=new Board();
-    Player [] players;
+
     public Sin(String name) {
         this.name = name;
-        
     }
     @Override
-    public void event(Player player) {
-
-        System.out.println("you will fight one monster");
-        for (int i = 0; i < players.length; i++) {
-            if (players[i].getPosition() == player.getPosition() && players[i] != board.getCurrentPlayer()) {
-                battlePlayer(player, players[i]);
-            } else
+    public void event(Player player){
+        for (int i = 0; i <  board.players.length; i++) {
+            if (board.players[i].getPosition() == player.getPosition() && i!=board.getCurrentTurn()) {
+                battlePlayer(player, board.players[i]);
+                break;
+            } else {
                 battleMonster(player, monster);
-
+                break;
+            }
         }
     }
 
     private void battlePlayer(Player player, Player player1) {
-        player1.getDefence(); // just example 
+        System.out.println("Player will fight with player"+ player1.getName());
+        System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
+        int option=sc.nextInt();
+        switch(option){
+            case 1:
+                player.attack();
+                System.out.println(player1.getName() + "'s turn");
+                player1.attack();
+                break;
+            case 2:
+                player.item();
+                break;
+            case 3:
+                player.flee();
+                break;
+        }
     }
 
     private void battleMonster(Player player, Monsters monster) {
+        System.out.println("you will fight one monster");
+        System.out.println("Monster's stats"+ monster.toString());
         System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
-        player.getDefence();
-        monster.getStrength();
+        int option=sc.nextInt();
+        switch(option){
+            case 1:
+                player.attack();
+                monster.attack();
+                break;
+            case 2:
+                player.item();
+                break;
+            case 3:
+                player.flee();
+                break;
+        }
     }
 
 }
@@ -57,6 +84,7 @@ class Duo extends Square{
     }
     @Override
     public void event(Player player){
+
         System.out.println("you will fight two monster");
         outerloop:
         for (int i = 0; i <2 ; i++) {
@@ -104,3 +132,4 @@ class Tri extends Square{
     }
 
 }
+
