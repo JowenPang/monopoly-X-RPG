@@ -12,30 +12,31 @@ public class Empty extends Square{
         int option=sc.nextInt();
         System.out.println("");
         
-        switch(option){
-            case 1: //heal yourself
-                System.out.printf("%-10s%5s%12s%15s\n","No","Items","HP","Strength");
-                System.out.printf("%-10s%5s%11s%11s\n","1.","Potion","10","15");
-                System.out.print("Select the item that you would like to use to heal youself: ");
-                int weaponUse=sc.nextInt();
-                
-                switch(weaponUse){
-                    case 1:
-                        player.setHp(15);
-                        player.setStrength(15);
-                        System.out.println("You successfully used Hi-Potion to heal yourself");
-                        System.out.println();
-                        System.out.println("Your current hp: " + player.getHp());
-                        System.out.println("Your current strength: " + player.getStrength());
-                        break;
-                }
-                break;
-            case 2: //do nothing
-                System.out.println("You choose to do nothing");
-                System.out.println("Your current hp: " + player.getHp());
-                System.out.println("Your current strength: " + player.getStrength());
-                break;
+     
+        if(option==1){
+            System.out.println("The healing item you have: " + player.getItem());
+            System.out.print("Choose the healing item that you would like to use: ");
+            sc.nextLine();
+            String healingItem=sc.nextLine();
+            for(String item: player.getItem()){
+              if(healingItem.equalsIgnoreCase("Hi-Potion")){
+                player.setHp(15);
+                player.setStrength(15);
+                player.item.remove("Hi-potion");
+                System.out.println("You successfully used Hi-Potion to heal yourself");
+                System.out.println();
+                System.out.println("Current item that you have: " + player.getItem());
+               }
+                   
+              break;
+        // } else{
+          //   System.out.println("You choose to do nothing");
         }
-        System.out.println("Good Day!");
+           System.out.println("You don't have item to heal yourself yet");
     }
+        System.out.println("Your current hp: " + player.getHp());
+        System.out.println("Your current strength: " + player.getStrength()); 
+        System.out.println("Good Day!");
 }
+}
+
