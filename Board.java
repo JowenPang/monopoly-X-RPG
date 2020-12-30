@@ -6,7 +6,7 @@ public class Board {
     private int currentTurn;
     private int noOfPlayer;
     Square[] square = new Square[32];
-    public Player [] players;
+    public static Player [] players;
     Scanner sc=new Scanner(System.in);
     public Board(){
         currentTurn=0;
