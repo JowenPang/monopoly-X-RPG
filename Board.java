@@ -4,29 +4,29 @@ import java.util.Scanner;
 
 public class Board {
     private int currentTurn;
+    private int noOfPlayer;
     Square[] square = new Square[32];
-    public static Player [] player;
+    public Player [] players;
     Scanner sc=new Scanner(System.in);
-
-    public Board(int noOfPlayer) {
+    public Board(){
         currentTurn=0;
-        player =new Player[noOfPlayer];
+        players =new Player[noOfPlayer];
 
         System.out.println("Enter character to represent each player");
-        for (int i = 0; i < player.length; i++) {
+        for (int i = 0; i < players.length; i++) {
             char name = sc.next().charAt(0);
-            player[i] = new Player(name);      //create each new player
-            player[i].setFirstDiceRoll(player[i].rollDice());
-            System.out.println("first dice roll: " + player[i].getFirstDiceRoll());
+            players[i] = new Player(name);      //create each new player
+            players[i].setFirstDiceRoll(players[i].rollDice());
+            System.out.println("first dice roll: " + players[i].getFirstDiceRoll());
 
         }
-        checkSequence(player);
-        for (int i = 0; i < player.length; i++) {
-            System.out.println("Player "+(i+1)+" : "+player[i].getName());  //to check the sequence of player
+        checkSequence(players);
+        for (int i = 0; i < players.length; i++) {
+            System.out.println("Player "+(i+1)+" : "+players[i].getName());  //to check the sequence of player
         }
         System.out.println();
         System.out.println();
-        System.out.println("***** "+player[0].getName() +" plays First! Let's begin. "+"*****");
+        System.out.println("***** "+players[0].getName() +" plays First! Let's begin. "+"*****");
 
         for (int i = 0; i < square.length; i++) {
             if (i == 0)
@@ -46,6 +46,10 @@ public class Board {
 
         }
 
+    }
+
+    public Board(int noOfPlayer) {
+        this.noOfPlayer=noOfPlayer;
     }
 
     public void  play() {
@@ -84,9 +88,9 @@ public class Board {
         for (int m = 16; m < 25; m++) {
             space=0;
             System.out.print("| ");
-            for (int i = 0; i < player.length ;i++) {
-                if (player[i].getPosition() == m) {
-                    System.out.print(player[i].getName()+" ");
+            for (int i = 0; i < players.length ;i++) {
+                if (players[i].getPosition() == m) {
+                    System.out.print(players[i].getName()+" ");
                     space+=2;
                 }
             }
@@ -114,9 +118,9 @@ public class Board {
             System.out.printf("| %-8s|\n",square[part2].name);
             System.out.print("| ");
             space=0;
-            for (int i = 0; i < player.length ;i++) {
-                if (player[i].getPosition() == part1) {
-                    System.out.print(player[i].getName()+" ");
+            for (int i = 0; i < players.length ;i++) {
+                if (players[i].getPosition() == part1) {
+                    System.out.print(players[i].getName()+" ");
                     space+=2;
                 }
             }
@@ -128,9 +132,9 @@ public class Board {
 
             space=0;
             System.out.print("| ");
-            for (int i = 0; i < player.length ;i++) {
-                if (player[i].getPosition() == part2) {
-                    System.out.print(player[i].getName()+ " ");
+            for (int i = 0; i < players.length ;i++) {
+                if (players[i].getPosition() == part2) {
+                    System.out.print(players[i].getName()+ " ");
                     space+=2;
                 }
             }
@@ -165,9 +169,9 @@ public class Board {
         for (int m = 8; m >=0; m--) {
             space=0;
             System.out.print("| ");
-            for (int i = 0; i < player.length ;i++) {
-                if (player[i].getPosition() == m) {
-                    System.out.print(player[i].getName()+ " ");
+            for (int i = 0; i < players.length ;i++) {
+                if (players[i].getPosition() == m) {
+                    System.out.print(players[i].getName()+ " ");
                     space+=2;
                 }
             }
@@ -181,7 +185,6 @@ public class Board {
         }
         System.out.println("-");
     }
-
     //decide sequence
     private static Player [] checkSequence(Player[] player) {
         for (int pass = 0; pass<player.length-1; pass++) {
@@ -197,7 +200,7 @@ public class Board {
         }return player;
     }
     public Player getCurrentPlayer(){
-        return player[currentTurn-1];
+        return players[currentTurn-1];
     }
 
     public int getCurrentTurn() {
@@ -207,12 +210,12 @@ public class Board {
     //every time loop in main, current turn will reset by adding 1, player playing is this turn will be follow [currentTurn-1]
     public void setCurrentTurn(int num) {
         this.currentTurn = currentTurn+1;
-        if(this.currentTurn> player.length)
+        if(this.currentTurn> players.length)
             this.currentTurn=1;
     }
 
     //return array of player following sequence
     public Player[] getPlayer() {
-        return player;
+        return players;
     }
 }
