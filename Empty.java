@@ -20,8 +20,6 @@ public class Empty extends Square{
                     player.setStrength(15);
                     player.item.remove("Hi-Potion");
                     System.out.println("You successfully used a Hi-Potion to heal yourself.\n");
-                }else{
-                    System.out.println("You choose not to use Hi-Potion to heal yourself");
                 }
             }
             else{
