@@ -3,13 +3,11 @@ package monopoly;
 import java.util.Scanner;
 
 public abstract class Square {
-    String name;
+    protected String name;
     Scanner sc=new Scanner(System.in);
-
 
     public abstract void event(Player player);
 }
-        
 class Chest extends Square{
     public Chest(String name) {
         this.name = name;
@@ -22,25 +20,34 @@ class Chest extends Square{
 }
 
 class Sin extends Square{
+    Monsters monster=new Monsters();
+    Board board=new Board();
+    Player [] players;
     public Sin(String name) {
         this.name = name;
+        
     }
     @Override
-    public void event(Player player){
+    public void event(Player player) {
 
         System.out.println("you will fight one monster");
-        System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
-        int option=sc.nextInt();
-        switch(option){
-            case 1:
-                player.attack();
-                break;
-            case 2:
-                player.item();
-                break;
-            case 3:
-                player.flee();
+        for (int i = 0; i < players.length; i++) {
+            if (players[i].getPosition() == player.getPosition() && players[i] != board.getCurrentPlayer()) {
+                battlePlayer(player, players[i]);
+            } else
+                battleMonster(player, monster);
+
         }
+    }
+
+    private void battlePlayer(Player player, Player player1) {
+        player1.getDefence(); // just example 
+    }
+
+    private void battleMonster(Player player, Monsters monster) {
+        System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
+        player.getDefence();
+        monster.getStrength();
     }
 
 }
