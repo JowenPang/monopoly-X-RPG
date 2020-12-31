@@ -1,12 +1,15 @@
 package monopoly;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Board {
     private int currentTurn;
     public int noOfPlayer;
-    Square[] square = new Square[32];
+    private int diceValue;
+    boolean startGame=false;
     public static Player [] players;
+    public static Square[] square = new Square[32];
     Scanner sc=new Scanner(System.in);
 
     public Board(){
@@ -14,7 +17,6 @@ public class Board {
     }
     public Board(int noOfPlayer) {
         this.noOfPlayer=noOfPlayer;
-
         currentTurn=0;
         players =new Player[noOfPlayer];
 
@@ -57,15 +59,13 @@ public class Board {
     public void  play() {
         int nextPosition=0;
         Player player=getCurrentPlayer(); //first point to the specific player in this round
-        int a=player.rollDice();
-        System.out.println("Player's dice: "+ a);
-        int nextPositionBfr=player.getPosition()+a;  //nextPOsitionBfr is because i havent mod by 32
+        diceValue=player.rollDice();
+        int nextPositionBfr=player.getPosition()+diceValue;  //nextPositionBfr is because i havent mod by 32
         if(nextPositionBfr>=32)
             nextPosition =nextPositionBfr%32;
         else
             nextPosition=nextPositionBfr;
         player.setPosition(nextPosition); //update player new position
-        System.out.println("Player's next position: "+ nextPosition);
         printBoard();      //show the location of player after toss dice
         if(nextPositionBfr>32)
             square[0].event(player);
@@ -116,7 +116,12 @@ public class Board {
         int part1=15, part2=25;
         while (part1>=9 && part2<=31){
             System.out.printf("| %-8s|",square[part1].name);
-            System.out.printf("%69s"," ");
+            if(part1==15 && isStartGame()) {
+                System.out.print("[Player " + getCurrentPlayer().getName() + "]" + " moved " + diceValue + " steps");
+                System.out.printf("%45s"," ");
+            }
+            else
+                System.out.printf("%69s"," ");
             System.out.printf("| %-8s|\n",square[part2].name);
             System.out.print("| ");
             space=0;
@@ -202,7 +207,7 @@ public class Board {
         }return player;
     }
     public Player getCurrentPlayer(){
-        return players[currentTurn-1];
+        return players[currentTurn];
     }
 
     public int getCurrentTurn() {
@@ -212,12 +217,37 @@ public class Board {
     //every time loop in main, current turn will reset by adding 1, player playing is this turn will be follow [currentTurn-1]
     public void setCurrentTurn(int num) {
         this.currentTurn = currentTurn+1;
-        if(this.currentTurn> players.length)
-            this.currentTurn=1;
+        if(this.currentTurn== players.length)
+            this.currentTurn=0;
     }
 
     //return array of player following sequence
     public Player[] getPlayer() {
         return players;
+    }
+    public boolean isStartGame() {
+        return startGame;
+    }
+
+    public void setStartGame(boolean startGame) {
+        this.startGame = startGame;
+    }
+
+    public Square[] getSquare() {
+        return square;
+    }
+
+    public static Square [] resetSquare() {
+        Random r = new Random();
+
+        for (int i = square.length-2; i > 0; i--) {
+
+            int j = r.nextInt(i)+1;
+
+            Square temp = square[i];
+            square[i] = square[j];
+            square[j] = temp;
+        }
+        return square;
     }
 }

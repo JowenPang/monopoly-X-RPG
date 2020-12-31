@@ -8,6 +8,7 @@ public class Player extends Role {
     private int firstDiceRoll;
     private int position;
     private boolean quitGame=false;
+    private int noOfMonsterEncounter;
 
 
     //if isLose is true , then the player is count as removed from the game, the player cannot play game if isLose is true
@@ -20,6 +21,8 @@ public class Player extends Role {
         item.add("Hi-Potion");
         item.add("Hi-Potion");
         item.add("Sword");
+        noOfMonsterEncounter=0;
+
     }
 
     public void setPosition(int position) {
@@ -84,6 +87,16 @@ public class Player extends Role {
 
     public void setQuitGame(boolean quitGame) {
         this.quitGame = quitGame;
+    }
+
+    //apply to the algorithm of item drop system, if %3==0, item drop
+    public int getNoOfMonsterEncounter() {
+        return noOfMonsterEncounter;
+    }
+
+    //accumulate after everytime succeeded in a battle
+    public void setNoOfMonsterEncounter(int noOfMonsterEncounter) {
+        this.noOfMonsterEncounter += noOfMonsterEncounter;
     }
 }
 

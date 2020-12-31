@@ -10,9 +10,18 @@ public class Main {
         int n=sc.nextInt();
         Board board=new Board(n);
 
-        board.printBoard();
+        board.printBoard(); //show all players at starting point
+        System.out.println("Do you want to shuffle the arrangement of tiles in game board?");
+        sc.nextLine();
+        String shuffle=sc.nextLine();
+        while(shuffle.equals("yes")){
+            Board.resetSquare();
+            board.printBoard();
+            System.out.println("Do you want to shuffle the arrangement of tiles in game board?");
+            shuffle=sc.nextLine();
+        }
+        board.setStartGame(true);
         do {
-            board.setCurrentTurn(1); //every round update current turn to know which player to get in this turn
             System.out.println("\nNow is player "+ board.getCurrentPlayer().getName() + " turn");
             System.out.println("Option: 1.Roll Dice  2.Check Stats  3.Quit the Game");
             int choice= sc.nextInt();
@@ -31,6 +40,7 @@ public class Main {
                 System.out.println("Player " + board.getCurrentTurn() + "left the game");
                 board.getCurrentPlayer().setQuitGame(true);
             }
+            board.setCurrentTurn(1); //every round update current turn to know which player to get in this turn
         }while(n!=0);
 
 

@@ -1,12 +1,24 @@
 package monopoly;
 
 public abstract class Role {
-    int level,hp,strength,defence, agility,exp,gold;
+    protected int level,hp,strength,defence, agility,exp,gold;
+    protected String name;
+
 
     public Role() {
         level=1; hp=25; strength=5; defence=5; agility=5; exp=0;
         gold=200;
     }
+
+    public Role(String name, int level, int hp, int strength, int defence, int agility) {
+        this.name=name;
+        this.level = level;
+        this.hp = hp;
+        this.strength = strength;
+        this.defence = defence;
+        this.agility = agility;
+    }
+
     public abstract void attack();
 
     public abstract void item();
@@ -34,7 +46,7 @@ public abstract class Role {
     }
 
     public void setStrength(int strength) {
-        this.strength = +strength;
+        this.strength += strength;
     }
 
     public int getDefence() {

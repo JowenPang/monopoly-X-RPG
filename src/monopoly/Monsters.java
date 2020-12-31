@@ -2,7 +2,12 @@ package monopoly;
 
 public class Monsters extends Role {
 
-    public Monsters() {
+    public Monsters(){
+
+    }
+
+    public Monsters(String name, int level, int hp, int strength, int defence, int agility) {
+        super(name, level, hp, strength, defence, agility);
     }
 
     @Override
