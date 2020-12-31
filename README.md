@@ -13,12 +13,10 @@
                         but the process a bit complicated , i also dunno how to do it actually haha
                        
 [12.56am 1/1] Jowen - Update Board.java - resetSquare() method to shuffle the arrangement of tile in board
- 
                                         - printBoard() can show short message inside board(player name + dice value)
                                         
-                    - Create Sin.java - will trigger battle between player if two players in same tiles(haven't set condition to be >level5)
-                   
-                                      - battle with monster if only one player in the tile
+                     - Create Sin.java - will trigger battle between player if two players in same tiles(haven't set condition to be >level5)
+                                       - battle with monster if only one player in the tile
                                       
                     - Update Monster.java - constructor, monster object will be create in Main
                     
