@@ -31,7 +31,6 @@ class Sin extends Square{
         int option=sc.nextInt();
         switch(option){
             case 1:
-
                 player.attack();
                 System.out.println(player1.getName() + "'s turn");
                 player1.attack();
