@@ -23,7 +23,6 @@ class Sin extends Square{
         //if battle between player is triggered, battle with monster won't triggered
         if(battleTriggered)
             battleMonster(player, monster);
-
     }
 
     public void battlePlayer(Player player, Player player1) {
@@ -32,7 +31,6 @@ class Sin extends Square{
         int option=sc.nextInt();
         switch(option){
             case 1:
-
                 player.attack();
                 System.out.println(player1.getName() + "'s turn");
                 player1.attack();
@@ -47,7 +45,7 @@ class Sin extends Square{
     }
 
     public void battleMonster(Player player, Monsters monster) {
-        System.out.println("you will fight one monster");
+        System.out.println("You will fight ONE monster.");
         System.out.println("Monster's stats\n"+ monster.toString());
         System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
         int option=sc.nextInt();
