@@ -98,5 +98,102 @@ public class Player extends Role {
     public void setNoOfMonsterEncounter(int noOfMonsterEncounter) {
         this.noOfMonsterEncounter += noOfMonsterEncounter;
     }
+    
+    public void levelUp(){
+        if(exp<100){
+            System.out.println("No changes");
+        }
+        else{
+            if(exp>=100&&exp<150){
+                setLevel(1);
+                setHp(2);
+                setStrength(5);
+                setDefence(5);
+                setAgility(5);
+                setGold(25);
+            }
+
+            else if(exp<280){
+                setLevel(1);
+                setHp(2);
+                setStrength(10);
+                setDefence(10);
+                setAgility(10);
+                setGold(50);
+            }
+
+            else if(exp<350){
+                setLevel(1);
+                setHp(2);
+                setStrength(15);
+                setDefence(15);
+                setAgility(15);
+                setGold(75);
+            }
+
+            else if(exp<420){
+                setLevel(1);
+                setHp(2);
+                setStrength(20);
+                setDefence(20);
+                setAgility(20);
+                setGold(100);
+            }
+
+            else if(exp<490){
+                setLevel(1);
+                setHp(2);
+                setStrength(25);
+                setDefence(25);
+                setAgility(25);
+                setGold(125);
+            }
+
+            else if(exp<560){
+                setLevel(1);
+                setHp(3);
+                setStrength(30);
+                setDefence(30);
+                setAgility(30);
+                setGold(150);
+            }
+
+            else if(exp<630){
+                setLevel(1);
+                setHp(3);
+                setStrength(35);
+                setDefence(35);
+                setAgility(35);
+                setGold(175);
+            }   
+
+            else if(exp<700){
+                setLevel(1);
+                setHp(3);
+                setStrength(40);
+                setDefence(40);
+                setAgility(40);
+                setGold(200);
+                }    
+
+            else if(exp<770){
+                setLevel(1);
+                setHp(3);
+                setStrength(45);
+                setDefence(45);
+                setAgility(45);
+                setGold(225);
+            }   
+            else{
+                setLevel(1);
+                setHp(3);
+                setStrength(50);
+                setDefence(50);
+                setAgility(50);
+                setGold(250);
+            }
+            System.out.println("You have been leveled up!");            
+        }
+    }    
 }
 
