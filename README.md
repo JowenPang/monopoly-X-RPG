@@ -24,3 +24,8 @@
                     
                     - Update Main.java - related to shuffle tile in Board
 for testing *
+
+[10.26pm 2/1] Ann Joe- create Chest.java - when reach the tiles of chest can either obtain gold or rare item, now i do as when they reach chest tile then choose 1 or 2.
+                                           if choose 1 then will random the amount of gold, else if choose 2 will randomise the rare item
+                     - update Square.java - delete the chest inisde square as i created the chest.java
+                     - update Start.java - delete the set level inside the start because level up depends on the EXP
