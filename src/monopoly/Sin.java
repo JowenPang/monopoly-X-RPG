@@ -1,9 +1,11 @@
 package monopoly;
 
+import java.util.Random;
+
 class Sin extends Square{
-    Monsters monster=new Monsters();
     Board board=new Board();
-    private boolean battleTriggered=true; 
+    private boolean battleTriggered=true;
+    Random r=new Random();
 
     public Sin(String name) {
         this.name = name;
@@ -21,7 +23,7 @@ class Sin extends Square{
         }
         //if battle between player is triggered, battle with monster won't triggered
         if(battleTriggered)
-            battleMonster(player, monster);
+            battleMonster(player, board.monsters[r.nextInt(5)]);
     }
 
     public void battlePlayer(Player player, Player player1) {

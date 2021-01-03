@@ -1,9 +1,10 @@
 package monopoly;
 
+import java.util.Random;
+
 class Duo extends Square{
-    Monsters monster=new Monsters();
-    Monsters monster1=new Monsters();
     Board board=new Board();
+    Random r=new Random();
     private boolean battleTriggered=true; 
 
     public Duo(String name) {
@@ -23,7 +24,7 @@ class Duo extends Square{
         }
         //if battle between player is triggered, battle with monster won't triggered
         if(battleTriggered)
-            battleMonster(player, monster, monster1);
+            battleMonster(player, board.monsters[r.nextInt(5)],board.monsters[r.nextInt(5)]);
     }
 
     public void battlePlayer(Player player, Player player1) {

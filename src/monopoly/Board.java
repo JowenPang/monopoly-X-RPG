@@ -14,11 +14,6 @@ public class Board {
     Scanner sc=new Scanner(System.in);
 
     public Board(){
-        monsters[0]=new Monsters("Fire",1,25,25,10,20);
-        monsters[1]=new Monsters("Water", 2,25,50,10,20);
-        monsters[2]=new Monsters("Wind", 3,75,34,50,20);
-        monsters[3]=new Monsters("Land",4,100,60,10,20);
-        monsters[4]=new Monsters("Magic",1,25,50,10,20);
     }
     public Board(int noOfPlayer) {
         this.noOfPlayer=noOfPlayer;
@@ -58,6 +53,13 @@ public class Board {
                 square[i] = new Sin("Sin-M");
 
         }
+
+        monsters=new Monsters[5];
+        monsters[0]=new Monsters("Fire",1,25,25,10,20);
+        monsters[1]=new Monsters("Water", 2,25,50,10,20);
+        monsters[2]=new Monsters("Wind", 3,75,34,50,20);
+        monsters[3]=new Monsters("Land",4,100,60,10,20);
+        monsters[4]=new Monsters("Magic",1,25,50,10,20);
 
     }
 
