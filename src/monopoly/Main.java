@@ -14,9 +14,9 @@ public class Main {
         board.printBoard();
         
         System.out.println("Do you want to shuffle the arrangement of tiles in game board?");
-         sc.nextLine();
-         String shuffle=sc.nextLine();
-         while(shuffle.equals("yes")){
+        sc.nextLine();
+        String shuffle=sc.nextLine();
+        while(shuffle.equals("yes")){
              Board.resetSquare();
              board.printBoard();
              System.out.println("Do you want to shuffle the arrangement of tiles in game board?");
