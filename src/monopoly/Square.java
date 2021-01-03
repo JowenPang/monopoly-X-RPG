@@ -9,16 +9,7 @@ public abstract class Square {
 
     public abstract void event(Player player);
 }
-class Chest extends Square{
-    public Chest(String name) {
-        this.name = name;
-    }
-    @Override
-    public void event(Player player){
-        System.out.println("You can open a treasure chest");
-    }
 
-}
 
 
 class Duo extends Square{
