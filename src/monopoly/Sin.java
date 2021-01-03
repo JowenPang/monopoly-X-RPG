@@ -14,7 +14,6 @@ class Sin extends Square{
         for (int i = 0; i <  board.players.length; i++) {
             //to check if there is player at the same tile but need to exclude the player itself
             if ((board.players[i].getPosition() == player.getPosition())&& board.players[i].getName()!= player.getName()) {
-                System.out.println(board.players[i].getName() + i + board.getCurrentTurn() );
                 battlePlayer(player, board.players[i]);
                 battleTriggered=false;
                 break;

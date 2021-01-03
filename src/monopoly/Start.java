@@ -16,5 +16,4 @@ class Start extends Square {
         System.out.println("Continue enjoy the game!");
 
     }
-
 }
