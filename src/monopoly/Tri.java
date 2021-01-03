@@ -1,11 +1,13 @@
 package monopoly;
 
-class Sin extends Square{
+class Tri extends Square{
     Monsters monster=new Monsters();
+    Monsters monster1=new Monsters();
+    Monsters monster2=new Monsters();
     Board board=new Board();
     private boolean battleTriggered=true; 
 
-    public Sin(String name) {
+    public Tri(String name) {
         this.name = name;
     }
 
@@ -22,12 +24,12 @@ class Sin extends Square{
         }
         //if battle between player is triggered, battle with monster won't triggered
         if(battleTriggered)
-            battleMonster(player, monster);
+            battleMonster(player, monster, monster1, monster2);
     }
 
     public void battlePlayer(Player player, Player player1) {
         System.out.println("Player will fight with player "+ player1.getName());
-        System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
+        System.out.println("Choose your option 1.Attack  2.Item  3.Flee");
         int option=sc.nextInt();
         switch(option){
             case 1:
@@ -44,15 +46,19 @@ class Sin extends Square{
         }
     }
 
-    public void battleMonster(Player player, Monsters monster) {
-        System.out.println("You will fight ONE monster.");
+    public void battleMonster(Player player, Monsters monster, Monsters monster1, Monsters monster2) {
+        System.out.println("You will fight THREE monsters.");
         System.out.println("Monster's stats\n"+ monster.toString());
-        System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
+        System.out.println("Choose your option 1.Attack  2.Item  3.Flee");
         int option=sc.nextInt();
         switch(option){
             case 1:
                 monster.setHp(-(player.attack(player.getStrength(),monster.getDefence())));
+                monster1.setHp(-(player.attack(player.getStrength(),monster1.getDefence())));
+                monster2.setHp(-(player.attack(player.getStrength(),monster2.getDefence())));
                 player.setHp(-(monster.attack(monster.getStrength(),player.getDefence())));
+                player.setHp(-(monster1.attack(monster1.getStrength(),player.getDefence())));
+                player.setHp(-(monster2.attack(monster2.getStrength(),player.getDefence())));
                 break;
             case 2:
                 player.item();

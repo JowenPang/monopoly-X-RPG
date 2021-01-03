@@ -19,7 +19,7 @@ public abstract class Role {
         this.agility = agility;
     }
 
-    public abstract void attack();
+    public abstract int attack(int a, int b);
 
     public abstract void item();
 
