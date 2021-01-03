@@ -51,9 +51,10 @@ public class Player extends Role {
         return r.nextInt(max)+1;
     }
     @Override
-    public void attack(){
-        System.out.println("fight monster");
-        strength--;
+    public int attack(int a, int b){
+        System.out.println("--> Fighting monster <--");
+        int damage = a*(10/(2+b));
+        return damage;
     }
 
     @Override

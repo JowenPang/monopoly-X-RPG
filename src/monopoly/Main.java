@@ -2,9 +2,6 @@ package monopoly;
 
 import java.util.Scanner;
 
-
-import java.util.Scanner;
-
 public class Main {
     public static void main(String [] args) {
         Instructions.help();
@@ -42,9 +39,9 @@ public class Main {
                     if (choice2 == 1)
                         board.play();
                     else
-                        System.out.println("your turn is skip");
+                        System.out.println("Your turn is skipped!");
                 } else {
-                    System.out.println("Player " + board.getCurrentTurn() + "left the game");
+                    System.out.println("Player " + board.getCurrentTurn() + " left the game");
                     board.getCurrentPlayer().setQuitGame(true);
                     n = n - 1;
                 }

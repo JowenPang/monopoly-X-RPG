@@ -1,3 +1,4 @@
+package monopoly;
 import java.util.Random;
 
  public class Chest extends Square{

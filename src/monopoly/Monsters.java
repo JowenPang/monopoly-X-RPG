@@ -11,8 +11,10 @@ public class Monsters extends Role {
     }
 
     @Override
-    public void attack(){
-        System.out.println("Monster's turn to attack");
+    public int attack(int a, int b){
+        System.out.println("--> Monster's turn to attack <--");
+        int damage = a*(10/(2+b));
+        return damage;
     }
 
     @Override
