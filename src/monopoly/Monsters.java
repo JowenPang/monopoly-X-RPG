@@ -27,7 +27,7 @@ public class Monsters extends Role {
 
     @Override
     public String toString() {
-        return "Monsters level=" + level +
+        return name+"Monsters level=" + level +
                 "\nhp= " + hp +
                 "\nstrength= " + strength +
                 "\ndefence= " + defence +
