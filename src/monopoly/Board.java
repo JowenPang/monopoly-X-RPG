@@ -66,7 +66,6 @@ public class Board {
     public void  play() {
         int nextPosition=0;
         Player player=getCurrentPlayer(); //first point to the specific player in this round
-        player.resetHp();
         diceValue=player.rollDice();
         int nextPositionBfr=player.getPosition()+diceValue;  //nextPositionBfr is because i havent mod by 32
         if(nextPositionBfr>=32)
