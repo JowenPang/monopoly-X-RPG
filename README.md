@@ -30,3 +30,10 @@ for testing *
                                            
                      - update Square.java - delete the chest inisde square as i created the chest.java
                      - update Start.java - delete the set level inside the start because level up depends on the EXP
+                     
+                    
+[6.52pm 3/1] cf - update main.java (code to print winner & condition to end game)
+                - update board.java (determine winner & create monster[] array with 5 monsters)
+                - update monster.java (update toString())
+                - update square.java (update how sin duo tri use randomized monster)
+
