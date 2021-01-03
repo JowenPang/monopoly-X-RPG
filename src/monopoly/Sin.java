@@ -3,7 +3,6 @@ package monopoly;
 import java.util.Random;
 
 class Sin extends Square{
-    Board board=new Board();
     private boolean battleTriggered=true;
     Random r=new Random();
 
@@ -28,39 +27,62 @@ class Sin extends Square{
 
     public void battlePlayer(Player player, Player player1) {
         System.out.println("Player will fight with player "+ player1.getName());
-        System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
-        int option=sc.nextInt();
-        switch(option){
-            case 1:
-                player1.setHp(-(player.attack(player.getStrength(),player1.getDefence())));
-                System.out.println(player1.getName() + "'s turn");
-                player.setHp(-(player1.attack(player1.getStrength(),player.getDefence())));
-                break;
-            case 2:
-                player.item();
-                break;
-            case 3:
-                player.flee();
-                break;
+        while(player.getHp()>0 && player1.getHp()>0) {
+            System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
+            int option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    player1.setHp(-(player.attack(player.getStrength(), player1.getDefence())));
+                    System.out.println(player1.getName() + "'s turn");
+                    break;
+                case 2:
+                    System.out.println("The item you have: " + player.getItem());
+                    //System.out.println("Which item do you want to use?");
+                    break;
+                case 3:
+                    player.flee();
+                    break;
+            }
+            player.setHp(-(player1.attack(player1.getStrength(), player.getDefence())));
+        }
+        if(player.getHp()<=0)
+            System.out.println(player.getName() + " lose this battle");
+        else {
+            System.out.println(player1.getName() + " is defeated ");
+            System.out.println("you will get gold and exp");
         }
     }
 
     public void battleMonster(Player player, Monsters monster) {
         System.out.println("You will fight ONE monster.");
         System.out.println("Monster's stats\n"+ monster.toString());
-        System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
-        int option=sc.nextInt();
-        switch(option){
-            case 1:
-                monster.setHp(-(player.attack(player.getStrength(),monster.getDefence())));
-                player.setHp(-(monster.attack(monster.getStrength(),player.getDefence())));
-                break;
-            case 2:
-                player.item();
-                break;
-            case 3:
-                player.flee();
-                break;
+        flee:
+        while(player.getHp()>0 && monster.getHp()>0) {
+            System.out.println("--> Fighting monster <--");
+            System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
+            int option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    monster.setHp(-(player.attack(player.getStrength(), monster.getDefence())));
+                    System.out.println("Monster's current hp :"+ monster.getHp());
+                    break;
+                case 2:
+                    System.out.println(player.getItem());
+                    break;
+                case 3:
+                    player.flee();
+                    break flee;
+            }
+
+            System.out.println("--> Monster's turn to attack <--");
+            player.setHp(-(monster.attack(monster.getStrength(), player.getDefence())));
+            System.out.println("Player's current hp : "+ player.getHp());
+        }
+        if(player.getHp()<=0)
+            System.out.println(player.getName() + " lose this battle");
+        if(monster.getHp()<=0) {
+            System.out.println("Monster is defeated ");
+            System.out.println("you will get gold and exp");
         }
     }
 }

@@ -52,9 +52,7 @@ public class Player extends Role {
     }
     @Override
     public int attack(int a, int b){
-        System.out.println("--> Fighting monster <--");
-        int damage = a*(10/(2+b));
-        return damage;
+        return a*(25/(2+b));
     }
 
     @Override
@@ -64,7 +62,7 @@ public class Player extends Role {
 
     @Override
     public void flee(){
-        System.out.println("your turn is finish");
+        System.out.println("you escape this battle");
     }
 
     //properties that inherited from abstract class Role

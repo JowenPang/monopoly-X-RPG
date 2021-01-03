@@ -23,8 +23,9 @@ class Tri extends Square{
             }
         }
         //if battle between player is triggered, battle with monster won't triggered
-        if(battleTriggered)
-            battleMonster(player, board.monsters[r.nextInt(5)],board.monsters[r.nextInt(5)],board.monsters[r.nextInt(5)]);
+        if(battleTriggered) {
+            battleMonster(player, board.monsters[r.nextInt(5)], board.monsters[r.nextInt(5)], board.monsters[r.nextInt(5)]);
+        }
     }
 
     public void battlePlayer(Player player, Player player1) {

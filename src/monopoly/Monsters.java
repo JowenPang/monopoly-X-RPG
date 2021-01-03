@@ -2,19 +2,13 @@ package monopoly;
 
 public class Monsters extends Role {
 
-    public Monsters(){
-
-    }
-
     public Monsters(String name, int level, int hp, int strength, int defence, int agility) {
         super(name, level, hp, strength, defence, agility);
     }
 
     @Override
     public int attack(int a, int b){
-        System.out.println("--> Monster's turn to attack <--");
-        int damage = a*(10/(2+b));
-        return damage;
+        return a*(25/(2+b));
     }
 
     @Override

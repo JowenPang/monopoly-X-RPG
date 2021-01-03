@@ -3,7 +3,6 @@ package monopoly;
 import java.util.Random;
 
 class Duo extends Square{
-    Board board=new Board();
     Random r=new Random();
     private boolean battleTriggered=true; 
 
@@ -48,7 +47,9 @@ class Duo extends Square{
 
     public void battleMonster(Player player, Monsters monster, Monsters monster1) {
         System.out.println("You will fight TWO monsters.");
-        System.out.println("Monster's stats\n"+ monster.toString());
+        System.out.println("\nMonster 1 stats: \n"+ monster.toString());
+        System.out.println("\nMonster 2 stats: \n"+ monster1.toString());
+        //while(monster.hp>=0 || monster1.hp>=0 && player.hp>=0)
         System.out.println("Choose your option 1.Attack  2.Item  3.Flee");
         int option=sc.nextInt();
         switch(option){

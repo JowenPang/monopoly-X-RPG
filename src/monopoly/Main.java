@@ -25,7 +25,6 @@ public class Main {
         board.setStartGame(true);
         
         while (n > 1 && n <= 4) {
-            board.setCurrentTurn(1); //every round update current turn to know which player to get in this turn
             if (!board.getCurrentPlayer().isQuitGame()) {
                 System.out.println("\nNow is player " + board.getCurrentPlayer().getName() + " turn");
                 System.out.println("Option: 1.Roll Dice  2.Check Stats  3.Quit the Game");
@@ -46,8 +45,7 @@ public class Main {
                     n = n - 1;
                 }
             }
-
-
+            board.setCurrentTurn(1); //every round update current turn to know which player to get in this turn
         }
 
         char winner = board.determineWinner(noOfPlayer);
