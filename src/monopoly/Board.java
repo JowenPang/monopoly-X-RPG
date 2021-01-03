@@ -220,21 +220,21 @@ public class Board {
         if(this.currentTurn== players.length)
             this.currentTurn=0;
     }
-   
+
     //cf: determine method
     public char determineWinner(int n){
-            Player temp;
-            for(int i=1; i<n; i++) {
-                for (int j = 1; i < players.length; i++) {
-                    if (players[j].getLevel() > players[j - 1].getLevel()) {
-                        temp = players[j];
-                        players[j] = players[j - 1];
-                        players[j - 1] = temp;
-                    }
+        Player temp;
+        for(int i=1; i<n; i++) {
+            for (int j = 1; i < players.length; i++) {
+                if (players[j].getLevel() > players[j - 1].getLevel()) {
+                    temp = players[j];
+                    players[j] = players[j - 1];
+                    players[j - 1] = temp;
                 }
             }
-            return players[0].getName();
         }
+        return players[0].getName();
+    }
 
     //return array of player following sequence
     public Player[] getPlayer() {
