@@ -12,6 +12,18 @@ public class Main {
         Board board = new Board(n);
 
         board.printBoard();
+
+        System.out.println("Do you want to shuffle the arrangement of tiles in game board?");
+        sc.nextLine();
+        String shuffle=sc.nextLine();
+        while(shuffle.equals("yes")){
+            Board.resetSquare();
+            board.printBoard();
+            System.out.println("Do you want to shuffle the arrangement of tiles in game board?");
+            shuffle=sc.nextLine();
+        }
+        board.setStartGame(true);
+
         while (n > 1 && n <= 4) {
             board.setCurrentTurn(1); //every round update current turn to know which player to get in this turn
             if (!board.getCurrentPlayer().isQuitGame()) {
