@@ -57,8 +57,8 @@ public class Board {
         monsters=new Monsters[5];
         monsters[0]=new Monsters("Fire",1,25,5,10,20);
         monsters[1]=new Monsters("Water", 2,25,7,13,20);
-        monsters[2]=new Monsters("Wind", 3,75,8,15,20);
-        monsters[3]=new Monsters("Land",4,100,10,18,20);
+        monsters[2]=new Monsters("Wind", 3,35,8,15,20);
+        monsters[3]=new Monsters("Land",4,75,10,18,20);
         monsters[4]=new Monsters("Magic",1,25,5,10,20);
 
     }

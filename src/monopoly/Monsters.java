@@ -8,7 +8,8 @@ public class Monsters extends Role {
 
     @Override
     public int attack(int a, int b){
-        return a*(25/(2+b));
+        return a*(35 /(5+b));
+        // a is monster's strength , b is player's defence
     }
 
     @Override

@@ -20,7 +20,7 @@ public class Player extends Role {
         this.name=name; firstDiceRoll=0;position=0;
         item.add("Hi-Potion");
         item.add("Hi-Potion");
-        item.add("Sword");
+        weapon.add("Sword");
         noOfMonsterEncounter=0;
 
     }
@@ -52,7 +52,8 @@ public class Player extends Role {
     }
     @Override
     public int attack(int a, int b){
-        return a*(25/(2+b));
+        return a*(35/(5+b));
+        // a is monster's strength , b is player's defence
     }
 
     @Override
@@ -100,10 +101,10 @@ public class Player extends Role {
     
     public void levelUp(){
         if(exp<100){
-            System.out.println("No changes");
+            System.out.println();
         }
         else{
-            if(exp>=100&&exp<150){
+            if(exp<150){
                 setLevel(1);
                 setHp(2);
                 setStrength(5);

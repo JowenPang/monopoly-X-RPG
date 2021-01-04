@@ -41,6 +41,10 @@ public abstract class Role {
         this.hp += hp;
     }
 
+    public void resetHp(int hp) {
+        this.hp = hp;
+    }
+
     public int getStrength() {
         return strength;
     }
