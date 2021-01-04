@@ -62,7 +62,7 @@ public class Player extends Role {
 
     @Override
     public void flee(){
-        System.out.println("you escape this battle");
+        System.out.println("You had escaped from the battle!");
     }
 
     //properties that inherited from abstract class Role
