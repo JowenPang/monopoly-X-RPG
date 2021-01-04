@@ -4,7 +4,8 @@ import java.util.Random;
 
 class Duo extends Square{
     Random r=new Random();
-    private boolean battleTriggered=true; 
+    private boolean battleTriggered=true;
+    int n=0;
 
     public Duo(String name) {
         this.name = name;
@@ -22,8 +23,13 @@ class Duo extends Square{
             }
         }
         //if battle between player is triggered, battle with monster won't triggered
-        if(battleTriggered)
-            battleMonster(player, board.monsters[r.nextInt(5)],board.monsters[r.nextInt(5)]);
+        if(battleTriggered) {
+            System.out.println("You will fight TWO monster.");
+            while(n<2) {
+                Sin.battleMonster(player, board.monsters[r.nextInt(5)]);
+                n++;
+            }
+        }
     }
 
     public void battlePlayer(Player player, Player player1) {
@@ -45,8 +51,8 @@ class Duo extends Square{
         }
     }
 
-    public void battleMonster(Player player, Monsters monster, Monsters monster1) {
-        System.out.println("You will fight TWO monsters.");
+
+        /*System.out.println("You will fight TWO monsters.");
         System.out.println("\nMonster 1 stats: \n"+ monster.toString());
         System.out.println("\nMonster 2 stats: \n"+ monster1.toString());
         //while(monster.hp>=0 || monster1.hp>=0 && player.hp>=0)
@@ -65,6 +71,6 @@ class Duo extends Square{
             case 3:
                 player.flee();
                 break;
-        }
-    }
+        }*/
+
 }

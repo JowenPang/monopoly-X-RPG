@@ -98,7 +98,10 @@ public class Player extends Role {
     public void setNoOfMonsterEncounter(int noOfMonsterEncounter) {
         this.noOfMonsterEncounter += noOfMonsterEncounter;
     }
-    
+
+    public void itemDrop(){
+
+    }
     public void levelUp(){
         if(exp<100){
             System.out.println();

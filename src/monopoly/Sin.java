@@ -1,6 +1,7 @@
 package monopoly;
 
 import java.util.Random;
+import java.util.Scanner;
 
 class Sin extends Square{
     private boolean battleTriggered=true;
@@ -15,16 +16,19 @@ class Sin extends Square{
         for (int i = 0; i <  board.players.length; i++) {
             //to check if there is player at the same tile but need to exclude the player itself
             if ((board.players[i].getPosition() == player.getPosition())&& board.players[i].getName()!= player.getName()) {
+
                 if (player.getLevel()>=5 && board.players[i].getLevel()>=5){
                     battlePlayer(player, board.players[i]);
                     battleTriggered=false;
-                break;
+                    break;
                 }
             }
         }
         //if battle between player is triggered, battle with monster won't triggered
-        if(battleTriggered)
+        if(battleTriggered) {
+            System.out.println("You will fight ONE monster.");
             battleMonster(player, board.monsters[r.nextInt(5)]);
+        }
 
     }
 
@@ -56,8 +60,8 @@ class Sin extends Square{
         }
     }
 
-    public void battleMonster(Player player, Monsters monster) {
-        System.out.println("You will fight ONE monster.");
+    public static void battleMonster(Player player, Monsters monster) {
+        Scanner sc=new Scanner(System.in);
         System.out.println("Monster's stats\n"+ monster.toString());
         flee:
         while(player.getHp()>0 && monster.getHp()>0) {
@@ -108,7 +112,7 @@ class Sin extends Square{
         if(monster.getHp()<=0) {
             System.out.println("Monster is defeated.");
             player.setGold(30);
-            player.setExp(20);
+            player.setExp(30);
             player.setNoOfMonsterEncounter(1);
             player.levelUp();
             System.out.println("Your gold and EXP has increased!\n"+ player.toString());

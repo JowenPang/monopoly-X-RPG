@@ -5,7 +5,8 @@ import java.util.Random;
 class Tri extends Square{
     Random r=new Random();
     Board board=new Board();
-    private boolean battleTriggered=true; 
+    private boolean battleTriggered=true;
+    int n=0;
 
     public Tri(String name) {
         this.name = name;
@@ -24,7 +25,11 @@ class Tri extends Square{
         }
         //if battle between player is triggered, battle with monster won't triggered
         if(battleTriggered) {
-            battleMonster(player, board.monsters[r.nextInt(5)], board.monsters[r.nextInt(5)], board.monsters[r.nextInt(5)]);
+            System.out.println("You will fight THREE monster.");
+            while(n<3) {
+                Sin.battleMonster(player, board.monsters[r.nextInt(5)]);
+                n++;
+            }
         }
     }
 
@@ -47,8 +52,9 @@ class Tri extends Square{
         }
     }
 
-    public void battleMonster(Player player, Monsters monster, Monsters monster1, Monsters monster2) {
-        System.out.println("You will fight THREE monsters.");
+
+
+       /* System.out.println("You will fight THREE monsters.");
         System.out.println("Monster's stats\n"+ monster.toString());
         System.out.println("Choose your option 1.Attack  2.Item  3.Flee");
         int option=sc.nextInt();
@@ -67,6 +73,6 @@ class Tri extends Square{
             case 3:
                 player.flee();
                 break;
-        }
-    }
+        }*/
+
 }
