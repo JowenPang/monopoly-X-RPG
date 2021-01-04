@@ -98,7 +98,7 @@ public class Board {
             space=0;
             System.out.print("| ");
             for (int i = 0; i < players.length ;i++) {
-                if (players[i].getPosition() == m) {
+                if (players[i].getPosition() == m && players[i].isQuitGame()==false) {
                     System.out.print(players[i].getName()+" ");
                     space+=2;
                 }
@@ -133,7 +133,7 @@ public class Board {
             System.out.print("| ");
             space=0;
             for (int i = 0; i < players.length ;i++) {
-                if (players[i].getPosition() == part1) {
+                if (players[i].getPosition() == part1 && players[i].isQuitGame()==false) {
                     System.out.print(players[i].getName()+" ");
                     space+=2;
                 }
@@ -147,7 +147,7 @@ public class Board {
             space=0;
             System.out.print("| ");
             for (int i = 0; i < players.length ;i++) {
-                if (players[i].getPosition() == part2) {
+                if (players[i].getPosition() == part2 && players[i].isQuitGame()==false) {
                     System.out.print(players[i].getName()+ " ");
                     space+=2;
                 }
@@ -184,7 +184,7 @@ public class Board {
             space=0;
             System.out.print("| ");
             for (int i = 0; i < players.length ;i++) {
-                if (players[i].getPosition() == m) {
+                if (players[i].getPosition() == m && players[i].isQuitGame()==false) {
                     System.out.print(players[i].getName()+ " ");
                     space+=2;
                 }
@@ -240,7 +240,10 @@ public class Board {
                 }
             }
         }
-        return players[0].getName();
+        if (players[0].getLevel()>0 && players[0].getLevel()!=players[1].getLevel()){
+            return players[0].getName();
+        }
+        return '-';
     }
 
     //return array of player following sequence
