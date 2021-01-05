@@ -98,7 +98,7 @@ public class Board {
             space=0;
             System.out.print("| ");
             for (int i = 0; i < players.length ;i++) {
-                if (players[i].getPosition() == m) {
+                if (players[i].getPosition() == m && players[i].isQuitGame()==false) {
                     System.out.print(players[i].getName()+" ");
                     space+=2;
                 }
@@ -133,7 +133,7 @@ public class Board {
             System.out.print("| ");
             space=0;
             for (int i = 0; i < players.length ;i++) {
-                if (players[i].getPosition() == part1) {
+                if (players[i].getPosition() == part1 && players[i].isQuitGame()==false) {
                     System.out.print(players[i].getName()+" ");
                     space+=2;
                 }
@@ -147,7 +147,7 @@ public class Board {
             space=0;
             System.out.print("| ");
             for (int i = 0; i < players.length ;i++) {
-                if (players[i].getPosition() == part2) {
+                if (players[i].getPosition() == part2 && players[i].isQuitGame()==false) {
                     System.out.print(players[i].getName()+ " ");
                     space+=2;
                 }
@@ -184,7 +184,7 @@ public class Board {
             space=0;
             System.out.print("| ");
             for (int i = 0; i < players.length ;i++) {
-                if (players[i].getPosition() == m) {
+                if (players[i].getPosition() == m && players[i].isQuitGame()==false) {
                     System.out.print(players[i].getName()+ " ");
                     space+=2;
                 }
@@ -231,16 +231,18 @@ public class Board {
     //cf: determine method
     public char determineWinner(int n){
         Player temp;
-        for(int i=1; i<n; i++) {
-            for (int j = 1; i < players.length; i++) {
-                if (players[j].getLevel() > players[j - 1].getLevel()) {
-                    temp = players[j];
-                    players[j] = players[j - 1];
-                    players[j - 1] = temp;
-                }
+        for (int j = 1; j < players.length; j++) {
+            if ((players[j].getLevel() > players[j - 1].getLevel()) || (players[j].getLevel() == players[j - 1].getLevel() && (players[j].getGold() > players[j - 1].getGold()))){
+                temp = players[j];
+                players[j] = players[j - 1];
+                players[j - 1] = temp;
+                j=0;
             }
         }
-        return players[0].getName();
+        if (players[0].getLevel() == players[1].getLevel() && (players[0].getGold() == players[1].getGold()))
+            return '-';
+        else
+            return players[0].getName();
     }
 
     //return array of player following sequence

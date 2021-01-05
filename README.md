@@ -36,4 +36,6 @@ for testing *
                 - update board.java (determine winner & create monster[] array with 5 monsters)
                 - update monster.java (update toString())
                 - update square.java (update how sin duo tri use randomized monster)
+                
+[2.34am 5/1] cf - update board.java (cancel out player quited game) (update determine winner)
 

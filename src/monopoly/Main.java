@@ -6,7 +6,7 @@ public class Main {
     public static void main(String [] args) {
         Instructions.help();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Number of player:");
+        System.out.println("Number of player(s):");
         int noOfPlayer = sc.nextInt();
         int n = noOfPlayer;
         Board board = new Board(n);
@@ -37,10 +37,15 @@ public class Main {
                     int choice2 = sc.nextInt();
                     if (choice2 == 1)
                         board.play();
-                    else
-                        System.out.println("Your turn is skipped!");
+                    else{
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("             Your turn is skipped!                ");
+                        System.out.println("--------------------------------------------------");
+                    }
                 } else {
-                    System.out.println("Player " + board.getCurrentTurn() + " left the game");
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("             Player " + board.getCurrentPlayer().getName() + " left the game!");
+                    System.out.println("--------------------------------------------------");
                     board.getCurrentPlayer().setQuitGame(true);
                     n = n - 1;
                 }
@@ -49,7 +54,9 @@ public class Main {
         }
 
         char winner = board.determineWinner(noOfPlayer);
-        System.out.println("The winner is " + winner);
+        System.out.println("**************************************************");
+        System.out.println("                 The winner is " + winner+"!");
+        System.out.println("**************************************************");
 
 
     }
