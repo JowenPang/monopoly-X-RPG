@@ -51,28 +51,4 @@ class Tri extends Square{
                 break;
         }
     }
-
-
-
-       /* System.out.println("You will fight THREE monsters.");
-        System.out.println("Monster's stats\n"+ monster.toString());
-        System.out.println("Choose your option 1.Attack  2.Item  3.Flee");
-        int option=sc.nextInt();
-        switch(option){
-            case 1:
-                monster.setHp(-(player.attack(player.getStrength(),monster.getDefence())));
-                monster1.setHp(-(player.attack(player.getStrength(),monster1.getDefence())));
-                monster2.setHp(-(player.attack(player.getStrength(),monster2.getDefence())));
-                player.setHp(-(monster.attack(monster.getStrength(),player.getDefence())));
-                player.setHp(-(monster1.attack(monster1.getStrength(),player.getDefence())));
-                player.setHp(-(monster2.attack(monster2.getStrength(),player.getDefence())));
-                break;
-            case 2:
-                player.item();
-                break;
-            case 3:
-                player.flee();
-                break;
-        }*/
-
 }
