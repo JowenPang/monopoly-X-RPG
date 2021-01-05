@@ -73,6 +73,12 @@ public class Board {
         else
             nextPosition=nextPositionBfr;
         player.setPosition(nextPosition); //update player new position
+        try {
+            // thread to sleep for 1000 milliseconds
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            System.out.println();
+        }
         printBoard();      //show the location of player after toss dice
         if(nextPositionBfr>32)
             square[0].event(player);

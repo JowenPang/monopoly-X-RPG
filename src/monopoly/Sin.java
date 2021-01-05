@@ -4,7 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 class Sin extends Square{
-    private boolean battleTriggered=true;
+    Board board=new Board();
+    private boolean battleWithMonster;
     Random r=new Random();
     
     public Sin(){
@@ -15,9 +16,10 @@ class Sin extends Square{
     }
 
     public void event(Player player){
+        battleWithMonster =true;
         checkbattle(player);
         //if true, battle monster; if false, battle player.
-        if(battleTriggered) {
+        if(battleWithMonster) {
             System.out.println("You will fight ONE monster.");
             battleMonster(player, board.monsters[r.nextInt(5)]);
         }
@@ -30,7 +32,7 @@ class Sin extends Square{
             //to check if there are players in the same tile excluding the player himself
             if ((board.players[i].getPosition() == player.getPosition())&& board.players[i].getName()!= player.getName()) {
                 // to count num of players in the tile
-                headcnt++;  
+                headcnt++;
                 // set index to variable [note: if the headcnt != 1, the variable head is no longer needed]
                 head = i;
             }
@@ -41,7 +43,7 @@ class Sin extends Square{
             if (player.getLevel()>=5 && board.players[head].getLevel()>=5){
                 // battle player
                 battlePlayer(player, board.players[head]);
-                battleTriggered=false;
+                battleWithMonster =false;
             }
         }
     }
@@ -53,15 +55,14 @@ class Sin extends Square{
             System.out.println("Choose your option 1.Attack  2.Item  3.Flee");
             int option = sc.nextInt();
             switch (option) {
-                case 1:
+                case 1: //attack
                     player1.setHp(-(player.attack(player.getStrength(), player1.getDefence())));
                     System.out.println(player1.getName() + "'s turn");
                     break;
-                case 2:
-                    System.out.println("The item you have: " + player.getItem());
-                    //System.out.println("Which item do you want to use?");
+                case 2: // player can choose weapon from his backpack
+                    player.item();
                     break;
-                case 3:
+                case 3: //flee from battle
                     player.flee();
                     break;
             }
@@ -81,48 +82,66 @@ class Sin extends Square{
     public void battleMonster(Player player, Monsters monster) {
         Scanner sc=new Scanner(System.in);
         System.out.println("Monster's stats\n"+ monster.toString());
-        flee:
+        battle:
         while(player.getHp()>0 && monster.getHp()>0) {
             System.out.println("--> Fighting monster <--");
             System.out.println("Choose your option 1.Attack  2.Item  3.Flee");
             int option = sc.nextInt();
             switch (option) {
                 case 1:
-                    int damage = player.attack(player.getStrength(), monster.getDefence());
+                    int damage = player.attack(player.getStrength(), monster.getDefence()); //damage towards monster
                     monster.setHp(-damage);
+                    try {
+                        // thread to sleep for 1000 milliseconds
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        System.out.println();
+                    }
                     System.out.println("You dealed a DAMAGE of "+damage+" onto the monster.");
-                    if (monster.getHp()<15)
+                    if (monster.getHp()<=0) {
+                        System.out.println("Monster's current hp :"+ monster.getHp());
+                        break battle;
+                    }
+                    else if(monster.getHp()<12)
                         System.out.println("Monster's current hp :"+ monster.getHp()+" [Monster's HP is low !Attack!]");
                     else
                         System.out.println("Monster's current hp :"+ monster.getHp());
                     System.out.println();
                     break;
-                case 2:
-                    //if get item
-                    player.setHp(20);
-                    player.setDefence(5);
-                   /* System.out.println(player.getItem());
-                    System.out.println("Which item do you want to use?");
-                    String item=sc.next();
-                    applyItem(item);*/
+                case 2:// player can choose weapon from his backpack
+                    if(player.getDefence()>28)
+                        System.out.println("You are not allowed to get anymore weapon.");
+                    else
+                        player.item();
                     break;
                 case 3:
-                    if (player.getAgility() < monster.getAgility()){
+                    if(player.getItem().contains("Smoke Bomb")){
+                        System.out.println("You escaped this battle using your Smoke Bomb. ");
+                        player.item.remove("Smoke Bomb");
+                        break battle;
+                    }
+                    else if (player.getAgility()>monster.getAgility()){
+                        player.flee();
+                        break battle;
+                    }else{
                         System.out.println("--------------------------------------------------");
                         System.out.println("     Opps ! You can't escape from the battle.     ");
                         System.out.println("--------------------------------------------------");
-                    }else{
-                        player.flee();
-                        break flee;
                     }
             }
 
-            System.out.println("--> Monster's turn to attack <--");
-            int damage = monster.attack(monster.getStrength(), player.getDefence());
+            System.out.println("---> Monster's turn to attack <---\n");
+            int damage = monster.attack(monster.getStrength(), player.getDefence()); //damage towards player
             player.setHp(-damage);
+            try {
+                // thread to sleep for 1000 milliseconds
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                System.out.println();
+            }
             System.out.println("The monster hit you with a DAMAGE dealed "+damage);
-            if(player.getHp()<12)
-                System.out.println("Player's current hp : "+ player.getHp()+ " [Consider get item to prevent defeated by monster!]");
+            if(player.getHp()>0 &&player.getHp() <12)
+                System.out.println("Player's current hp : "+ player.getHp()+ " [Consider get item to prevent being defeated!]");
             else
                 System.out.println("Player's current hp : "+ player.getHp());
             System.out.println();
@@ -138,13 +157,10 @@ class Sin extends Square{
             player.setExp(30);
             player.setNoOfMonsterEncounter(1);
             player.levelUp();
-            System.out.println("Your gold and EXP has increased!\n"+ player.toString());
+            System.out.println("Your are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player.toString());
         }
         player.resetHp(25);
         monster.resetHp(30);
     }
 
-    private void applyItem(String item) {
-        //check which item player get then add hp
-    }
 }

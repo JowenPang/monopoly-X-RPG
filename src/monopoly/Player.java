@@ -2,6 +2,7 @@ package monopoly;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Player extends Role {
     private char name;
@@ -9,6 +10,7 @@ public class Player extends Role {
     private int position;
     private boolean quitGame=false;
     private int noOfMonsterEncounter;
+    Scanner sc=new Scanner(System.in);
     
 
     //if isLose is true , then the player is count as removed from the game, the player cannot play game if isLose is true
@@ -20,7 +22,10 @@ public class Player extends Role {
         this.name=name; firstDiceRoll=0;position=0;
         item.add("Hi-Potion");
         item.add("Hi-Potion");
+        item.add("Smoke bomb");
         weapon.add("Sword");
+        weapon.add("Shield");
+        weapon.add("Armor");
         noOfMonsterEncounter=0;
 
     }
@@ -58,7 +63,68 @@ public class Player extends Role {
 
     @Override
     public void item(){
-        System.out.println("sword, potion , smoke bomb");
+        System.out.println(getWeapon());
+        System.out.println("Which weapon do you want to use?");
+        String w=sc.next();
+        if(weapon.contains(w)) {
+            System.out.println("You are now using " + w);
+            if(w.equalsIgnoreCase("Sword")) {
+                System.out.println("Strength +3 , Defence +10 , Hp +8");
+                setHp(8);
+                setStrength(3);
+                setDefence(10);
+            }
+            else if(w.equalsIgnoreCase("Spear")) {
+                System.out.println("Strength +4 , Defence +11 , Hp +8");
+                setHp(8);
+                setStrength(4);
+                setDefence(11);
+            }
+            else if(w.equalsIgnoreCase("Wooden Axe")) {
+                System.out.println("Strength +6 , Defence +12 , Hp +10");
+                setHp(10);
+                setStrength(6);
+                setDefence(12);
+            }
+            else if(w.equalsIgnoreCase("Shield")) {
+                System.out.println("Strength +8 , Defence +12 , Hp +10");
+                setHp(10);
+                setStrength(8);
+                setDefence(12);
+            }
+            else if(w.equalsIgnoreCase("Crossbows")) {
+                System.out.println("Strength +8 , Defence +12 , Hp +12");
+                setHp(12);
+                setStrength(8);
+                setDefence(12);
+            }
+            else if(w.equalsIgnoreCase("Bows")) {
+                System.out.println("Strength +10 , Defence +13 , Hp +12");
+                setHp(12);
+                setStrength(10);
+                setDefence(13);
+            }
+            else if(w.equalsIgnoreCase("Tridents")) {
+                System.out.println("Strength +12 , Defence +13 , Hp +13");
+                setHp(13);
+                setStrength(12);
+                setDefence(13);
+            }
+            else if(w.equalsIgnoreCase("Armor")) {
+                System.out.println("Strength +15 , Defence +15 , Hp +15");
+                setHp(15);
+                setStrength(15);
+                setDefence(15);
+            }
+            else {
+                System.out.println("Please enter a valid weapon");
+                item();
+            }
+        }
+        else {
+            System.out.println("You don't have this weapon, choose other weapon.");
+            item();
+        }
     }
 
     @Override

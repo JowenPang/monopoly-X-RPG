@@ -5,8 +5,8 @@ import java.util.Random;
 class Duo extends Square{
     Random r=new Random();
     Board board=new Board();
-    private boolean battleTriggered=true;
-    int n=0;
+    private boolean battleWithMonster;
+    private int n;
     private Sin sin = new Sin();
     
     public Duo (String name) {
@@ -14,9 +14,11 @@ class Duo extends Square{
     }
 
     public void event(Player player){
+        n=0;
+        battleWithMonster =true;
         sin.checkbattle(player);
         //if true, battle monster; if false, battle player.
-        if(battleTriggered) {
+        if(battleWithMonster) {
             System.out.println("You will fight TWO monsters.");
             while(n<2) {
                 sin.battleMonster(player, board.monsters[r.nextInt(5)]);
