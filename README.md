@@ -39,3 +39,13 @@ for testing *
                 
 [2.34am 5/1] cf - update board.java (cancel out player quited game) (update determine winner)
 
+[9.05pm 5/1] Neil 
+- Update determineWinner method in board (to compare amount of Gold else comparing levels)
+- Link battles against battles in SIN, DUO, TRI
+- Organize sections to avoid confusions
+
+What we left for now?
+--> player battle areas, maybe need amend something
+--> damage formula may have bugs, can consider them haha idk
+--> shall we use wait()?
+
