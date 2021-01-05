@@ -9,7 +9,7 @@ public class Player extends Role {
     private int position;
     private boolean quitGame=false;
     private int noOfMonsterEncounter;
-
+    
 
     //if isLose is true , then the player is count as removed from the game, the player cannot play game if isLose is true
     ArrayList<String> item = new ArrayList<String>();
@@ -63,7 +63,9 @@ public class Player extends Role {
 
     @Override
     public void flee(){
-        System.out.println("You had escaped from the battle!");
+        System.out.println("--------------------------------------------------");
+        System.out.println("         You had escaped from the battle!         ");
+        System.out.println("--------------------------------------------------");
     }
 
     //properties that inherited from abstract class Role
@@ -195,7 +197,9 @@ public class Player extends Role {
                 setAgility(50);
                 setGold(250);
             }
-            System.out.println("You have been leveled up!");            
+            System.out.println("--------------------------------------------------");
+            System.out.println("            You have been leveled up!             ");            
+            System.out.println("--------------------------------------------------");
         }
     }    
 }

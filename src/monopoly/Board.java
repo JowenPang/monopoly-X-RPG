@@ -231,19 +231,18 @@ public class Board {
     //cf: determine method
     public char determineWinner(int n){
         Player temp;
-        for(int i=1; i<n; i++) {
-            for (int j = 1; i < players.length; i++) {
-                if (players[j].getLevel() > players[j - 1].getLevel()) {
-                    temp = players[j];
-                    players[j] = players[j - 1];
-                    players[j - 1] = temp;
-                }
+        for (int j = 1; j < players.length; j++) {
+            if ((players[j].getLevel() > players[j - 1].getLevel()) || (players[j].getLevel() == players[j - 1].getLevel() && (players[j].getGold() > players[j - 1].getGold()))){
+                temp = players[j];
+                players[j] = players[j - 1];
+                players[j - 1] = temp;
+                j=0;
             }
         }
-        if (players[0].getLevel()>0 && players[0].getLevel()!=players[1].getLevel()){
+        if (players[0].getLevel() == players[1].getLevel() && (players[0].getGold() == players[1].getGold()))
+            return '-';
+        else
             return players[0].getName();
-        }
-        return '-';
     }
 
     //return array of player following sequence

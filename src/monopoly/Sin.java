@@ -6,36 +6,51 @@ import java.util.Scanner;
 class Sin extends Square{
     private boolean battleTriggered=true;
     Random r=new Random();
-
+    
+    public Sin(){
+    }
+    
     public Sin(String name) {
         this.name = name;
     }
 
-    @Override
     public void event(Player player){
-        for (int i = 0; i <  board.players.length; i++) {
-            //to check if there is player at the same tile but need to exclude the player itself
-            if ((board.players[i].getPosition() == player.getPosition())&& board.players[i].getName()!= player.getName()) {
-
-                if (player.getLevel()>=5 && board.players[i].getLevel()>=5){
-                    battlePlayer(player, board.players[i]);
-                    battleTriggered=false;
-                    break;
-                }
-            }
-        }
-        //if battle between player is triggered, battle with monster won't triggered
+        checkbattle(player);
+        //if true, battle monster; if false, battle player.
         if(battleTriggered) {
             System.out.println("You will fight ONE monster.");
             battleMonster(player, board.monsters[r.nextInt(5)]);
         }
-
+    }
+    
+    // check whether battle monsters or battle players
+    public void checkbattle(Player player){
+        int headcnt = 0, head = 0;
+        for (int i = 0; i <  board.players.length; i++) {
+            //to check if there are players in the same tile excluding the player himself
+            if ((board.players[i].getPosition() == player.getPosition())&& board.players[i].getName()!= player.getName()) {
+                // to count num of players in the tile
+                headcnt++;  
+                // set index to variable [note: if the headcnt != 1, the variable head is no longer needed]
+                head = i;
+            }
+        }
+        // if there is only one player in the tile
+        if (headcnt==1){
+            // and if both players are at least level 5
+            if (player.getLevel()>=5 && board.players[head].getLevel()>=5){
+                // battle player
+                battlePlayer(player, board.players[head]);
+                battleTriggered=false;
+            }
+        }
     }
 
+    // battle against player 
     public void battlePlayer(Player player, Player player1) {
         System.out.println("Player will fight with player "+ player1.getName());
         while(player.getHp()>0 && player1.getHp()>0) {
-            System.out.println(" Choose your option 1.Attack  2.Item  3.Flee");
+            System.out.println("Choose your option 1.Attack  2.Item  3.Flee");
             int option = sc.nextInt();
             switch (option) {
                 case 1:
@@ -52,15 +67,18 @@ class Sin extends Square{
             }
             player.setHp(-(player1.attack(player1.getStrength(), player.getDefence())));
         }
-        if(player.getHp()<=0)
-            System.out.println(player.getName() + " lose this battle");
-        else {
+        if(player.getHp()<=0){
+            System.out.println("--------------------------------------------------");
+            System.out.println("        Player "+player.getName()+",you have lost this battle");
+            System.out.println("--------------------------------------------------");
+        } else {
             System.out.println(player1.getName() + " is defeated ");
-            System.out.println("you will get gold and exp");
+            System.out.println("You will get Gold and EXP!");
         }
     }
 
-    public static void battleMonster(Player player, Monsters monster) {
+    // battle against monster
+    public void battleMonster(Player player, Monsters monster) {
         Scanner sc=new Scanner(System.in);
         System.out.println("Monster's stats\n"+ monster.toString());
         flee:
@@ -89,9 +107,11 @@ class Sin extends Square{
                     applyItem(item);*/
                     break;
                 case 3:
-                    if (player.getAgility() < monster.getAgility())
-                        System.out.println("Opps ! You can't escape from the battle.");
-                    else{
+                    if (player.getAgility() < monster.getAgility()){
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("     Opps ! You can't escape from the battle.     ");
+                        System.out.println("--------------------------------------------------");
+                    }else{
                         player.flee();
                         break flee;
                     }
@@ -102,13 +122,16 @@ class Sin extends Square{
             player.setHp(-damage);
             System.out.println("The monster hit you with a DAMAGE dealed "+damage);
             if(player.getHp()<12)
-                System.out.println("Player's current hp : "+ player.getHp()+ "[Consider get item to prevent defeated by monster!]");
+                System.out.println("Player's current hp : "+ player.getHp()+ " [Consider get item to prevent defeated by monster!]");
             else
                 System.out.println("Player's current hp : "+ player.getHp());
             System.out.println();
         }
-        if(player.getHp()<=0)
-            System.out.println(player.getName() + " lose this battle");
+        if(player.getHp()<=0){
+            System.out.println("--------------------------------------------------");
+            System.out.println("       Player "+player.getName() + ", you have lost this battle.");
+            System.out.println("--------------------------------------------------");
+        }
         if(monster.getHp()<=0) {
             System.out.println("Monster is defeated.");
             player.setGold(30);
