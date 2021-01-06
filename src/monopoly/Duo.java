@@ -21,6 +21,7 @@ class Duo extends Square{
         if(battleWithMonster) {
             System.out.println("You will fight TWO monsters.");
             while(n<2) {
+                System.out.println("\n---------------Round "+(n+1)+"--------------\n");
                 sin.battleMonster(player, board.monsters[r.nextInt(5)]);
                 n++;
             }

@@ -21,6 +21,7 @@ class Tri extends Square{
         if(battleWithMonster) {
             System.out.println("You will fight THREE monsters.");
             while(n<3) {
+                System.out.println("\n---------------Round "+(n+1)+"--------------\n");
                 sin.battleMonster(player, board.monsters[r.nextInt(5)]);
                 n++;
             }
