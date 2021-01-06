@@ -49,3 +49,12 @@ What we left for now?
 --> damage formula may have bugs, can consider them haha idk
 --> shall we use wait()?
 
+[12.06am 6/1] Jowen
+- adjust defence and strength value of item in Shop()
+- Player.getItem() - check if player's backpack has the item to apply , but supposely item can add to a certain value , if not defense >35 , monster will deal 0 damage , haven't solve this part
+- add Thread.sleep before print board, after player attack ,after monster attack
+- flee in battleMonster will check if have smokebomb first
+- monster's hp reach 0 will break outerloop (settle)
+
+
+
