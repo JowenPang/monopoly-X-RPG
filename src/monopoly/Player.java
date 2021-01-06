@@ -175,7 +175,7 @@ public class Player extends Role {
             System.out.println();
         }
         else{
-            if(exp<150){
+            if(exp<150) {
                 setLevel(1);
                 setHp(2);
                 setStrength(5);
@@ -183,7 +183,6 @@ public class Player extends Role {
                 setAgility(5);
                 setGold(25);
             }
-
             else if(exp<280){
                 setLevel(1);
                 setHp(2);
