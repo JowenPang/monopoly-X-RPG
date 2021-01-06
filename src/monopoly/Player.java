@@ -136,9 +136,9 @@ public class Player extends Role {
 
     //properties that inherited from abstract class Role
     public String toString() {
-        return "-----------------------"+ "\nlevel= " + level + "\nhp= " + hp + "\nstrength= " + strength +
-                "\ndefence= " + defence + "\nagility= " + agility + "\nexp= " + exp +
-                "\ngold= " + gold+ "\n-----------------------";
+        return "-----------------------"+ "\nLevel = " + level + "\nHp = " + hp + "\nStrength = " + strength +
+                "\nDefence = " + defence + "\nAgility = " + agility + "\nEXP = " + exp +
+                "\nGold = " + gold+ "\n-----------------------";
     }
 
     public char getName() {
