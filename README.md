@@ -56,5 +56,6 @@ What we left for now?
 - flee in battleMonster will check if have smokebomb first
 - monster's hp reach 0 will break outerloop (settle)
 
-
+[4.00pm 7/1] Jowen
+- straight away print out the board that has been shuffled 
 
