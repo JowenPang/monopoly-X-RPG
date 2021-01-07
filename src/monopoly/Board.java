@@ -53,6 +53,7 @@ public class Board {
                 square[i] = new Sin("Sin-M");
 
         }
+        resetSquare();
 
         monsters=new Monsters[5];
         monsters[0]=new Monsters("Fire",1,25,5,10,20);
@@ -267,7 +268,7 @@ public class Board {
         return square;
     }
 
-    public static Square [] resetSquare() {
+    public Square [] resetSquare() {
         Random r = new Random();
 
         for (int i = square.length-2; i > 0; i--) {

@@ -11,17 +11,7 @@ public class Main {
         int n = noOfPlayer;
         Board board = new Board(n);
 
-        /*board.printBoard();
-        
-        System.out.println("Do you want to shuffle the arrangement of tiles in game board?");
-        sc.nextLine();
-        String shuffle=sc.nextLine();
-        while(shuffle.equals("yes")){*/
-             Board.resetSquare();
-             board.printBoard();
-             /*System.out.println("Do you want to shuffle the arrangement of tiles in game board?");
-             shuffle=sc.nextLine();
-         }*/
+        board.printBoard();
         board.setStartGame(true);
         
         while (n > 1 && n <= 4) {
