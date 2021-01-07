@@ -27,23 +27,23 @@ public class Chest extends Square{
                 if(rare.equals(rareItem[0])){
                     //player.setHp(2);
                     //player.setStrength(5);
-                    player.item.add("Master Sword");
+                    player.weapon.add("Master Sword");
                 }else if (rare.equals(rareItem[1])){
                     //player.setHp(3);
                     //player.setStrength(4);
-                    player.item.add("Blade of Chaos");
+                    player.weapon.add("Blade of Chaos");
                 }else if (rare.equals(rareItem[2])){
                     //player.setHp(5);
                     //player.setStrength(4);
-                    player.item.add("Key blade");
+                    player.weapon.add("Key blade");
                 }else if(rare.equals(rareItem[3])){
                     //player.setHp(6);
                     //player.setStrength(6);
-                    player.item.add("Hidden Blade");
+                    player.weapon.add("Hidden Blade");
                 }else{
                     //player.setHp(7);
                     //player.setStrength(8);
-                    player.item.add("Gravity Gun");
+                    player.weapon.add("Gravity Gun");
                 }
                 System.out.println("Congratulations! You got " + rare +" as reward");
                 break;

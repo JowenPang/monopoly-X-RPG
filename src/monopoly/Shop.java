@@ -29,14 +29,14 @@ public class Shop extends Square{
                         System.out.println("");
                         System.out.println("Weapons sell as below:");
                         System.out.printf("%-10s%5s%15s%12s%10s\n","No","Items","Strength","Defence","Gold");
-                        System.out.printf("%-10s%5s%12s%11s%13s\n","5.","Sword","3","10","6");
-                        System.out.printf("%-10s%5s%12s%11s%13s\n","6.","Spear","4","11","12");
-                        System.out.printf("%-10s%5s%7s%11s%13s\n","7.","Wooden axe","6","12","15");
-                        System.out.printf("%-10s%5s%11s%11s%13s\n","8.","Shield","6","12","18");
-                        System.out.printf("%-10s%5s%8s%11s%13s\n","9.","Crossbows","8","12","20");
-                        System.out.printf("%-10s%4s%13s%11s%13s\n","10.","Bows","10","13","22");
-                        System.out.printf("%-10s%5s%9s%11s%13s\n","11.","Tridents","12","13","25");
-                        System.out.printf("%-10s%5s%12s%11s%13s\n","12.","Armor","15","15","30");
+                        System.out.printf("%-10s%5s%12s%11s%13s\n","5.","Sword","10","10","6");
+                        System.out.printf("%-10s%5s%12s%11s%13s\n","6.","Spear","10","11","12");
+                        System.out.printf("%-10s%5s%7s%11s%13s\n","7.","Wooden axe","13","12","15");
+                        System.out.printf("%-10s%5s%11s%11s%13s\n","8.","Shield","15","19","18");
+                        System.out.printf("%-10s%5s%8s%11s%13s\n","9.","Crossbows","15","16","20");
+                        System.out.printf("%-10s%4s%13s%11s%13s\n","10.","Bows","18","18","22");
+                        System.out.printf("%-10s%5s%9s%11s%13s\n","11.","Tridents","18","18","25");
+                        System.out.printf("%-10s%5s%12s%11s%13s\n","12.","Armor","20","20","30");
                         System.out.print("Select the item / weapon that you would like to buy: ");
                         int itemBuy=sc.nextInt();
                         System.out.println("");
@@ -44,22 +44,22 @@ public class Shop extends Square{
                         switch(itemBuy){
                             case 1:
                                 player.setGold(-8);
-                                player.item.add("Potion");
+                                player.weapon.add("Potion");
                                 System.out.println("You successfully bought a potion");
                                 break;
                             case 2:
                                 player.setGold(-12);
-                                player.item.add("Hi-Potion");
+                                player.weapon.add("Hi-Potion");
                                 System.out.println("You successfully bought a hi-potion");
                                 break;
                             case 3:
                                 player.setGold(-9);
-                                player.item.add("Smoke bomb");
+                                player.weapon.add("Smoke bomb");
                                 System.out.println("You successfully bought a smoke bomb");
                                 break;
                             case 4:
                                 player.setGold(-15);
-                                player.item.add("Poison");
+                                player.weapon.add("Poison");
                                 System.out.println("You successfully bought a poison");
                                 break;
                             case 5:
@@ -117,37 +117,37 @@ public class Shop extends Square{
                     System.out.println();
 
                     if(option==1){
-                        System.out.println("Item you have: " +player.getItem());
+                        System.out.println("Item you have: " +player.getWeapon());
                         System.out.println("Which item you want to sell?");
                         sc.nextLine();
                         itemSell=sc.nextLine();
                         boolean sell=false;
 
-                        for(String item:player.getItem()){
+                        for(String item:player.getWeapon()){
                             if(itemSell.equalsIgnoreCase("Potion")){
                                 player.setGold(8);
-                                player.item.remove("Potion");
+                                player.weapon.remove("Potion");
                                 System.out.println("You successfully sold a Potion");
                                 sell=true;
                                 break;
                             }
                             if(itemSell.equalsIgnoreCase("Hi-Potion")){
                                 player.setGold(12);
-                                player.item.remove("Hi-Potion");
+                                player.weapon.remove("Hi-Potion");
                                 System.out.println("You successfully sold a Hi-Potion");
                                 sell=true;
                                 break;
                             }
                             if(itemSell.equalsIgnoreCase("Smoke bomb")){
                                 player.setGold(9);
-                                player.item.remove("Smoke bomb");
+                                player.weapon.remove("Smoke bomb");
                                 System.out.println("You successfully sold a Smoke bomb");
                                 sell=true;
                                 break;
                             }
                             if(itemSell.equalsIgnoreCase("Poison")){
                                 player.setGold(15);
-                                player.item.remove("Posion");
+                                player.weapon.remove("Posion");
                                 System.out.println("You successfully sold a Poison");
                                 sell=true;
                                 break;
@@ -242,13 +242,13 @@ public class Shop extends Square{
                             System.out.printf("%-10s%5s%7s%11s%13s\n","3.","Smoke bomb","6","10","18");
                             System.out.printf("%-10s%5s%11s%11s%13s\n","4.","Poison","14","6","30");
                             System.out.println("");
-                            System.out.println("Item you have: " +player.getItem());
+                            System.out.println("Item you have: " +player.getWeapon());
                             System.out.println("Which item you want to upgrade?");
                             sc.nextLine();
                             String itemUpgrade=sc.nextLine();
                             boolean upgrade=false;
 
-                            for(String item:player.getItem()){
+                            for(String item:player.getWeapon()){
                                 if(itemUpgrade.equalsIgnoreCase("Potion")){
                                     player.setGold(-16);
                                     System.out.println("You successfully upgrade a Potion");

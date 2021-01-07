@@ -50,7 +50,7 @@ public abstract class Role {
     }
 
     public void setStrength(int strength) {
-        this.strength += strength;
+        this.strength = strength;
     }
 
     public int getDefence() {
@@ -58,7 +58,7 @@ public abstract class Role {
     }
 
     public void setDefence(int defence) {
-        this.defence += defence;
+        this.defence = defence;
     }
 
     public int getAgility() {

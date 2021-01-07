@@ -84,7 +84,9 @@ class Sin extends Square{
         System.out.println("Monster's stats\n"+ monster.toString());
         battle:
         while(player.getHp()>0 && monster.getHp()>0) {
-            System.out.println("--> Fighting monster <--");
+            if(monster.getHp()<12)
+                System.out.println("[Monster's HP is low !Attack!]");
+            System.out.println("---> Fighting monster <---");
             System.out.println("Choose your option 1.Attack  2.Item  3.Flee");
             int option = sc.nextInt();
             switch (option) {
@@ -102,22 +104,18 @@ class Sin extends Square{
                         System.out.println("Monster's current hp :"+ monster.getHp());
                         break battle;
                     }
-                    else if(monster.getHp()<12)
-                        System.out.println("Monster's current hp :"+ monster.getHp()+" [Monster's HP is low !Attack!]");
                     else
                         System.out.println("Monster's current hp :"+ monster.getHp());
                     System.out.println();
                     break;
                 case 2:// player can choose weapon from his backpack
-                    if(player.getDefence()>28)
-                        System.out.println("You are not allowed to get anymore weapon.");
-                    else
                         player.item();
                     break;
                 case 3:
-                    if(player.getItem().contains("Smoke Bomb")){
+                    if(player.getWeapon().contains("Smoke Bomb")){
                         System.out.println("You escaped this battle using your Smoke Bomb. ");
-                        player.item.remove("Smoke Bomb");
+                        player.weapon.remove("Smoke Bomb");
+                        System.out.println("Your backpack is left with :"+ player.getWeapon());
                         break battle;
                     }
                     else if (player.getAgility()>monster.getAgility()){
