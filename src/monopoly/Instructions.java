@@ -12,6 +12,7 @@ public class Instructions {
         while (!str.equalsIgnoreCase("-start") && !ans.equalsIgnoreCase("yes")) {
             System.out.println("Type [-help] for game instructions.");
             System.out.println("Type [-start] to start the game.\n");
+            System.out.println("Type [-load] to load the previous game.\n");
 
             str = s.nextLine();
             switch (str) {
@@ -52,6 +53,12 @@ public class Instructions {
 
                 case "-start":
                     break;
+
+                case "-load":
+                    ResourceManager.load("monopoly.txt");
+                    break;
+
+
             }
         }
     }

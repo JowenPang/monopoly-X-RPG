@@ -1,6 +1,12 @@
 package monopoly;
 
-public class Monsters extends Role {
+import java.io.Serializable;
+
+public class Monsters extends Role implements Serializable {
+
+    public Monsters(){
+
+    }
 
     public Monsters(String name, int level, int hp, int strength, int defence, int agility) {
         super(name, level, hp, strength, defence, agility);
