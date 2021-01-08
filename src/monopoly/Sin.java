@@ -50,31 +50,76 @@ class Sin extends Square{
 
     // battle against player 
     public void battlePlayer(Player player, Player player1) {
-        System.out.println("Player will fight with player "+ player1.getName());
+        // player 
+        System.out.println("Player will fight with Player "+ player1.getName());
+        battle:
         while(player.getHp()>0 && player1.getHp()>0) {
-            System.out.println("Choose your option 1.Attack  2.Item  3.Flee");
+            System.out.println("-->  Now is Player "+player.getName()+"'s turn <--");
+            System.out.println("Choose your option 1.Attack  2.Item ");
             int option = sc.nextInt();
             switch (option) {
                 case 1: //attack
                     player1.setHp(-(player.attack(player.getStrength(), player1.getDefence())));
-                    System.out.println(player1.getName() + "'s turn");
                     break;
                 case 2: // player can choose weapon from his backpack
+                    if(player.getItem().contains("Smoke Bomb")){
+                        System.out.println("You have smoke bomb. Do you wish to use it to flee?");
+                        String ans = sc.nextLine();
+                        if (ans.equalsIgnoreCase("yes")){
+                            System.out.println("You escaped this battle using your Smoke Bomb. ");
+                            player.item.remove("Smoke Bomb");
+                            //flee from battle
+                            player.flee();
+                            System.out.println("- No rewards for both players ! -");
+                            break battle;
+                        }
+                    }
                     player.item();
                     break;
-                case 3: //flee from battle
-                    player.flee();
+            }
+        
+            // player 1 
+            System.out.println("-->  Now is Player "+player1.getName()+"'s turn <--");
+            System.out.println("Choose your option 1.Attack  2.Item ");
+            int option1 = sc.nextInt();
+            switch (option1) {
+                case 1: //attack
+                    player.setHp(-(player1.attack(player1.getStrength(), player.getDefence())));
+                    break;
+                case 2: // player1 can choose weapon from his backpack
+                    if(player.getItem().contains("Smoke Bomb")){
+                        System.out.println("You have smoke bomb. Do you wish to use it to flee?");
+                        String ans = sc.nextLine();
+                        if (ans.equalsIgnoreCase("yes")){
+                            System.out.println("You escaped this battle using your Smoke Bomb. ");
+                            player.item.remove("Smoke Bomb");
+                            //flee from battle
+                            player.flee();
+                            System.out.println("- No rewards for both players ! -");
+                            break battle;
+                        }
+                    }
+                    player.item();
                     break;
             }
-            player.setHp(-(player1.attack(player1.getStrength(), player.getDefence())));
         }
         if(player.getHp()<=0){
             System.out.println("--------------------------------------------------");
             System.out.println("        Player "+player.getName()+",you have lost this battle");
             System.out.println("--------------------------------------------------");
-        } else {
-            System.out.println(player1.getName() + " is defeated ");
-            System.out.println("You will get Gold and EXP!");
+            System.out.println("Congratulations ! Player " + player1.getName() +"!");
+            player1.setGold(30);
+            player1.setExp(30);
+            System.out.println("Your are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player1.toString());
+        } 
+        if(player1.getHp()<=0){
+            System.out.println("--------------------------------------------------");
+            System.out.println("        Player "+player1.getName()+",you have lost this battle");
+            System.out.println("--------------------------------------------------");
+            System.out.println("Congratulations ! Player " + player.getName() +"!");
+            player.setGold(30);
+            player.setExp(30);
+            System.out.println("Your are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player.toString());
         }
     }
 
