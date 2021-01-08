@@ -14,7 +14,7 @@ public class Player extends Role {
     
 
     //if isLose is true , then the player is count as removed from the game, the player cannot play game if isLose is true
-    ArrayList<String> weapon = new ArrayList<String>();
+    ArrayList<String> item = new ArrayList<String>();
     ArrayList<String> weapon = new ArrayList<String>();
     //act as backpack of player , can add and remove item and weapon
 
@@ -44,7 +44,7 @@ public class Player extends Role {
     }
 
     //when get Item , will show the list of item added by player into his backpack
-    public ArrayList<String> getWeapon() {
+    public ArrayList<String> getItem() {
         return weapon;
     }
 
@@ -118,6 +118,13 @@ public class Player extends Role {
                 setHp(15);
                 setStrength(20);
                 setDefence(20);
+            }
+            else if(w.equalsIgnoreCase("Master Sword")|| w.equalsIgnoreCase("Blade of Chaos")
+            ||w.equalsIgnoreCase("Key Blade") ||w.equalsIgnoreCase("Hidden Blade")||
+                    w.equalsIgnoreCase("Gravity Gun")){
+                System.out.println("You can apply "+ w + " to let other players to downgrade one level ");
+
+                weapon.remove(w);
             }
             else {
                 System.out.println("Please enter a valid weapon");

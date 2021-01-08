@@ -115,7 +115,7 @@ class Sin extends Square{
                     if(player.getWeapon().contains("Smoke Bomb")){
                         System.out.println("You escaped this battle using your Smoke Bomb. ");
                         player.weapon.remove("Smoke Bomb");
-                        System.out.println("Your backpack is left with :"+ player.getWeapon());
+                        System.out.println("Your backpack is left with :"+ player.getItem());
                         break battle;
                     }
                     else if (player.getAgility()>monster.getAgility()){

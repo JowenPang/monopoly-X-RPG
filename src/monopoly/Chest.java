@@ -2,6 +2,7 @@ package monopoly;
 import java.util.Random;
 
 public class Chest extends Square{
+    public String[] rareItem={"Master Sword","Blade of Chaos","Key Blade","Hidden Blade","Gravity Gun"};
     public Chest(String name) {
         this.name = name;
     }
@@ -9,7 +10,6 @@ public class Chest extends Square{
     public void event(Player player){
         Random r= new Random();
         String rare;
-        String[]rareItem={"Master Sword","Blade of Chaos","Key Blade","Hidden Blade","Gravity Gun"};
         System.out.println("You can open a treasure chest");
         System.out.println("");
         System.out.println("Choose 1 or 2: ");
