@@ -7,22 +7,22 @@ public class Monsters extends Role {
     }
 
     @Override
-    public int attack(int a, int b){
-        return a*(35 /(5+b));
+    public int attack(int a, int b) {
+        return a * (35 / (5 + b));
         // a is monster's strength , b is player's defence
     }
 
     @Override
-    public void item(){
+    public void item() {
     }
 
     @Override
-    public void flee(){
+    public void flee() {
     }
 
     @Override
     public String toString() {
-        return "You met " +name+"!\nMonsters level=" + level +
+        return "You met " + name + "!\nMonsters level=" + level +
                 "\nhp= " + hp +
                 "\nstrength= " + strength +
                 "\ndefence= " + defence +
