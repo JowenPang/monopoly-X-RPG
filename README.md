@@ -58,4 +58,9 @@ What we left for now?
 
 [4.00pm 7/1] Jowen
 - straight away print out the board that has been shuffled 
+[1.19pm 8/1] Jowen
+- player add 3 more "Smoke bomb , will be remove once apply
+-change Start to call level up method
+-Adjust value of getItem
+- setStrength , setDefence change to refresh , not accumulate 
 
