@@ -8,10 +8,10 @@ public class Player extends Role {
     private char name;
     private int firstDiceRoll;
     private int position;
-    private boolean quitGame=false;
+    private boolean quitGame = false;
     private int noOfMonsterEncounter;
-    Scanner sc=new Scanner(System.in);
-    
+    Scanner sc = new Scanner(System.in);
+
 
     //if isLose is true , then the player is count as removed from the game, the player cannot play game if isLose is true
     ArrayList<String> item = new ArrayList<String>();
@@ -19,14 +19,18 @@ public class Player extends Role {
     //act as backpack of player , can add and remove item and weapon
 
     public Player(char name) {
-        this.name=name; firstDiceRoll=0;position=0;
-        item.add("Hi-Potion");
-        item.add("Hi-Potion");
-        item.add("Smoke bomb");
+        this.name = name;
+        firstDiceRoll = 0;
+        position = 0;
+        weapon.add("Hi-Potion");
+        weapon.add("Hi-Potion");
+        weapon.add("Smoke Bomb");
+        weapon.add("Smoke Bomb");
+        weapon.add("Smoke Bomb");
         weapon.add("Sword");
         weapon.add("Shield");
         weapon.add("Armor");
-        noOfMonsterEncounter=0;
+        noOfMonsterEncounter = 0;
 
     }
 
@@ -37,98 +41,98 @@ public class Player extends Role {
     public void setFirstDiceRoll(int firstDiceRoll) {
         this.firstDiceRoll = firstDiceRoll;
     }
-    public int getPosition(){
+
+    public int getPosition() {
         return position;
     }
 
     //when get Item , will show the list of item added by player into his backpack
     public ArrayList<String> getItem() {
-        return item;
+        return weapon;
     }
 
     public ArrayList<String> getWeapon() {
         return weapon;
     }
 
-    public int rollDice(){
-        Random r=new Random();
-        int max=6;
-        return r.nextInt(max)+1;
-    }
-    @Override
-    public int attack(int a, int b){
-        return a*(35/(5+b));
-        // a is monster's strength , b is player's defence
+    public int rollDice() {
+        Random r = new Random();
+        int max = 6;
+        return r.nextInt(max) + 1;
     }
 
     @Override
-    public void item(){
+    public int attack(int a, int b) {
+        return a * (35 / (5 + b));
+        // a is monster's strength , b is player's defence
+    }
+
+    //everytime player choose a new item , means switch item , strength and defence is no more accumulate
+    @Override
+    public void item() {
         System.out.println(getWeapon());
-        System.out.println("Which weapon do you want to use?");
-        String w=sc.next();
-        if(weapon.contains(w)) {
+        System.out.println("Choose your weapon: ");
+        String w = sc.next();
+        if (weapon.contains(w)) {
             System.out.println("You are now using " + w);
-            if(w.equalsIgnoreCase("Sword")) {
-                System.out.println("Strength +3 , Defence +10 , Hp +8");
+            if (w.equalsIgnoreCase("Sword")) {
+                System.out.println("Strength 8 , Defence 10 , Hp +8");
                 setHp(8);
-                setStrength(3);
-                setDefence(10);
-            }
-            else if(w.equalsIgnoreCase("Spear")) {
-                System.out.println("Strength +4 , Defence +11 , Hp +8");
-                setHp(8);
-                setStrength(4);
-                setDefence(11);
-            }
-            else if(w.equalsIgnoreCase("Wooden Axe")) {
-                System.out.println("Strength +6 , Defence +12 , Hp +10");
-                setHp(10);
-                setStrength(6);
-                setDefence(12);
-            }
-            else if(w.equalsIgnoreCase("Shield")) {
-                System.out.println("Strength +8 , Defence +12 , Hp +10");
-                setHp(10);
-                setStrength(8);
-                setDefence(12);
-            }
-            else if(w.equalsIgnoreCase("Crossbows")) {
-                System.out.println("Strength +8 , Defence +12 , Hp +12");
-                setHp(12);
-                setStrength(8);
-                setDefence(12);
-            }
-            else if(w.equalsIgnoreCase("Bows")) {
-                System.out.println("Strength +10 , Defence +13 , Hp +12");
-                setHp(12);
                 setStrength(10);
-                setDefence(13);
-            }
-            else if(w.equalsIgnoreCase("Tridents")) {
-                System.out.println("Strength +12 , Defence +13 , Hp +13");
-                setHp(13);
-                setStrength(12);
-                setDefence(13);
-            }
-            else if(w.equalsIgnoreCase("Armor")) {
-                System.out.println("Strength +15 , Defence +15 , Hp +15");
-                setHp(15);
+                setDefence(10);
+            } else if (w.equalsIgnoreCase("Spear")) {
+                System.out.println("Strength 10 , Defence 11 , Hp +8");
+                setHp(8);
+                setStrength(10);
+                setDefence(11);
+            } else if (w.equalsIgnoreCase("Wooden Axe")) {
+                System.out.println("Strength 13 , Defence 12 , Hp +10");
+                setHp(10);
+                setStrength(13);
+                setDefence(12);
+            } else if (w.equalsIgnoreCase("Shield")) {
+                System.out.println("Strength 15 , Defence 19 , Hp +10");
+                setHp(10);
                 setStrength(15);
-                setDefence(15);
-            }
-            else {
+                setDefence(19);
+            } else if (w.equalsIgnoreCase("Crossbows")) {
+                System.out.println("Strength 15 , Defence 16 , Hp +12");
+                setHp(12);
+                setStrength(15);
+                setDefence(16);
+            } else if (w.equalsIgnoreCase("Bows")) {
+                System.out.println("Strength 18 , Defence 18 , Hp +12");
+                setHp(12);
+                setStrength(18);
+                setDefence(18);
+            } else if (w.equalsIgnoreCase("Tridents")) {
+                System.out.println("Strength 18 , Defence 18 , Hp +13");
+                setHp(13);
+                setStrength(18);
+                setDefence(18);
+            } else if (w.equalsIgnoreCase("Armor")) {
+                System.out.println("Strength 20 , Defence 20 , Hp +15");
+                setHp(15);
+                setStrength(20);
+                setDefence(20);
+            } else if (w.equalsIgnoreCase("Master Sword") || w.equalsIgnoreCase("Blade of Chaos")
+                    || w.equalsIgnoreCase("Key Blade") || w.equalsIgnoreCase("Hidden Blade") ||
+                    w.equalsIgnoreCase("Gravity Gun")) {
+                System.out.println("You can apply " + w + " to let other players to downgrade one level ");
+
+                weapon.remove(w);
+            } else {
                 System.out.println("Please enter a valid weapon");
                 item();
             }
-        }
-        else {
+        } else {
             System.out.println("You don't have this weapon, choose other weapon.");
             item();
         }
     }
 
     @Override
-    public void flee(){
+    public void flee() {
         System.out.println("--------------------------------------------------");
         System.out.println("         You had escaped from the battle!         ");
         System.out.println("--------------------------------------------------");
@@ -136,9 +140,9 @@ public class Player extends Role {
 
     //properties that inherited from abstract class Role
     public String toString() {
-        return "-----------------------"+ "\nLevel = " + level + "\nHp = " + hp + "\nStrength = " + strength +
+        return "-----------------------" + "\nLevel = " + level + "\nHp = " + hp + "\nStrength = " + strength +
                 "\nDefence = " + defence + "\nAgility = " + agility + "\nEXP = " + exp +
-                "\nGold = " + gold+ "\n-----------------------";
+                "\nGold = " + gold + "\n-----------------------";
     }
 
     public char getName() {
@@ -167,105 +171,90 @@ public class Player extends Role {
         this.noOfMonsterEncounter += noOfMonsterEncounter;
     }
 
-    public void itemDrop(){
+    public void itemDrop() {
 
     }
-    public void levelUp(){
-        if(exp<100){
+
+    public void levelUp() {
+        if (exp < 100) {
             System.out.println();
-        }
-        else{
-            if(exp<150) {
+        } else {
+            if (exp < 150) {
                 setLevel(1);
                 setHp(2);
-                setStrength(5);
-                setDefence(5);
+                setStrength(6);
+                setDefence(6);
                 setAgility(5);
                 setGold(25);
-            }
-            else if(exp<280){
+            } else if (exp < 280) {
+                setLevel(1);
+                setHp(2);
+                setStrength(7);
+                setDefence(7);
+                setAgility(10);
+                setGold(50);
+            } else if (exp < 350) {
+                setLevel(1);
+                setHp(2);
+                setStrength(8);
+                setDefence(8);
+                setAgility(15);
+                setGold(75);
+            } else if (exp < 420) {
+                setLevel(1);
+                setHp(2);
+                setStrength(9);
+                setDefence(9);
+                setAgility(20);
+                setGold(100);
+            } else if (exp < 490) {
                 setLevel(1);
                 setHp(2);
                 setStrength(10);
                 setDefence(10);
-                setAgility(10);
-                setGold(50);
-            }
-
-            else if(exp<350){
-                setLevel(1);
-                setHp(2);
-                setStrength(15);
-                setDefence(15);
-                setAgility(15);
-                setGold(75);
-            }
-
-            else if(exp<420){
-                setLevel(1);
-                setHp(2);
-                setStrength(20);
-                setDefence(20);
-                setAgility(20);
-                setGold(100);
-            }
-
-            else if(exp<490){
-                setLevel(1);
-                setHp(2);
-                setStrength(25);
-                setDefence(25);
                 setAgility(25);
                 setGold(125);
-            }
-
-            else if(exp<560){
+            } else if (exp < 560) {
                 setLevel(1);
                 setHp(3);
-                setStrength(30);
-                setDefence(30);
+                setStrength(11);
+                setDefence(11);
                 setAgility(30);
                 setGold(150);
-            }
-
-            else if(exp<630){
+            } else if (exp < 630) {
                 setLevel(1);
                 setHp(3);
-                setStrength(35);
-                setDefence(35);
+                setStrength(12);
+                setDefence(12);
                 setAgility(35);
                 setGold(175);
-            }   
-
-            else if(exp<700){
+            } else if (exp < 700) {
                 setLevel(1);
                 setHp(3);
-                setStrength(40);
-                setDefence(40);
+                setStrength(13);
+                setDefence(13);
                 setAgility(40);
                 setGold(200);
-                }    
-
-            else if(exp<770){
+            } else if (exp < 770) {
                 setLevel(1);
                 setHp(3);
-                setStrength(45);
-                setDefence(45);
+                setStrength(14);
+                setDefence(14);
                 setAgility(45);
                 setGold(225);
-            }   
-            else{
+            } else {
                 setLevel(1);
                 setHp(3);
-                setStrength(50);
-                setDefence(50);
+                setStrength(15);
+                setDefence(15);
                 setAgility(50);
                 setGold(250);
             }
             System.out.println("--------------------------------------------------");
-            System.out.println("            You have been leveled up!             ");            
+            System.out.println("            You have been leveled up!             ");
             System.out.println("--------------------------------------------------");
         }
-    }    
+    }
 }
+
 
