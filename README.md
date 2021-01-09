@@ -65,3 +65,5 @@ What we left for now?
 -Adjust value of getItem
 - setStrength , setDefence change to refresh , not accumulate 
 
+[11.32AM 9/1] Ann Joe
+-update Sin.java (add item drop system)
