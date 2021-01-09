@@ -37,7 +37,7 @@ public class Shop extends Square{
                         System.out.printf("%-10s%4s%13s%11s%13s\n","10.","Bows","18","18","22");
                         System.out.printf("%-10s%5s%9s%11s%13s\n","11.","Tridents","18","18","25");
                         System.out.printf("%-10s%5s%12s%11s%13s\n","12.","Armor","20","20","30");
-                        System.out.print("Select the item / weapon that you would like to buy: ");
+                        System.out.print("Select the item / weapon that you would like to buy: (Please enter the number)");
                         int itemBuy=sc.nextInt();
                         System.out.println("");
 

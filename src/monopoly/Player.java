@@ -3,7 +3,6 @@ package monopoly;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Player extends Role implements Serializable {
     private char name;
@@ -11,7 +10,7 @@ public class Player extends Role implements Serializable {
     private int position;
     private boolean quitGame=false;
     private int noOfMonsterEncounter;
-    Scanner sc=new Scanner(System.in);
+    Random r =new Random();
 
     public Player(){
 
@@ -69,10 +68,7 @@ public class Player extends Role implements Serializable {
 
     //everytime player choose a new item , means switch item , strength and defence is no more accumulate
     @Override
-    public void item(){
-        System.out.println(getWeapon());
-        System.out.println("Choose your weapon: ");
-        String w=sc.next();
+    public void item(String w){
         if(weapon.contains(w)) {
             System.out.println("You are now using " + w);
             if(w.equalsIgnoreCase("Sword")) {
@@ -132,12 +128,12 @@ public class Player extends Role implements Serializable {
             }
             else {
                 System.out.println("Please enter a valid weapon");
-                item();
+                item(w); //recursion , call back the method
             }
         }
         else {
             System.out.println("You don't have this weapon, choose other weapon.");
-            item();
+            item(w);
         }
     }
 
@@ -182,6 +178,19 @@ public class Player extends Role implements Serializable {
     }
 
     public void itemDrop(){
+        String []itemDrop ={"Potion","Hi-Potion","Smoke bomb","Poison"};
+        String drop;
+        drop=itemDrop[r.nextInt(itemDrop.length)]; //randomise the index
+            if(drop.equals(itemDrop[0])){
+                item.add("Potion");
+            }else if (drop.equals(itemDrop[1])){
+                item.add("Hi-Potion");
+            }else if (drop.equals(itemDrop[2])){
+                item.add("Smoke bomb");
+            }else{
+                item.add("Poison");
+            }
+            System.out.println(" You got " + drop);
 
     }
     public void levelUp() {

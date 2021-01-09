@@ -5,19 +5,27 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Board implements Serializable {
+    private static final long SerialVersionUID = 10l;
+    /*unique identifier for Serializable classes. This is used during the
+    deserialization of an object, to ensure that a loaded class is compatible with the serialized object.
+     */
     private int currentTurn;
     public int noOfPlayer;
     private int diceValue;
-    boolean startGame=false;
-    Player [] players;
-    Monsters[] monsters;
-    Square[] square=new Square[32];
-    transient Scanner sc=new Scanner(System.in);
+    boolean startGame = false;
+    public Player[] players;
+    public Monsters[] monsters;
+    public Square[] square = new Square[32];
+    //Player , Monster and Square class cannot be static ,because static is not serializable
+    transient Scanner sc = new Scanner(System.in);
+    //mark the Scanner not to be serialized
+    public Board() {
+    }
 
     public Board(int noOfPlayer) {
-        this.noOfPlayer=noOfPlayer;
-        currentTurn=0;
-        players =new Player[noOfPlayer];
+        this.noOfPlayer = noOfPlayer;
+        currentTurn = 0;
+        players = new Player[noOfPlayer];
 
         System.out.println("Enter character to represent each player");
         for (int i = 0; i < players.length; i++) {
@@ -29,11 +37,11 @@ public class Board implements Serializable {
         }
         checkSequence(players);
         for (int i = 0; i < players.length; i++) {
-            System.out.println("Player "+(i+1)+" : "+players[i].getName());  //to check the sequence of player
+            System.out.println("Player " + (i + 1) + " : " + players[i].getName());  //to check the sequence of player
         }
         System.out.println();
         System.out.println();
-        System.out.println("***** "+players[0].getName() +" plays First! Let's begin. "+"*****");
+        System.out.println("***** " + players[0].getName() + " plays First! Let's begin. " + "*****");
 
         for (int i = 0; i < square.length; i++) {
             if (i == 0)
@@ -45,79 +53,33 @@ public class Board implements Serializable {
             else if (i == 4 || i == 12 || i == 20 || i == 28)
                 square[i] = new Empty("    ");
             else if (i == 2 || i == 15 || i == 19 || i == 29)
-                square[i] = new Tri("Tri-M",this);
+                square[i] = new Tri("Tri-M", this);
             else if (i == 1 || i == 5 || i == 9 || i == 11 || i == 18 || i == 22 || i == 26 || i == 27)
-                square[i] = new Duo("Duo-M",this);
+                square[i] = new Duo("Duo-M", this);
             else
-                square[i] = new Sin("Sin-M",this);
+                square[i] = new Sin("Sin-M", this);
 
         }
         resetSquare();
 
-        monsters=new Monsters[5];
-        monsters[0]=new Monsters("Fire",1,25,5,10,20);
-        monsters[1]=new Monsters("Water", 2,25,7,13,20);
-        monsters[2]=new Monsters("Wind", 3,35,8,15,20);
-        monsters[3]=new Monsters("Land",4,75,10,18,20);
-        monsters[4]=new Monsters("Magic",1,25,5,10,20);
+        monsters = new Monsters[5];
+        monsters[0] = new Monsters("Fire", 1, 25, 5, 10, 20);
+        monsters[1] = new Monsters("Water", 2, 25, 7, 13, 20);
+        monsters[2] = new Monsters("Wind", 3, 35, 8, 15, 20);
+        monsters[3] = new Monsters("Land", 4, 75, 10, 18, 20);
+        monsters[4] = new Monsters("Magic", 1, 25, 5, 10, 20);
 
     }
 
-    public void gameStart() {
-        if (!getCurrentPlayer().isQuitGame()) {
-            System.out.println("\n************* Now is Player " + getCurrentPlayer().getName() + "'s turn *************");
-            System.out.println("Option: 1.Roll Dice  2.Check Stats  3.Quit the Game 4.Save Game");
-            int choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    play();
-                    break;
-                case 2:
-                    System.out.println(getCurrentPlayer().toString());
-                    System.out.println("Continue to roll dice? 1. Yes  2. Skip turn  3. Quit Game");
-                    int choice2 = sc.nextInt();
-                    switch (choice2){
-                        case 1:
-                            play();
-                            break;
-                        case 2:
-                            System.out.println("--------------------------------------------------");
-                            System.out.println("             Your turn is skipped!                ");
-                            System.out.println("--------------------------------------------------");
-                            break;
-                        case 3:
-                            System.out.println("--------------------------------------------------");
-                            System.out.println("             Player " + getCurrentPlayer().getName() + " left the game!");
-                            System.out.println("--------------------------------------------------");
-                            getCurrentPlayer().setQuitGame(true);
-                            //n = n - 1;
-                            break;
-                    }
-                    break;
-                case 3:
-                    System.out.println("--------------------------------------------------");
-                    System.out.println("             Player " + getCurrentPlayer().getName() + " left the game!");
-                    System.out.println("--------------------------------------------------");
-                    getCurrentPlayer().setQuitGame(true);
-                    //n = n - 1;
-                    break;
-
-                case 4:
-                    ResourceManager.save("monopoly.txt");
-            }
-        }
-        setCurrentTurn(1); //every round update current turn to know which player to get in this turn
-    }
-
-    public void  play() {
-        int nextPosition;
-        Player player=getCurrentPlayer(); //first point to the specific player in this round
-        diceValue=player.rollDice();
-        int nextPositionBfr=player.getPosition()+diceValue;  //nextPositionBfr is because i haven't mod by 32
-        if(nextPositionBfr>=32)
-            nextPosition =nextPositionBfr%32;
+    public void play() {
+        int nextPosition = 0;
+        Player player = getCurrentPlayer(); //first point to the specific player in this round
+        diceValue = player.rollDice();
+        int nextPositionBfr = player.getPosition() + diceValue;  //nextPositionBfr is because i havent mod by 32
+        if (nextPositionBfr >= 32)
+            nextPosition = nextPositionBfr % 32;
         else
-            nextPosition=nextPositionBfr;
+            nextPosition = nextPositionBfr;
         player.setPosition(nextPosition); //update player new position
         try {
             // thread to sleep for 1000 milliseconds
@@ -126,7 +88,7 @@ public class Board implements Serializable {
             System.out.println();
         }
         printBoard();      //show the location of player after toss dice
-        if(nextPositionBfr>32)
+        if (nextPositionBfr > 32)
             square[0].event(player);
         // after each round , even if player didn't reach the Start tile, the player is still consider to be upgraded
         square[nextPosition].event(player);
@@ -137,33 +99,33 @@ public class Board implements Serializable {
     public void printBoard() {
         int space;
         // print upper bar
-        for (int m = 16; m< 25; m++) {
+        for (int m = 16; m < 25; m++) {
             System.out.print("----------");
         }
         System.out.println("-");
 
         for (int m = 16; m < 25; m++) {
-            System.out.printf("| %-8s",square[m].name);
+            System.out.printf("| %-8s", square[m].name);
         }
         System.out.println("|");
         for (int m = 16; m < 25; m++) {
-            space=0;
+            space = 0;
             System.out.print("| ");
-            for (Player player : players) {
-                if (player.getPosition() == m && !player.isQuitGame()) {
-                    System.out.print(player.getName() + " ");
+            for (int i = 0; i < players.length; i++) {
+                if (players[i].getPosition() == m && !players[i].isQuitGame()) {
+                    System.out.print(players[i].getName() + " ");
                     space += 2;
                 }
             }
-            for (int i = space; i < 8 ; i++) {
+            for (int i = space; i < 8; i++) {
                 System.out.print(" ");
             }
         }
         System.out.println("|");
-        for (int m = 16; m< 25; m++) {
-            if (m==16){
+        for (int m = 16; m < 25; m++) {
+            if (m == 16) {
                 System.out.print("|---------|");
-            } else if (m==23 || m==24){
+            } else if (m == 23 || m == 24) {
                 System.out.print("---------|");
             } else {
                 System.out.print("----------");
@@ -172,100 +134,102 @@ public class Board implements Serializable {
         System.out.println();
 
         // print middle rows
-        int part1=15, part2=25;
-        while (part1>=9 && part2<=31){
-            System.out.printf("| %-8s|",square[part1].name);
-            if(part1==15 && isStartGame()) {
+        int part1 = 15, part2 = 25;
+        while (part1 >= 9 && part2 <= 31) {
+            System.out.printf("| %-8s|", square[part1].name);
+            if (part1 == 15 && isStartGame()) {
                 System.out.print("[Player " + getCurrentPlayer().getName() + "]" + " moved " + diceValue + " steps");
-                System.out.printf("%45s"," ");
-            }
-            else
-                System.out.printf("%69s"," ");
-            System.out.printf("| %-8s|\n",square[part2].name);
+                System.out.printf("%45s", " ");
+            } else
+                System.out.printf("%69s", " ");
+            System.out.printf("| %-8s|\n", square[part2].name);
             System.out.print("| ");
-            space=0;
-            for (Player player : players) {
-                if (player.getPosition() == part1 && !player.isQuitGame()) {
-                    System.out.print(player.getName() + " ");
+            space = 0;
+            for (int i = 0; i < players.length; i++) {
+                if (players[i].getPosition() == part1 && !players[i].isQuitGame()) {
+                    System.out.print(players[i].getName() + " ");
                     space += 2;
                 }
             }
-            for (int i = space; i < 8 ; i++) {
+            for (int i = space; i < 8; i++) {
                 System.out.print(" ");
             }
             System.out.print("|");
-            System.out.printf("%69s"," ");
+            System.out.printf("%69s", " ");
 
-            space=0;
+            space = 0;
             System.out.print("| ");
-            for (Player player : players) {
-                if (player.getPosition() == part2 && !player.isQuitGame()) {
-                    System.out.print(player.getName() + " ");
+            for (int i = 0; i < players.length; i++) {
+                if (players[i].getPosition() == part2 && !players[i].isQuitGame()) {
+                    System.out.print(players[i].getName() + " ");
                     space += 2;
                 }
             }
-            for (int i = space; i < 8 ; i++) {
+            for (int i = space; i < 8; i++) {
                 System.out.print(" ");
             }
             System.out.println("|");
-            if (part1!=9 && part2!=31){
-                System.out.print("|---------|");
-                System.out.printf("%69s"," ");
-                System.out.print("|---------|");
+            if (part1 != 9 && part2 != 31) {
+                System.out.printf("|---------|");
+                System.out.printf("%69s", " ");
+                System.out.printf("|---------|");
                 System.out.println();
             }
             part1--;
             part2++;
         }
         // print lower bar
-        for (int m = 16; m< 25; m++) {
-            if (m==16){
+        for (int m = 16; m < 25; m++) {
+            if (m == 16) {
                 System.out.print("|---------|");
-            } else if (m==23 || m==24){
+            } else if (m == 23 || m == 24) {
                 System.out.print("---------|");
             } else {
                 System.out.print("----------");
             }
         }
         System.out.println();
-        for (int m = 8; m >=0; m--) {
-            System.out.printf("| %-8s",square[m].name);
+        for (int m = 8; m >= 0; m--) {
+            System.out.printf("| %-8s", square[m].name);
         }
         System.out.println("|");
-        for (int m = 8; m >=0; m--) {
-            space=0;
+        for (int m = 8; m >= 0; m--) {
+            space = 0;
             System.out.print("| ");
-            for (Player player : players) {
-                if (player.getPosition() == m && !player.isQuitGame()) {
-                    System.out.print(player.getName() + " ");
+            for (int i = 0; i < players.length; i++) {
+                if (players[i].getPosition() == m && !players[i].isQuitGame()) {
+                    System.out.print(players[i].getName() + " ");
                     space += 2;
                 }
             }
-            for (int i = space; i < 8 ; i++) {
+            for (int i = space; i < 8; i++) {
                 System.out.print(" ");
             }
         }
         System.out.println("|");
-        for (int m = 8; m >=0; m--) {
+        for (int m = 8; m >= 0; m--) {
             System.out.print("----------");
         }
         System.out.println("-");
     }
+
     //decide sequence
-    private static Player [] checkSequence(Player[] player) {
-        for (int pass = 0; pass<player.length-1; pass++) {
-            for (int i = 0; i < player.length-1; i++) {
+    private static Player[] checkSequence(Player[] player) {
+        for (int pass = 0; pass < player.length - 1; pass++) {
+            for (int i = 0; i < player.length - 1; i++) {
                 Player temp;
-                if(player[i].getFirstDiceRoll()<player[i+1].getFirstDiceRoll()) {
+                if (player[i].getFirstDiceRoll() < player[i + 1].getFirstDiceRoll()) {
                     temp = player[i];            //swap between player , swap whole object
                     player[i] = player[i + 1];
                     player[i + 1] = temp;
                 }
             }
 
-        }return player;
+        }
+        return player;
     }
-    public Player getCurrentPlayer(){
+
+    public Player getCurrentPlayer() {
         return players[currentTurn];
     }
 
@@ -275,20 +239,20 @@ public class Board implements Serializable {
 
     //every time loop in main, current turn will reset by adding 1, player playing is this turn will be follow [currentTurn-1]
     public void setCurrentTurn(int num) {
-        this.currentTurn = currentTurn+1;
-        if(this.currentTurn== players.length)
-            this.currentTurn=0;
+        this.currentTurn = currentTurn + 1;
+        if (this.currentTurn == players.length)
+            this.currentTurn = 0;
     }
 
     //cf: determine method
-    public char determineWinner(int n){
+    public char determineWinner(int n) {
         Player temp;
         for (int j = 1; j < players.length; j++) {
-            if ((players[j].getLevel() > players[j - 1].getLevel()) || (players[j].getLevel() == players[j - 1].getLevel() && (players[j].getGold() > players[j - 1].getGold()))){
+            if ((players[j].getLevel() > players[j - 1].getLevel()) || (players[j].getLevel() == players[j - 1].getLevel() && (players[j].getGold() > players[j - 1].getGold()))) {
                 temp = players[j];
                 players[j] = players[j - 1];
                 players[j - 1] = temp;
-                j=0;
+                j = 0;
             }
         }
         if (players[0].getLevel() == players[1].getLevel() && (players[0].getGold() == players[1].getGold()))
@@ -299,8 +263,9 @@ public class Board implements Serializable {
 
     //return array of player following sequence
     public Player[] getPlayer() {
-        return players.clone();
+        return players;
     }
+
     public boolean isStartGame() {
         return startGame;
     }
@@ -313,12 +278,12 @@ public class Board implements Serializable {
         return square;
     }
 
-    public Square [] resetSquare() {
+    public Square[] resetSquare() {
         Random r = new Random();
 
-        for (int i = square.length-2; i > 0; i--) {
+        for (int i = square.length - 2; i > 0; i--) {
 
-            int j = r.nextInt(i)+1;
+            int j = r.nextInt(i) + 1;
 
             Square temp = square[i];
             square[i] = square[j];
@@ -326,8 +291,11 @@ public class Board implements Serializable {
         }
         return square;
     }
-
     public int getNoOfPlayer() {
         return noOfPlayer;
+    }
+
+    public void setNoOfPlayer(int noOfPlayer) {
+        this.noOfPlayer -= noOfPlayer;
     }
 }

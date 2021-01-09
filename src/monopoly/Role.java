@@ -1,9 +1,10 @@
 package monopoly;
 
-public abstract class Role {
+import java.io.Serializable;
+
+public abstract class Role implements Serializable {
     protected int level, hp, strength, defence, agility, exp, gold;
     protected String name;
-
 
     public Role() {
         level = 1;
@@ -26,7 +27,7 @@ public abstract class Role {
 
     public abstract int attack(int a, int b);
 
-    public abstract void item();
+    public abstract void item(String s);
 
     public abstract void flee();
 
