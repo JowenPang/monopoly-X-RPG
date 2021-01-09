@@ -23,7 +23,7 @@ public class Main {
                 break;
             }else if (str.equals("-load")) {
                 newGame=false;
-                board = ResourceManager.load("monopoly.txt");
+                board = ResourceManager.load("monopoly.dat");
                 board.printBoard();
                 System.out.println("\n-------Game is resume--------");
                 break;
@@ -89,7 +89,7 @@ public class Main {
                         board.setNoOfPlayer(1);
                         break;
                     case 4 :
-                        ResourceManager.save(board,"monopoly.txt");
+                        ResourceManager.save(board,"monopoly.dat");
                         System.out.println("Game is pause and saved. Resume when you are free!");
                         gamePause=false;
                         break outer;
