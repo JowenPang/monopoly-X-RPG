@@ -67,3 +67,6 @@ What we left for now?
 
 [11.32AM 9/1] Ann Joe
 -update Sin.java (add item drop system)
+
+[12.46AM 10/1] jowen
+- load problem solved
