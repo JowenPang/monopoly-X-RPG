@@ -1,5 +1,6 @@
 package monopoly;
 
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -205,5 +206,27 @@ class Sin extends Square {
         player.resetHp(25);
         monster.resetHp(30);
     }
+    
+     //item drop system
+    public void itemDrop(Player player, Monsters monster){
+      String []itemDrop ={"Potion","Hi-Potion","Smoke bomb","Poison"};
+      String drop;
+      
+      if(player.getNoOfMonsterEncounter()%3==0){
+          drop=itemDrop[r.nextInt(itemDrop.length)]; //randomise the index
+                if(drop.equals(itemDrop[0])){
+                    player.item.add("Potion");
+                }else if (drop.equals(itemDrop[1])){
+                    player.item.add("Hi-Potion");
+                }else if (drop.equals(itemDrop[2])){
+                    player.item.add("Smoke bomb");
+                }else{
+                    player.item.add("Poison");
+                }
+       System.out.println(" You got " + drop);
+    }
+}
+}
+
 
 }
