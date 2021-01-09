@@ -1,11 +1,15 @@
 package monopoly;
 
+import java.util.Scanner;
+
 public class Empty extends Square {
     public Empty(String name) {
         this.name = name;
     }
 
     public void event(Player player) {
+        if(sc==null)
+            sc=new Scanner(System.in);
         System.out.println("Welcome to the Empty!");
         System.out.println("Option: 1.Heal yourself  2.Do nothing");
         System.out.print("Your option: ");

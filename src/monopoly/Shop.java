@@ -1,11 +1,15 @@
 package monopoly;
 
+import java.util.Scanner;
+
 public class Shop extends Square{
     public Shop(String name) {
         this.name = name;
     }
 
     public void event(Player player){
+        if(sc==null)
+            sc=new Scanner(System.in);
         int choice=0;
         System.out.println("Welcome to Mystery shop!");
         System.out.println("You current gold: " + player.getGold());

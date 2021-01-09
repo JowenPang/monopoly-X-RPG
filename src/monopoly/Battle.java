@@ -9,10 +9,13 @@ public class Battle implements Serializable {
 
     public Battle(Board board) {
         this.board = board;
+
     }
 
     // check whether battle monsters or battle players
     public  boolean checkbattle(Player player) {
+        if(sc==null)
+            sc=new Scanner(System.in);
         int headcnt = 0, head = 0;
         for (int i = 0; i < board.players.length; i++) {
             //to check if there are players in the same tile excluding the player himself
@@ -71,6 +74,7 @@ public class Battle implements Serializable {
             // player 1
             System.out.println("-->  Now is Player "+player1.getName()+"'s turn <--");
             System.out.println("Choose your option 1.Attack  2.Item ");
+
             int option1 = sc.nextInt();
             switch (option1) {
                 case 1: //attack
@@ -119,6 +123,8 @@ public class Battle implements Serializable {
 
     // battle against monster
     public void battleMonster(Player player, Monsters monster) {
+        if(sc==null)
+            sc=new Scanner(System.in);
         System.out.println("Monster's stats\n" + monster.toString());
         battle:
         while (player.getHp() > 0 && monster.getHp() > 0) {

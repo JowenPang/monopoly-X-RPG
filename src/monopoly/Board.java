@@ -233,10 +233,6 @@ public class Board implements Serializable {
         return players[currentTurn];
     }
 
-    public int getCurrentTurn() {
-        return currentTurn;
-    }
-
     //every time loop in main, current turn will reset by adding 1, player playing is this turn will be follow [currentTurn-1]
     public void setCurrentTurn(int num) {
         this.currentTurn = currentTurn + 1;

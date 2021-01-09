@@ -1,6 +1,7 @@
 package monopoly;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Chest extends Square {
     public String[] rareItem = {"Master Sword", "Blade of Chaos", "Key Blade", "Hidden Blade", "Gravity Gun"};
@@ -11,6 +12,8 @@ public class Chest extends Square {
 
     @Override
     public void event(Player player) {
+        if(sc==null)
+            sc=new Scanner(System.in);
         Random r = new Random();
         String rare;
         System.out.println("You can open a treasure chest");
