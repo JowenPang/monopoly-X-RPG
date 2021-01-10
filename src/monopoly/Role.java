@@ -49,7 +49,7 @@ public abstract class Role implements Serializable {
 
     public void resetHp(int hp) {
         this.hp = hp;
-    } //after every battle , hp is refresh to original hp follow level
+    } 
 
     public int getStrength() {
         return strength;
