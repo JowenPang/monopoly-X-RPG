@@ -193,86 +193,206 @@ public class Player extends Role implements Serializable {
             System.out.println(" You got " + drop);
 
     }
-    public void levelUp() {
-        if (exp < 100) {
+    public void levelUp(){
+        if(exp<100){
             System.out.println();
-        } else {
-            if (exp < 150) {
-                setLevel(1);
-                setHp(2);
-                setStrength(6);
-                setDefence(6);
-                setAgility(5);
-                setGold(25);
-            } else if (exp < 280) {
-                setLevel(1);
-                setHp(2);
-                setStrength(7);
-                setDefence(7);
-                setAgility(10);
-                setGold(50);
-            } else if (exp < 350) {
-                setLevel(1);
-                setHp(2);
-                setStrength(8);
-                setDefence(8);
-                setAgility(15);
-                setGold(75);
-            } else if (exp < 420) {
-                setLevel(1);
-                setHp(2);
-                setStrength(9);
-                setDefence(9);
-                setAgility(20);
-                setGold(100);
-            } else if (exp < 490) {
-                setLevel(1);
-                setHp(2);
-                setStrength(10);
-                setDefence(10);
-                setAgility(25);
-                setGold(125);
-            } else if (exp < 560) {
-                setLevel(1);
-                setHp(3);
-                setStrength(11);
-                setDefence(11);
-                setAgility(30);
-                setGold(150);
-            } else if (exp < 630) {
-                setLevel(1);
-                setHp(3);
-                setStrength(12);
-                setDefence(12);
-                setAgility(35);
-                setGold(175);
-            } else if (exp < 700) {
-                setLevel(1);
-                setHp(3);
-                setStrength(13);
-                setDefence(13);
-                setAgility(40);
-                setGold(200);
-            } else if (exp < 770) {
-                setLevel(1);
-                setHp(3);
-                setStrength(14);
-                setDefence(14);
-                setAgility(45);
-                setGold(225);
-            } else {
-                setLevel(1);
-                setHp(3);
-                setStrength(15);
-                setDefence(15);
-                setAgility(50);
-                setGold(250);
+        }
+        else{
+            if(exp<150){
+                if(this.level<2){
+                    System.out.println("-----level up!-----");
+                    this.level=2;
+                    setGold(25); //gold no limit for every level
+                }
+                //this set the level up element
+                //if else is to check if the player get potion in earlier stage it can still use the potion until their hp is used up
+                if(this.hp<27){
+                    this.hp=27;
+                }
+                if(this.strength<10){
+                    this.strength=10;
+                }
+                if(this.defence<10){
+                    this.defence=10;
+                }
+                if(this.agility<10){
+                    this.agility=10;
+                }
             }
-            System.out.println("--------------------------------------------------");
-            System.out.println("            You have been leveled up!             ");
-            System.out.println("--------------------------------------------------");
+
+            else if(exp<280){
+                if(this.level<3){
+                    this.level=3;
+                    setGold(50);
+                    System.out.println("-----level up!-----");
+                }
+                if(this.hp<29){
+                    this.hp=29;
+                }
+                if(this.strength<20){
+                    this.strength=20;
+                }
+                if(this.defence<20){
+                    this.defence=20;
+                }
+                if(this.agility<20){
+                    this.agility=20;
+                }
+            }
+
+            else if(exp<350){
+                if(this.level<4){
+                    this.level=4;
+                    setGold(75);
+                    System.out.println("-----level up!-----");
+                }
+                if(this.hp<31){
+                    this.hp=31;
+                }
+                if(this.strength<30){
+                    this.strength=30;
+                }
+                if(this.defence<30){
+                    this.defence=30;
+                }
+                if(this.agility<30){
+                    this.agility=30;
+                }
+            }
+
+            else if(exp<420){
+                if(this.level<5){
+                    this.level=5;
+                    setGold(100);
+                    System.out.println("-----level up!-----");
+                }
+                if(this.hp<33){
+                    this.hp=33;
+                }
+                if(this.strength<40){
+                    this.strength=40;
+                }
+                if(this.defence<40){
+                    this.defence=40;
+                }
+                if(this.agility<40){
+                    this.agility=40;
+                }
+            }
+
+            else if(exp<490){
+                if(this.level<6){
+                    this.level=6;
+                    setGold(125);
+                    System.out.println("-----level up!-----");
+                }
+                if(this.hp<35){
+                    this.hp=35;
+                }
+                if(this.strength<50){
+                    this.strength=50;
+                }
+                if(this.defence<50){
+                    this.defence=50;
+                }
+                if(this.agility<50){
+                    this.agility=50;
+                }
+            }
+                    
+
+            else if(exp<560){
+                    if(this.level<6){
+                        this.level=6;
+                        setGold(150);
+                        System.out.println("-----level up!-----");
+                    }
+                    if(this.hp<38){
+                        this.hp=38;
+                    }
+                    if(this.strength<60){
+                        this.strength=60;
+                    }
+                    if(this.defence<60){
+                        this.defence=60;
+                    }
+                    if(this.agility<60){
+                        this.agility=60;
+                    }
+                }
+
+            else if(exp<630){
+                    if(this.level<7){
+                        this.level=7;
+                        setGold(175);
+                        System.out.println("-----level up!-----");
+                    }
+                    if(this.hp<41){
+                        this.hp=41;
+                        }
+                    if(this.strength<70){
+                        this.strength=70;
+                    }
+                    if(this.defence<70){
+                        this.defence=70;
+                    }
+                    this.agility=70;
+            }
+
+            else if(exp<700){
+                if(this.level<8){
+                    this.level=8;
+                    setGold(200);
+                    System.out.println("-----level up!-----");
+                }
+                if(this.hp<44){
+                    this.hp=44;
+                }
+                if(this.strength<80){
+                    this.strength=80;
+                }
+                if(this.defence<80){
+                    this.defence=80;
+                }
+                this.agility=80;
+            }
+
+            else if(exp<770){
+                if(this.level<9){
+                    this.level=9;
+                    setGold(225);
+                    System.out.println("-----level up!-----");
+                }
+                if(this.hp<47){
+                    this.hp=47;
+                }
+                if(this.strength<90){
+                    this.strength=90;
+                }
+                if(this.defence<90){
+                    this.defence=90;
+                }
+                this.agility=90;
+            }
+            else{
+                if(this.level<10){
+                    this.level=10;
+                    setGold(250);
+                }else{
+                    System.out.println("You have reached the maximum level");
+                }
+                if(this.hp<50){
+                    this.hp=50;
+                }
+                if(this.strength<100){
+                    this.strength=100;
+                }
+                if(this.defence<100){
+                    this.defence=100;
+                }
+                this.agility=100;
+            }
+            }
         }
     }
-}
-
 
