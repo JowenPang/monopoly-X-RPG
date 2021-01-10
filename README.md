@@ -70,3 +70,8 @@ What we left for now?
 
 [12.46AM 10/1] jowen
 - load problem solved
+
+[4.16PM 10/1] cf
+- update Sin.java : update resetHp (initialize value and reset)
+- update Role.java: update resetHp()
+- update Player.java : update levelUp() 
