@@ -191,16 +191,18 @@ public class Player extends Role implements Serializable {
                 item.add("Poison");
             }
             System.out.println(" You got " + drop);
-
     }
-    public void levelUp(){
+    
+    public boolean levelUp(){
+        int initialLevel=this.level;
         if(exp<100){
-            System.out.println();
+            if(this.hp<25){
+                this.hp=25; //resetHp
+            }
         }
         else{
             if(exp<150){
                 if(this.level<2){
-                    System.out.println("-----level up!-----");
                     this.level=2;
                     setGold(25); //gold no limit for every level
                 }
@@ -224,7 +226,6 @@ public class Player extends Role implements Serializable {
                 if(this.level<3){
                     this.level=3;
                     setGold(50);
-                    System.out.println("-----level up!-----");
                 }
                 if(this.hp<29){
                     this.hp=29;
@@ -244,7 +245,6 @@ public class Player extends Role implements Serializable {
                 if(this.level<4){
                     this.level=4;
                     setGold(75);
-                    System.out.println("-----level up!-----");
                 }
                 if(this.hp<31){
                     this.hp=31;
@@ -264,7 +264,6 @@ public class Player extends Role implements Serializable {
                 if(this.level<5){
                     this.level=5;
                     setGold(100);
-                    System.out.println("-----level up!-----");
                 }
                 if(this.hp<33){
                     this.hp=33;
@@ -284,7 +283,6 @@ public class Player extends Role implements Serializable {
                 if(this.level<6){
                     this.level=6;
                     setGold(125);
-                    System.out.println("-----level up!-----");
                 }
                 if(this.hp<35){
                     this.hp=35;
@@ -299,13 +297,11 @@ public class Player extends Role implements Serializable {
                     this.agility=50;
                 }
             }
-                    
 
             else if(exp<560){
                     if(this.level<6){
                         this.level=6;
                         setGold(150);
-                        System.out.println("-----level up!-----");
                     }
                     if(this.hp<38){
                         this.hp=38;
@@ -319,13 +315,13 @@ public class Player extends Role implements Serializable {
                     if(this.agility<60){
                         this.agility=60;
                     }
-                }
+            }
+
 
             else if(exp<630){
                     if(this.level<7){
                         this.level=7;
                         setGold(175);
-                        System.out.println("-----level up!-----");
                     }
                     if(this.hp<41){
                         this.hp=41;
@@ -343,7 +339,6 @@ public class Player extends Role implements Serializable {
                 if(this.level<8){
                     this.level=8;
                     setGold(200);
-                    System.out.println("-----level up!-----");
                 }
                 if(this.hp<44){
                     this.hp=44;
@@ -361,7 +356,6 @@ public class Player extends Role implements Serializable {
                 if(this.level<9){
                     this.level=9;
                     setGold(225);
-                    System.out.println("-----level up!-----");
                 }
                 if(this.hp<47){
                     this.hp=47;
@@ -393,6 +387,12 @@ public class Player extends Role implements Serializable {
                 this.agility=100;
             }
             }
+        if(this.level!=initialLevel){
+            System.out.println("-----------------------");
+            System.out.println("You have been leveled up!");
+            System.out.println("-----------------------");
+            return true;
+        }
+        return false;
         }
     }
-
