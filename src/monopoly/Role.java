@@ -49,7 +49,6 @@ public abstract class Role implements Serializable {
 
     public void resetHp(int hp) {
         this.hp = hp;
-        System.out.println("your hp is reset, hp: "+this.hp);
     } 
 
     public int getStrength() {
