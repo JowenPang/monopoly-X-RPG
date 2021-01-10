@@ -126,8 +126,8 @@ public class Battle implements Serializable {
         if(sc==null)
             sc=new Scanner(System.in);
         System.out.println("Monster's stats\n" + monster.toString());
-        int initialHp= player.getHp();
         int initialMonsterHp = monster.getHp();
+        int playerCurrentHp=player.getHp();
         battle:
         while (player.getHp() > 0 && monster.getHp() > 0) {
             if (monster.getHp() < 12)
@@ -201,15 +201,22 @@ public class Battle implements Serializable {
             player.setGold(30);
             player.setExp(30);
             player.setNoOfMonsterEncounter(1);
-            player.levelUp();
+            playerCurrentHp= player.getHp(); //check value of hp after battle
+            if(player.levelUp()){
+                for(int i=0; i<board.monsters.length; i++){
+                    board.monsters[i].MonsterLevelUp(player.getLevel());
+                }
+            }
             System.out.println("Your are rewarded with gold and EXP!\nCheck out your new Statistics:\n" + player.toString());
         }
         if(player.getNoOfMonsterEncounter()%3==0){
             player.itemDrop();
         }
-        if(initialHp>player.getHp()){ //player.getHp() will returns the initial hp of player regarding to its level
-            player.resetHp(initialHp);
-        } //choose the higher hp (maybe player get a lot of potion in previous round then remains the potion)
+        if(playerCurrentHp>player.getHp()){
+            player.hp=playerCurrentHp;
+        }else{
+            System.out.println("Your HP is restored.");
+        }
         monster.resetHp(initialMonsterHp);
         System.out.println("This round end. Player current hp: "+player.getHp());
     }
