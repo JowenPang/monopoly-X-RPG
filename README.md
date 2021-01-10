@@ -80,3 +80,4 @@ What we left for now?
 - update Battle.java : cancel resetHp because levelUp() already restore, add int PlayerCurrentHp to choose to restore hp or not (choose higher value when refresh)
 - update Monster.java : add MonsterLevelUp(), so monster will levelup when player levelup
 - update Player.java : update levelUp() to return boolean, for MonsterLevelUp condition
+- update Board.java : update monster array to let player easier to win
