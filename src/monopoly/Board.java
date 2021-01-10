@@ -259,7 +259,7 @@ public class Board implements Serializable {
 
     //return array of player following sequence
     public Player[] getPlayer() {
-        return players;
+        return players; 
     }
 
     public boolean isStartGame() {
