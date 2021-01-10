@@ -211,6 +211,7 @@ public class Battle implements Serializable {
             player.resetHp(initialHp);
         } //choose the higher hp (maybe player get a lot of potion in previous round then remains the potion)
         monster.resetHp(initialMonsterHp);
+        System.out.println("This round end. Player current hp: "+player.getHp());
     }
 }
 
