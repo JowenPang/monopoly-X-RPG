@@ -217,9 +217,8 @@ public class Player extends Role implements Serializable {
                 if(this.defence<10){
                     this.defence=10;
                 }
-                if(this.agility<10){
-                    this.agility=10;
-                }
+                this.agility=10;
+                
             }
 
             else if(exp<280){
@@ -236,9 +235,8 @@ public class Player extends Role implements Serializable {
                 if(this.defence<20){
                     this.defence=20;
                 }
-                if(this.agility<20){
-                    this.agility=20;
-                }
+                this.agility=20;
+                
             }
 
             else if(exp<350){
@@ -255,9 +253,8 @@ public class Player extends Role implements Serializable {
                 if(this.defence<30){
                     this.defence=30;
                 }
-                if(this.agility<30){
-                    this.agility=30;
-                }
+                this.agility=30;
+                
             }
 
             else if(exp<420){
@@ -274,9 +271,8 @@ public class Player extends Role implements Serializable {
                 if(this.defence<40){
                     this.defence=40;
                 }
-                if(this.agility<40){
-                    this.agility=40;
-                }
+                this.agility=40;
+               
             }
 
             else if(exp<490){
@@ -293,9 +289,7 @@ public class Player extends Role implements Serializable {
                 if(this.defence<50){
                     this.defence=50;
                 }
-                if(this.agility<50){
-                    this.agility=50;
-                }
+                this.agility=50;
             }
 
             else if(exp<560){
@@ -312,9 +306,8 @@ public class Player extends Role implements Serializable {
                     if(this.defence<60){
                         this.defence=60;
                     }
-                    if(this.agility<60){
-                        this.agility=60;
-                    }
+                    this.agility=60;
+                  
             }
 
 
