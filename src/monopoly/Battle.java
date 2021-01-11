@@ -113,10 +113,10 @@ public class Battle implements Serializable {
             System.out.println("Both player's HP is restored.");
             if(initialLevel<player1.getLevel()){
                 System.out.println("-----------------------");
-                System.out.println(player1.getName()+" have been leveled up!");
+                System.out.println("       Player " +player1.getName()+" have been leveled up!");
                 System.out.println("-----------------------");
             }
-            System.out.println(player1.getName()+ " are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player1.toString());
+            System.out.println("Player " +player1.getName()+ " are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player1.toString());
         }
         if(player1.getHp()<=0){
             System.out.println("--------------------------------------------------");
@@ -131,10 +131,10 @@ public class Battle implements Serializable {
             System.out.println("Both player's HP is restored.");
             if(initialLevel<player.getLevel()){
                 System.out.println("-----------------------");
-                System.out.println(player.getName()+" have been leveled up!");
+                System.out.println("       Player " +player.getName()+" have been leveled up!");
                 System.out.println("-----------------------");
             }
-            System.out.println(player.getName()+" are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player.toString());
+            System.out.println("Player " +player.getName()+" are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player.toString());
         }
     }
 
