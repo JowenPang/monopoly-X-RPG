@@ -211,12 +211,8 @@ public class Player extends Role implements Serializable {
                 }
                 //this set the level up element
                 //if else is to check if the player get potion in earlier stage it can still use the potion until their hp is used up
-                if(this.strength<10){
-                    this.strength=10;
-                }
-                if(this.defence<10){
-                    this.defence=10;
-                }
+                this.strength=10;
+                this.defence=10;
                 this.agility=10;
                 
             }
@@ -227,12 +223,8 @@ public class Player extends Role implements Serializable {
                     this.level=3;
                     setGold(50);
                 }
-                if(this.strength<20){
-                    this.strength=20;
-                }
-                if(this.defence<20){
-                    this.defence=20;
-                }
+                this.strength=20;
+                this.defence=20;
                 this.agility=20;
                 
             }
@@ -243,12 +235,8 @@ public class Player extends Role implements Serializable {
                     this.level=4;
                     setGold(75);
                 }
-                if(this.strength<30){
-                    this.strength=30;
-                }
-                if(this.defence<30){
-                    this.defence=30;
-                }
+                this.strength=30;
+                this.defence=30;
                 this.agility=30;
                 
             }
@@ -259,12 +247,8 @@ public class Player extends Role implements Serializable {
                     this.level=5;
                     setGold(100);
                 }
-                if(this.strength<40){
-                    this.strength=40;
-                }
-                if(this.defence<40){
-                    this.defence=40;
-                }
+                this.strength=40;
+                this.defence=40;
                 this.agility=40;
                
             }
@@ -274,29 +258,20 @@ public class Player extends Role implements Serializable {
                 if(this.level<6){
                     this.level=6;
                     setGold(125);
-                }
-                if(this.strength<50){
-                    this.strength=50;
-                }
-                if(this.defence<50){
-                    this.defence=50;
-                }
+                }this.strength=50;
+                this.defence=50;
                 this.agility=50;
             }
 
             else if(exp<560){
                 resetHp(38);
-                    if(this.level<6){
-                        this.level=6;
-                        setGold(150);
-                    }
-                    if(this.strength<60){
-                        this.strength=60;
-                    }
-                    if(this.defence<60){
-                        this.defence=60;
-                    }
-                    this.agility=60;
+                if(this.level<6){
+                    this.level=6;
+                    setGold(150);
+                }
+                this.strength=60;
+                this.defence=60;
+                this.agility=60;
                   
             }
 
@@ -307,13 +282,9 @@ public class Player extends Role implements Serializable {
                         this.level=7;
                         setGold(175);
                     }
-                    if(this.strength<70){
-                        this.strength=70;
-                    }
-                    if(this.defence<70){
-                        this.defence=70;
-                    }
-                    this.agility=70;
+                this.strength=70;
+                this.defence=70;
+                this.agility=70;
             }
 
             else if(exp<700){
@@ -322,12 +293,8 @@ public class Player extends Role implements Serializable {
                     this.level=8;
                     setGold(200);
                 }
-                if(this.strength<80){
-                    this.strength=80;
-                }
-                if(this.defence<80){
-                    this.defence=80;
-                }
+                this.strength=80;
+                this.defence=80;
                 this.agility=80;
             }
 
@@ -337,12 +304,8 @@ public class Player extends Role implements Serializable {
                     this.level=9;
                     setGold(225);
                 }
-                if(this.strength<90){
-                    this.strength=90;
-                }
-                if(this.defence<90){
-                    this.defence=90;
-                }
+                this.strength=90;
+                this.defence=90;
                 this.agility=90;
             }
             else{
@@ -353,12 +316,8 @@ public class Player extends Role implements Serializable {
                 }else{
                     System.out.println("You have reached the maximum level");
                 }
-                if(this.strength<100){
-                    this.strength=100;
-                }
-                if(this.defence<100){
-                    this.defence=100;
-                }
+                this.strength=100;
+                this.defence=100;
                 this.agility=100;
             }
             }
