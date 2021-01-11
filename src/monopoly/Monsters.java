@@ -30,4 +30,14 @@ public class Monsters extends Role implements Serializable {
                 "\ndefence= " + defence +
                 "\nagility= " + agility;
     }
+    
+    public void MonsterLevelUp(int level){
+        if(this.level<level){
+            setLevel(1);
+            setHp(2);
+            setStrength(5);
+            setDefence(5);
+            setAgility(5);
+        }
+    }
 }

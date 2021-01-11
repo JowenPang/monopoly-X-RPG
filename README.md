@@ -72,6 +72,12 @@ What we left for now?
 - load problem solved
 
 [4.16PM 10/1] cf
-- update Sin.java : update resetHp (initialize value and reset)
+- update Battle.java : update resetHp (initialize value and reset)
 - update Role.java: update resetHp()
 - update Player.java : update levelUp() 
+
+[3.29AM 11/1] cf
+- update Battle.java : cancel resetHp because levelUp() already restore, add int PlayerCurrentHp to choose to restore hp or not (choose higher value when refresh)
+- update Monster.java : add MonsterLevelUp(), so monster will levelup when player levelup
+- update Player.java : update levelUp() to return boolean, for MonsterLevelUp condition
+- update Board.java : update monster array to let player easier to win
