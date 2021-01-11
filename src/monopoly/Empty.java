@@ -17,14 +17,14 @@ public class Empty extends Square {
         System.out.println();
 
         if (option == 1) {
-            if (player.weapon.contains("Hi-Potion")) {
+            if (player.item.contains("Hi-Potion")) {
                 System.out.println("Do you want to use Hi-Potion to heal yourself?");
                 sc.nextLine();
                 String ans = sc.nextLine();
                 if (ans.equalsIgnoreCase("Yes")) {
                     player.setHp(15);
                     player.setStrength(15);
-                    player.weapon.remove("Hi-Potion");
+                    player.item.remove("Hi-Potion");
                     System.out.println("You successfully used a Hi-Potion to heal yourself.\n");
                 } else {
                     System.out.println("You choose not to use Hi-Potion to heal yourself");

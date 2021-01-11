@@ -126,7 +126,7 @@ public class Battle implements Serializable {
         if(sc==null)
             sc=new Scanner(System.in);
         System.out.println("Monster's stats\n" + monster.toString());
-        int initialMonsterHp = monster.getHp();
+        int initialMonsterHp = monster.getHp(); // for the purpose to reset back the value after each round of battle
         int playerCurrentHp=player.getHp();
         battle:
         while (player.getHp() > 0 && monster.getHp() > 0) {
@@ -146,7 +146,7 @@ public class Battle implements Serializable {
                         System.out.println();
                     }
                     System.out.println("You dealed a DAMAGE of " + damage + " onto the monster.");
-                    if (monster.getHp() <= 0) {
+                    if (monster.getHp() <= 0) { // break outerloop because monster already defeated
                         System.out.println("Monster's current hp :" + monster.getHp());
                         break battle;
                     } else
@@ -160,6 +160,8 @@ public class Battle implements Serializable {
                     player.item(w);
                     break;
                 case 3:
+                    //smoke bomb is check first then only check agility , if both not satisfied , then cannot escape
+                    //monster will attack back player
                     if (player.getWeapon().contains("Smoke Bomb")) {
                         System.out.println("You escaped this battle using your Smoke Bomb. ");
                         player.weapon.remove("Smoke Bomb");
@@ -195,28 +197,31 @@ public class Battle implements Serializable {
             System.out.println("--------------------------------------------------");
             System.out.println("       Player " + player.getName() + ", you have lost this battle.");
             System.out.println("--------------------------------------------------");
+            player.levelUp();
         }
         if (monster.getHp() <= 0) {
             System.out.println("Monster is defeated.");
             player.setGold(30);
             player.setExp(30);
             player.setNoOfMonsterEncounter(1);
-            playerCurrentHp= player.getHp(); //check value of hp after battle
-            if(player.levelUp()){
+            int initialLevel=player.level;
+            player.levelUp();
+            if(initialLevel!=player.getLevel()){
+                System.out.println("-----------------------");
+                System.out.println("You have been leveled up!");
+                System.out.println("-----------------------");
                 for(int i=0; i<board.monsters.length; i++){
                     board.monsters[i].MonsterLevelUp(player.getLevel());
                 }
             }
             System.out.println("Your are rewarded with gold and EXP!\nCheck out your new Statistics:\n" + player.toString());
+            if(player.getNoOfMonsterEncounter()%3==0){
+                player.itemDrop();
+            }
         }
-        if(player.getNoOfMonsterEncounter()%3==0){
-            player.itemDrop();
-        }
-        if(playerCurrentHp>player.getHp()){
-            player.hp=playerCurrentHp;
-        }else{
-            System.out.println("Your HP is restored.");
-        }
+
+        System.out.println("Your HP is restored.");
+
         monster.resetHp(initialMonsterHp);
         System.out.println("This round end. Player current hp: "+player.getHp());
     }

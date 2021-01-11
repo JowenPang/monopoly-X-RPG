@@ -64,10 +64,10 @@ public class Board implements Serializable {
 
         monsters = new Monsters[5];
         monsters[0] = new Monsters("Fire", 1, 25, 5, 5, 5);
-        monsters[1] = new Monsters("Water", 1, 20, 6, 6, 5);
-        monsters[2] = new Monsters("Wind", 2, 27, 10,10 , 5);
-        monsters[3] = new Monsters("Land", 2, 25, 7,8 , 5);
-        monsters[4] = new Monsters("Magic", 2, 20, 12, 12, 5);
+        monsters[1] = new Monsters("Water", 2, 25, 6, 6, 5);
+        monsters[2] = new Monsters("Wind", 3, 40, 10,10 , 5);
+        monsters[3] = new Monsters("Land", 4, 50, 7,8 , 5);
+        monsters[4] = new Monsters("Magic", 5, 70, 12, 12, 5);
 
     }
 

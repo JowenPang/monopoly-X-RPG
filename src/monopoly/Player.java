@@ -3,6 +3,7 @@ package monopoly;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Player extends Role implements Serializable {
     private char name;
@@ -11,6 +12,7 @@ public class Player extends Role implements Serializable {
     private boolean quitGame=false;
     private int noOfMonsterEncounter;
     Random r =new Random();
+    transient Scanner sc=new Scanner(System.in);
 
     public Player(){
 
@@ -69,6 +71,8 @@ public class Player extends Role implements Serializable {
     //everytime player choose a new item , means switch item , strength and defence is no more accumulate
     @Override
     public void item(String w){
+        if(sc==null)
+            sc=new Scanner(System.in);
         if(weapon.contains(w)) {
             System.out.println("You are now using " + w);
             if(w.equalsIgnoreCase("Sword")) {
@@ -128,12 +132,12 @@ public class Player extends Role implements Serializable {
             }
             else {
                 System.out.println("Please enter a valid weapon");
-                item(w); //recursion , call back the method
+                item(sc.next()); //recursion , call back the method
             }
         }
         else {
             System.out.println("You don't have this weapon, choose other weapon.");
-            item(w);
+            item(sc.next());
         }
     }
 
@@ -193,24 +197,20 @@ public class Player extends Role implements Serializable {
             System.out.println(" You got " + drop);
     }
     
-    public boolean levelUp(){
-        int initialLevel=this.level;
+    public void levelUp(){
+        //int initialLevel=this.level;
         if(exp<100){
-            if(this.hp<25){
-                this.hp=25; //resetHp
-            }
+                resetHp(25); //resetHp
         }
         else{
             if(exp<150){
+                resetHp(27);
                 if(this.level<2){
                     this.level=2;
                     setGold(25); //gold no limit for every level
                 }
                 //this set the level up element
                 //if else is to check if the player get potion in earlier stage it can still use the potion until their hp is used up
-                if(this.hp<27){
-                    this.hp=27;
-                }
                 if(this.strength<10){
                     this.strength=10;
                 }
@@ -222,12 +222,10 @@ public class Player extends Role implements Serializable {
             }
 
             else if(exp<280){
+                resetHp(29);
                 if(this.level<3){
                     this.level=3;
                     setGold(50);
-                }
-                if(this.hp<29){
-                    this.hp=29;
                 }
                 if(this.strength<20){
                     this.strength=20;
@@ -240,12 +238,10 @@ public class Player extends Role implements Serializable {
             }
 
             else if(exp<350){
+                resetHp(31);
                 if(this.level<4){
                     this.level=4;
                     setGold(75);
-                }
-                if(this.hp<31){
-                    this.hp=31;
                 }
                 if(this.strength<30){
                     this.strength=30;
@@ -258,12 +254,10 @@ public class Player extends Role implements Serializable {
             }
 
             else if(exp<420){
+                resetHp(33);
                 if(this.level<5){
                     this.level=5;
                     setGold(100);
-                }
-                if(this.hp<33){
-                    this.hp=33;
                 }
                 if(this.strength<40){
                     this.strength=40;
@@ -276,12 +270,10 @@ public class Player extends Role implements Serializable {
             }
 
             else if(exp<490){
+                resetHp(35);
                 if(this.level<6){
                     this.level=6;
                     setGold(125);
-                }
-                if(this.hp<35){
-                    this.hp=35;
                 }
                 if(this.strength<50){
                     this.strength=50;
@@ -293,12 +285,10 @@ public class Player extends Role implements Serializable {
             }
 
             else if(exp<560){
+                resetHp(38);
                     if(this.level<6){
                         this.level=6;
                         setGold(150);
-                    }
-                    if(this.hp<38){
-                        this.hp=38;
                     }
                     if(this.strength<60){
                         this.strength=60;
@@ -312,13 +302,11 @@ public class Player extends Role implements Serializable {
 
 
             else if(exp<630){
+                resetHp(41);
                     if(this.level<7){
                         this.level=7;
                         setGold(175);
                     }
-                    if(this.hp<41){
-                        this.hp=41;
-                        }
                     if(this.strength<70){
                         this.strength=70;
                     }
@@ -329,12 +317,10 @@ public class Player extends Role implements Serializable {
             }
 
             else if(exp<700){
+                resetHp(44);
                 if(this.level<8){
                     this.level=8;
                     setGold(200);
-                }
-                if(this.hp<44){
-                    this.hp=44;
                 }
                 if(this.strength<80){
                     this.strength=80;
@@ -346,12 +332,10 @@ public class Player extends Role implements Serializable {
             }
 
             else if(exp<770){
+                resetHp(47);
                 if(this.level<9){
                     this.level=9;
                     setGold(225);
-                }
-                if(this.hp<47){
-                    this.hp=47;
                 }
                 if(this.strength<90){
                     this.strength=90;
@@ -362,14 +346,12 @@ public class Player extends Role implements Serializable {
                 this.agility=90;
             }
             else{
+                resetHp(50);
                 if(this.level<10){
                     this.level=10;
                     setGold(250);
                 }else{
                     System.out.println("You have reached the maximum level");
-                }
-                if(this.hp<50){
-                    this.hp=50;
                 }
                 if(this.strength<100){
                     this.strength=100;
@@ -380,12 +362,6 @@ public class Player extends Role implements Serializable {
                 this.agility=100;
             }
             }
-        if(this.level!=initialLevel){
-            System.out.println("-----------------------");
-            System.out.println("You have been leveled up!");
-            System.out.println("-----------------------");
-            return true;
-        }
-        return false;
+
         }
     }
