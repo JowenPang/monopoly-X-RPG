@@ -127,7 +127,6 @@ public class Battle implements Serializable {
             sc=new Scanner(System.in);
         System.out.println("Monster's stats\n" + monster.toString());
         int initialMonsterHp = monster.getHp(); // for the purpose to reset back the value after each round of battle
-        int playerCurrentHp=player.getHp();
         battle:
         while (player.getHp() > 0 && monster.getHp() > 0) {
             if (monster.getHp() < 12)
