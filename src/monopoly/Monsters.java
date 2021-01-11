@@ -35,8 +35,8 @@ public class Monsters extends Role implements Serializable {
         if(this.level<level){
             setLevel(1);
             setHp(2);
-            setStrength(5);
-            setDefence(5);
+            increaseStrength(5);
+            increaseDefence(5);
             setAgility(5);
         }
     }

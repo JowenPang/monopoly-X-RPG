@@ -66,7 +66,7 @@ public class Battle implements Serializable {
                     }
                     System.out.println(player.getWeapon());
                     System.out.println("Choose your weapon: ");
-                    String w=sc.next();
+                    String w=sc.nextLine();
                     player.item(w);
                     break;
             }
@@ -95,7 +95,7 @@ public class Battle implements Serializable {
                     }
                     System.out.println(player.getWeapon());
                     System.out.println("Choose your weapon: ");
-                    String w=sc.next();
+                    String w=sc.nextLine();
                     player.item(w);
                     break;
             }
@@ -173,7 +173,7 @@ public class Battle implements Serializable {
                 case 2:// player can choose weapon from his backpack
                     System.out.println(player.getWeapon());
                     System.out.println("Choose your weapon: ");
-                    String w=sc.next();
+                    String w=sc.nextLine();
                     player.item(w);
                     break;
                 case 3:

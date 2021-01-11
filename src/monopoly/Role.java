@@ -59,12 +59,19 @@ public abstract class Role implements Serializable {
         this.strength = strength;
     }
 
+    public void increaseStrength(int strength) {
+        this.strength += strength;
+    }
+
     public int getDefence() {
         return defence;
     }
 
     public void setDefence(int defence) {
         this.defence = defence;
+    }
+    public void increaseDefence(int defence) {
+        this.defence += defence;
     }
 
     public int getAgility() {
