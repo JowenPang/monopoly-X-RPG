@@ -107,7 +107,16 @@ public class Battle implements Serializable {
             System.out.println("Congratulations ! Player " + player1.getName() +"!");
             player1.setGold(30);
             player1.setExp(30);
-            System.out.println("Your are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player1.toString());
+            int initialLevel=player1.level;
+            player1.levelUp();
+            player.levelUp(); //reset setting for both player
+            System.out.println("Both player's HP is restored.");
+            if(initialLevel<player1.getLevel()){
+                System.out.println("-----------------------");
+                System.out.println(player1.getName()+" have been leveled up!");
+                System.out.println("-----------------------");
+            }
+            System.out.println(player1.getName()+ " are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player1.toString());
         }
         if(player1.getHp()<=0){
             System.out.println("--------------------------------------------------");
@@ -116,7 +125,16 @@ public class Battle implements Serializable {
             System.out.println("Congratulations ! Player " + player.getName() +"!");
             player.setGold(30);
             player.setExp(30);
-            System.out.println("Your are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player.toString());
+            int initialLevel=player.level;
+            player.levelUp();
+            player1.levelUp(); //reset setting for both player
+            System.out.println("Both player's HP is restored.");
+            if(initialLevel<player.getLevel()){
+                System.out.println("-----------------------");
+                System.out.println(player.getName()+" have been leveled up!");
+                System.out.println("-----------------------");
+            }
+            System.out.println(player.getName()+" are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player.toString());
         }
     }
 
@@ -218,9 +236,7 @@ public class Battle implements Serializable {
                 player.itemDrop();
             }
         }
-
         System.out.println("Your HP is restored.");
-
         monster.resetHp(initialMonsterHp);
         System.out.println("This round end. Player current hp: "+player.getHp());
     }
