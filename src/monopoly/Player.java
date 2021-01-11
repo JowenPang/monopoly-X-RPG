@@ -198,7 +198,6 @@ public class Player extends Role implements Serializable {
     }
     
     public void levelUp(){
-        //int initialLevel=this.level;
         if(exp<100){
                 resetHp(25); //resetHp
         }
@@ -209,8 +208,6 @@ public class Player extends Role implements Serializable {
                     this.level=2;
                     setGold(25); //gold no limit for every level
                 }
-                //this set the level up element
-                //if else is to check if the player get potion in earlier stage it can still use the potion until their hp is used up
                 this.strength=10;
                 this.defence=10;
                 this.agility=10;
