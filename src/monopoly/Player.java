@@ -18,7 +18,7 @@ public class Player extends Role implements Serializable {
 
     }
 
-    //if isLose is true , then the player is count as removed from the game, the player cannot play game if isLose is true
+    //if quitGame is true , then the player is count as removed from the game
     ArrayList<String> item = new ArrayList<String>();
     ArrayList<String> weapon = new ArrayList<String>();
     //act as backpack of player , can add and remove item and weapon
@@ -73,72 +73,92 @@ public class Player extends Role implements Serializable {
     public void item(String w){
         if(sc==null)
             sc=new Scanner(System.in);
-        if(weapon.contains(w)) {
+        if(weapon.contains(w)){
             System.out.println("You are now using " + w);
-            if(w.equalsIgnoreCase("Sword")) {
+
+            if (w.equalsIgnoreCase("Sword")) {
                 System.out.println("Strength 8 , Defence 10 , Hp +8");
                 setHp(8);
                 setStrength(10);
                 setDefence(10);
-            }
-            else if(w.equalsIgnoreCase("Spear")) {
+            } else if (w.equalsIgnoreCase("Spear")) {
                 System.out.println("Strength 10 , Defence 11 , Hp +8");
                 setHp(8);
                 setStrength(10);
                 setDefence(11);
-            }
-            else if(w.equalsIgnoreCase("Wooden Axe")) {
+            } else if (w.equalsIgnoreCase("Wooden Axe")) {
                 System.out.println("Strength 13 , Defence 12 , Hp +10");
                 setHp(10);
                 setStrength(13);
                 setDefence(12);
-            }
-            else if(w.equalsIgnoreCase("Shield")) {
+            } else if (w.equalsIgnoreCase("Shield")) {
                 System.out.println("Strength 15 , Defence 19 , Hp +10");
                 setHp(10);
                 setStrength(15);
                 setDefence(19);
-            }
-            else if(w.equalsIgnoreCase("Crossbows")) {
+            } else if (w.equalsIgnoreCase("Crossbows")) {
                 System.out.println("Strength 15 , Defence 16 , Hp +12");
                 setHp(12);
                 setStrength(15);
                 setDefence(16);
-            }
-            else if(w.equalsIgnoreCase("Bows")) {
+            } else if (w.equalsIgnoreCase("Bows")) {
                 System.out.println("Strength 18 , Defence 18 , Hp +12");
                 setHp(12);
                 setStrength(18);
                 setDefence(18);
-            }
-            else if(w.equalsIgnoreCase("Tridents")) {
+            } else if (w.equalsIgnoreCase("Tridents")) {
                 System.out.println("Strength 18 , Defence 18 , Hp +13");
                 setHp(13);
                 setStrength(18);
                 setDefence(18);
-            }
-            else if(w.equalsIgnoreCase("Armor")) {
+            } else if (w.equalsIgnoreCase("Armor")) {
                 System.out.println("Strength 20 , Defence 20 , Hp +15");
                 setHp(15);
                 setStrength(20);
                 setDefence(20);
-            }
-            else if(w.equalsIgnoreCase("Master Sword")|| w.equalsIgnoreCase("Blade of Chaos")
-            ||w.equalsIgnoreCase("Key Blade") ||w.equalsIgnoreCase("Hidden Blade")||
-                    w.equalsIgnoreCase("Gravity Gun")){
-                System.out.println("You can apply "+ w + " to let other players to downgrade one level ");
-
+            } else if (w.equalsIgnoreCase("Master Sword")) {
+                System.out.println("This weapon can be only use once");
+                System.out.println("Strength 30 , Defence 30 , Hp +20");
+                setHp(20);
+                setStrength(30);
+                setDefence(30);
                 weapon.remove(w);
-            }
-            else {
-                System.out.println("Please enter a valid weapon");
-                item(sc.next()); //recursion , call back the method
+            } else if (w.equalsIgnoreCase("Blade of Chaos")) {
+                System.out.println("This weapon can be only use once");
+                System.out.println("Strength 30 , Defence 30 , Hp +20");
+                setHp(20);
+                setStrength(30);
+                setDefence(30);
+                weapon.remove(w);
+            } else if (w.equalsIgnoreCase("Key Blade")) {
+                System.out.println("This weapon can be only use once");
+                System.out.println("Strength 30 , Defence 30 , Hp +20");
+                setHp(20);
+                setStrength(30);
+                setDefence(30);
+                weapon.remove(w);
+
+            } else if (w.equalsIgnoreCase("Hidden Blade")) {
+                System.out.println("This weapon can be only use once");
+                System.out.println("Strength 25 , Defence 25 , Hp +18");
+                setHp(18);
+                setStrength(25);
+                setDefence(25);
+                weapon.remove(w);
+            } else {
+                System.out.println("This weapon can be only use once");
+                System.out.println("Strength 30 , Defence 30 , Hp +20");
+                setHp(20);
+                setStrength(30);
+                setDefence(30);
+                weapon.remove(w);
             }
         }
         else {
-            System.out.println("You don't have this weapon, choose other weapon.");
-            item(sc.next());
+            System.out.println("Please enter a valid weapon");
+            item(sc.nextLine()); //recursion , call back the method
         }
+
     }
 
     @Override
@@ -198,7 +218,6 @@ public class Player extends Role implements Serializable {
     }
     
     public void levelUp(){
-        //int initialLevel=this.level;
         if(exp<100){
                 resetHp(25); //resetHp
         }
@@ -209,15 +228,13 @@ public class Player extends Role implements Serializable {
                     this.level=2;
                     setGold(25); //gold no limit for every level
                 }
-                //this set the level up element
-                //if else is to check if the player get potion in earlier stage it can still use the potion until their hp is used up
                 this.strength=10;
                 this.defence=10;
                 this.agility=10;
                 
             }
 
-            else if(exp<280){
+            else if(exp<230){
                 resetHp(29);
                 if(this.level<3){
                     this.level=3;
@@ -229,7 +246,7 @@ public class Player extends Role implements Serializable {
                 
             }
 
-            else if(exp<350){
+            else if(exp<320){
                 resetHp(31);
                 if(this.level<4){
                     this.level=4;
@@ -241,7 +258,7 @@ public class Player extends Role implements Serializable {
                 
             }
 
-            else if(exp<420){
+            else if(exp<410){
                 resetHp(33);
                 if(this.level<5){
                     this.level=5;

@@ -80,7 +80,7 @@ public class Battle implements Serializable {
                     }
                     System.out.println(player.getWeapon());
                     System.out.println("Choose your weapon: ");
-                    String w=sc.next();
+                    String w=sc.nextLine();
                     player.item(w);
                     break;
             }
@@ -123,8 +123,8 @@ public class Battle implements Serializable {
                     }
                     System.out.println(player1.getWeapon());
                     System.out.println("Choose your weapon: ");
-                    String w=sc.next();
-                    player1.item(w);
+                    String w=sc.nextLine();
+                    player.item(w);
                     break;
             }
         }
@@ -135,7 +135,16 @@ public class Battle implements Serializable {
             System.out.println("Congratulations ! Player " + player1.getName() +"!");
             player1.setGold(30);
             player1.setExp(30);
-            System.out.println("Your are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player1.toString());
+            int initialLevel=player1.level;
+            player1.levelUp();
+            player.levelUp(); //reset setting for both player
+            System.out.println("Both player's HP is restored.");
+            if(initialLevel<player1.getLevel()){
+                System.out.println("-----------------------");
+                System.out.println("       Player " +player1.getName()+" have been leveled up!");
+                System.out.println("-----------------------");
+            }
+            System.out.println("Player " +player1.getName()+ " are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player1.toString());
         }
         if(player1.getHp()<=0){
             System.out.println("--------------------------------------------------");
@@ -144,7 +153,16 @@ public class Battle implements Serializable {
             System.out.println("Congratulations ! Player " + player.getName() +"!");
             player.setGold(30);
             player.setExp(30);
-            System.out.println("Your are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player.toString());
+            int initialLevel=player.level;
+            player.levelUp();
+            player1.levelUp(); //reset setting for both player
+            System.out.println("Both player's HP is restored.");
+            if(initialLevel<player.getLevel()){
+                System.out.println("-----------------------");
+                System.out.println("       Player " +player.getName()+" have been leveled up!");
+                System.out.println("-----------------------");
+            }
+            System.out.println("Player " +player.getName()+" are rewarded with gold and EXP!\nCheck out your new Statistics:\n"+ player.toString());
         }
     }
 
@@ -155,7 +173,6 @@ public class Battle implements Serializable {
             sc=new Scanner(System.in);
         System.out.println("Monster's stats\n" + monster.toString());
         int initialMonsterHp = monster.getHp(); // for the purpose to reset back the value after each round of battle
-        int playerCurrentHp=player.getHp();
         battle:
         while (player.getHp() > 0 && monster.getHp() > 0) {
             if (monster.getHp() < 12)
@@ -184,7 +201,7 @@ public class Battle implements Serializable {
                 case 2:// player can choose weapon from his backpack
                     System.out.println(player.getWeapon());
                     System.out.println("Choose your weapon: ");
-                    String w=sc.next();
+                    String w=sc.nextLine();
                     player.item(w);
                     break;
                 case 3:
@@ -247,9 +264,7 @@ public class Battle implements Serializable {
                 player.itemDrop();
             }
         }
-
         System.out.println("Your HP is restored.");
-
         monster.resetHp(initialMonsterHp);
         System.out.println("This round end. Player current hp: "+player.getHp());
     }

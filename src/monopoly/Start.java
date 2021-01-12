@@ -8,7 +8,7 @@ class Start extends Square {
 
     public void event(Player player) {
         System.out.println("You made it through one round, congratulations!");
-        player.setExp(80);
+        player.setExp(95);
         player.levelUp();
         System.out.println("Your new statistics: \n" + player.toString());
         System.out.println("Continue enjoy the game!");
