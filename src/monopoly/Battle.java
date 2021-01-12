@@ -41,7 +41,7 @@ public class Battle implements Serializable {
     // battle against player
     public void battlePlayer(Player player, Player player1) {
         // player
-        System.out.println("Player will fight with Player "+ player1.getName());
+        System.out.println("Player "+player.getName()+" will fight with Player "+ player1.getName());
         battle:
         while(player.getHp()>0 && player1.getHp()>0) {
             System.out.println("-->  Now is Player "+player.getName()+"'s turn <--");
@@ -49,20 +49,34 @@ public class Battle implements Serializable {
             int option = sc.nextInt();
             switch (option) {
                 case 1: //attack
-                    player1.setHp(-(player.attack(player.getStrength(), player1.getDefence())));
+                    int damage = player.attack(player.getStrength(), player1.getDefence()); // damage towards player1
+                    player1.setHp(-damage);
+                    try {
+                        // thread to sleep for 1000 milliseconds
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        System.out.println();
+                    }
+                    System.out.println("You dealed a DAMAGE of " + damage + " onto the Player "+player1.getName()+" !");
+                    if (player1.getHp() <= 0) { // break outerloop because monster already defeated
+                        System.out.println("Player "+player1.getName()+"'s current hp :" + player1.getHp());
+                        break battle;
+                    } else
+                        System.out.println("Player "+player1.getName()+"'s current hp :" + player1.getHp());
+                    System.out.println();
                     break;
                 case 2: // player can choose weapon from his backpack
                     if(player.getItem().contains("Smoke Bomb")){
                         System.out.println("You have smoke bomb. Do you wish to use it to flee?");
-                        String ans = sc.nextLine();
-                        if (ans.equalsIgnoreCase("yes")){
+                        String answer = sc.next();
+                        if (answer.equalsIgnoreCase("yes")){
                             System.out.println("You escaped this battle using your Smoke Bomb. ");
                             player.item.remove("Smoke Bomb");
                             //flee from battle
                             player.flee();
                             System.out.println("- No rewards for both players ! -");
                             break battle;
-                        }
+                        } 
                     }
                     System.out.println(player.getWeapon());
                     System.out.println("Choose your weapon: ");
@@ -78,25 +92,39 @@ public class Battle implements Serializable {
             int option1 = sc.nextInt();
             switch (option1) {
                 case 1: //attack
-                    player.setHp(-(player1.attack(player1.getStrength(), player.getDefence())));
+                    int damage = player1.attack(player1.getStrength(), player.getDefence()); // damage towards player
+                    player.setHp(-damage);
+                    try {
+                        // thread to sleep for 1000 milliseconds
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        System.out.println();
+                    }
+                    System.out.println("You dealed a DAMAGE of " + damage + " onto the Player "+player.getName()+"!");
+                    if (player.getHp() <= 0) { // break outerloop because monster already defeated
+                        System.out.println("Player "+player.getName()+"'s current hp :" + player.getHp());
+                        break battle;
+                    } else
+                        System.out.println("Player "+player.getName()+"'s current hp :" + player.getHp());
+                    System.out.println();
                     break;
                 case 2: // player1 can choose weapon from his backpack
-                    if(player.getItem().contains("Smoke Bomb")){
+                    if(player1.getItem().contains("Smoke Bomb")){
                         System.out.println("You have smoke bomb. Do you wish to use it to flee?");
-                        String ans = sc.nextLine();
+                        String ans = sc.next();
                         if (ans.equalsIgnoreCase("yes")){
                             System.out.println("You escaped this battle using your Smoke Bomb. ");
-                            player.item.remove("Smoke Bomb");
+                            player1.item.remove("Smoke Bomb");
                             //flee from battle
-                            player.flee();
+                            player1.flee();
                             System.out.println("- No rewards for both players ! -");
                             break battle;
                         }
                     }
-                    System.out.println(player.getWeapon());
+                    System.out.println(player1.getWeapon());
                     System.out.println("Choose your weapon: ");
                     String w=sc.next();
-                    player.item(w);
+                    player1.item(w);
                     break;
             }
         }
